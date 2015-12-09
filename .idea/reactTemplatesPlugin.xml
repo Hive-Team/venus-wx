@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RTProjectComponent">
+    <option name="nodeInterpreter" value="/usr/local/Cellar/node/0.12.4/bin/node" />
+  </component>
+</project>

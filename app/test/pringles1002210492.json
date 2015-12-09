@@ -1,0 +1,21 @@
+{
+    "data": [
+        {
+            "contentId": "10094",
+            "contentName": "001.jpg",
+            "contentUrl": "http://192.168.1.250/ftppub/uploadResource/zip/20150701/1435746585022/001.jpg",
+            "description": "",
+            "detailUrl": "",
+            "weight": "2"
+        },
+        {
+            "contentId": "10095",
+            "contentName": "002.jpg",
+            "contentUrl": "http://192.168.1.250/ftppub/uploadResource/zip/20150701/1435746585022/002.jpg",
+            "description": "",
+            "detailUrl": "",
+            "weight": "2"
+        }
+    ],
+    "code": 200
+}

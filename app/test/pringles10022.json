@@ -1,0 +1,15 @@
+{
+    "data": [
+        {
+            "contentId": "10185",
+            "contentName": "lol",
+            "contentUrl": "http://192.168.1.130:8080/content/control/stream?contentId=10185"
+        },
+        {
+            "contentId": "10188",
+            "contentName": "CG",
+            "contentUrl": "http://192.168.1.130:8080/content/control/stream?contentId=10188"
+        }
+    ],
+    "code": 200
+}

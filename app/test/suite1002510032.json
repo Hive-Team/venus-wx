@@ -1,0 +1,42 @@
+{
+    "data": [
+        {
+            "activityId": 0,
+            "activityName": "",
+            "baseSampleImages": [],
+            "cityId": "100",
+            "cityName": "",
+            "clothShootImages": [],
+            "cosmeticImages": [],
+            "coverImage": [],
+            "depositRate": 1000,
+            "description": "【接口测试】勿动",
+            "detailImages": [],
+            "dressModeling": "自选婚纱3套",
+            "dressShoot": "<p>\n    <strong>你好我是富文本</strong>\n</p>\n<p>\n    <br/>\n</p>\n<ol>\n    <li>\n        <p>\n            one<br/>\n        </p>\n    </li>\n    <li>\n        <p>\n            two\n        </p>\n    </li>\n    <li>\n        <p>\n            three\n        </p>\n    </li>\n</ol>",
+            "isOptionalCameraman": 1,
+            "isOptionalStylist": 1,
+            "isSendMV": 0,
+            "isUsed": 1,
+            "isValueAddService": 0,
+            "price": 5000,
+            "productId": "10030",
+            "productName": "【接口测试】勿动",
+            "provinceId": "4",
+            "provinceName": "",
+            "recordNum": 70,
+            "shootAdress": "永川竹海",
+            "shootAdressDetail": "<p>\n    <strong>你好我是富文本</strong>\n</p>\n<p>\n    <br/>\n</p>\n<ol>\n    <li>\n        <p>\n            one<br/>\n        </p>\n    </li>\n    <li>\n        <p>\n            two\n        </p>\n    </li>\n    <li>\n        <p>\n            three\n        </p>\n    </li>\n</ol>",
+            "shootSampless": 120,
+            "shootService": "这是简介",
+            "shootServiceDetail": "<p>\n    <strong>你好我是富文本</strong>\n</p>\n<p>\n    <br/>\n</p>\n<ol>\n    <li>\n        <p>\n            one<br/>\n        </p>\n    </li>\n    <li>\n        <p>\n            two\n        </p>\n    </li>\n    <li>\n        <p>\n            three\n        </p>\n    </li>\n</ol>",
+            "shootTime": 1,
+            "suitContent": "<p>\n    <strong>你好我是富文本</strong>\n</p>\n<p>\n    <br/>\n</p>\n<ol>\n    <li>\n        <p>\n            one<br/>\n        </p>\n    </li>\n    <li>\n        <p>\n            two\n        </p>\n    </li>\n    <li>\n        <p>\n            three\n        </p>\n    </li>\n</ol>",
+            "truingNum": 50,
+            "valueAddServiceFeature": "极酷至炫,美轮美奂,效果超乎寻常,只为少数人体验",
+            "valueAddServiceSpecialNote": "每天至多接待２组客户拍摄",
+            "weddingDressSuitId": 10030
+        }
+    ],
+    "code": 200
+}

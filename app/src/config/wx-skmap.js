@@ -1,0 +1,43 @@
+// module.exports={
+//     '#/':'首页',
+//     '#/home':'首页',
+//     '#/samples':'样片欣赏',
+//     '样片欣赏':'samples',
+//     '#/pringles':'客片欣赏',
+//     '客片欣赏':'pringles',
+//     '#/suite':'婚纱套系报价',
+//     '婚纱套系报价':'suite',
+//     '#/photographer':'选摄影师',
+//     '选摄影师':'photographer',
+//     '#/stylist':'选造型师',
+//     '选造型师':'stylist',
+//     '#/scheme':'婚庆定制',
+//     '婚庆定制':'scheme',
+//     '首页':'home'
+// }
+
+module.exports={
+   '#/samples':'婚纱摄影/样片欣赏',
+   '样片欣赏':'samples',
+   '#/pringles':'婚纱摄影/客片欣赏',
+   '客片欣赏':'pringles',
+   '#/suite':'婚纱摄影/婚纱套系报价',
+   '婚纱套系报价':'suite',
+   '#/photographer':'婚纱摄影/选摄影师',
+   '选摄影师':'photographer',
+   '#/stylist':'婚纱摄影/选造型师',
+   '选造型师':'stylist',
+   '#/hotel':'婚宴预订/酒店列表',
+   '酒店列表':'hotel',
+   '#/scheme':'实景案例',
+   '实景案例':'scheme',
+   '#/weddingpat':'婚礼跟拍',
+   '婚礼跟拍':'weddingpat',
+   '#/':'首页/顶部广告',
+   '#/home':'首页',
+   '首页':'home',
+   '#/weddingsupplies':'婚礼用品',
+   '婚礼用品':'weddingsupplies',
+   '#/weddingcarental':'婚车租赁',
+   '婚车租赁':'weddingcarental'
+}

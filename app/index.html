@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="./bower_components/photoswipe/dist/photoswipe.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="./bower_components/photoswipe/dist/default-skin/default-skin.css" media="screen"  charset="utf-8">
+    <link rel="stylesheet" href="./assets/styles/mobile-angular-ui-base.min.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="./assets/styles/slider.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="./assets/styles/css.css" media="screen" charset="utf-8">
+    <title>金色百年</title>
+    <!--[if lt IE 9]>
+    <script src="./bower_components/html5shiv/dist/html5shiv.js"></script>
+    <script src="./bower_components/es5-shim/es5-shim.min.js"></script>
+    <script src="./bower_components/es5-shim/es5-sham.min.js"></script>
+    <script src="./bower_components/console-polyfill/index.js"></script>
+    <![endif]-->
+
+    <!-- <script src="bower_components/zepto/zepto.min.js" charset="utf-8"></script> -->
+    <script src="./bower_components/jquery-legacy/dist/jquery.js" charset="utf-8"></script>
+    <script src="./bower_components/photoswipe/dist/photoswipe.min.js" charset="utf-8"></script>
+    <script src="./bower_components/photoswipe/dist/photoswipe-ui-default.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div id='JPage' class='ui-container' ></div>
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="pswp__bg"></div>
+
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
+
+                    <!-- <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> -->
+
+                    <!-- <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button> -->
+
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                          <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="./build/bundle.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c9a00f6f9f733dcf913aabd48759361a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+
+        })();
+    </script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=pANA02VPcarYYYHHY5Ddux2Z"></script>
+  </body>
+</html>

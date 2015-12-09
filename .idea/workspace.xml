@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e838b5fd-784e-4aa2-94e4-97871acba492" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-video2-player.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-carental-detail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-class-detail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-lovemovie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-lovemv.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-movie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/components/wx-weddingpat.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/about-us.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/case-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/cases-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/cases.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/footer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/hall-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/home-mash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/home-menu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/home-recommend.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/hotel-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/hotel-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/hotel.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/my-center.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/photographers-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/photographers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/planners.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/pringles-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/pringles-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/pringles-mash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/pringles.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/samples-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/samples-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/samples-mash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/samples.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/scheme-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/scheme.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/semiphotographers-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/shot.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/stylists.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/suites-activity.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/suites-detail.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/suites-list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/suites-recommend.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/components/suites.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/ico-nav-8.png" afterPath="$PROJECT_DIR$/app/assets/images/ico-nav-8.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/bundle.js" afterPath="$PROJECT_DIR$/app/build/bundle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/config/core.js" afterPath="$PROJECT_DIR$/app/src/config/core.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/styles/css.css" afterPath="$PROJECT_DIR$/app/assets/styles/css.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/image-item.js" afterPath="$PROJECT_DIR$/app/src/components/image-item.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/main.js" afterPath="$PROJECT_DIR$/app/src/components/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/config/routes.js" afterPath="$PROJECT_DIR$/app/src/config/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/run-wx-pre.sh" afterPath="$PROJECT_DIR$/app/run-wx-pre.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/run-wx.sh" afterPath="$PROJECT_DIR$/app/run-wx.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/vendors/slider.js" afterPath="$PROJECT_DIR$/app/src/vendors/slider.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-f4.js" afterPath="$PROJECT_DIR$/app/src/components/wx-f4.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-header-menu.js" afterPath="$PROJECT_DIR$/app/src/components/wx-header-menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-home.js" afterPath="$PROJECT_DIR$/app/src/components/wx-home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-hotel-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-hotel-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-hotel.js" afterPath="$PROJECT_DIR$/app/src/components/wx-hotel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-photographer-list.js" afterPath="$PROJECT_DIR$/app/src/components/wx-photographer-list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js" afterPath="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-planner-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-planner-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-planner-product.js" afterPath="$PROJECT_DIR$/app/src/components/wx-planner-product.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-planners.js" afterPath="$PROJECT_DIR$/app/src/components/wx-planners.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-pringles-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-pringles-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-pringles-list.js" afterPath="$PROJECT_DIR$/app/src/components/wx-pringles-list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-samples-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-samples-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-samples-list.js" afterPath="$PROJECT_DIR$/app/src/components/wx-samples-list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-scheme.js" afterPath="$PROJECT_DIR$/app/src/components/wx-scheme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/config/wx-skmap.js" afterPath="$PROJECT_DIR$/app/src/config/wx-skmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-stylist-list.js" afterPath="$PROJECT_DIR$/app/src/components/wx-stylist-list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-suites.js" afterPath="$PROJECT_DIR$/app/src/components/wx-suites.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-video-player.js" afterPath="$PROJECT_DIR$/app/src/components/wx-video-player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-dress.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-dress.js" />
+    </list>
+    <ignored path="venus-wx.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="venus-wx" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="css.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="474" column="47" selection-start-line="474" selection-start-column="47" selection-end-line="474" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-wedding-dress.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-dress.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="169" column="124" selection-start-line="169" selection-start-column="124" selection-end-line="169" selection-end-column="124" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-video-player.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-video-player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-video2-player.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-video2-player.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="51" column="24" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-pringles-detail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-pringles-detail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/config/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-wedding-carental.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="151" column="67" selection-start-line="151" selection-start-column="67" selection-end-line="151" selection-end-column="67" />
+              <folding>
+                <marker date="1449560522000" expanded="true" signature="5771:10339" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="5903:10320" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="5971:10181" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="6049:10154" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="6113:8962" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="6531:6993" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="7026:7489" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="7522:7984" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="8017:8642" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="8675:8927" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="8991:10123" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="9221:9974" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="9282:9924" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560522000" expanded="true" signature="9559:9871" placeholder="&lt;xml/&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-wedding-supplies.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="139" column="67" selection-start-line="139" selection-start-column="67" selection-end-line="139" selection-end-column="67" />
+              <folding>
+                <marker date="1449560537000" expanded="true" signature="5405:8597" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="5537:8578" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="5605:8439" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="5683:8412" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="5747:7215" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="5839:7180" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="6096:6600" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="6637:7141" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="7244:8381" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="7480:8232" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="7541:8182" placeholder="&lt;xml/&gt;" />
+                <marker date="1449560537000" expanded="true" signature="7816:8129" placeholder="&lt;xml/&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-header-menu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-header-menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="49" column="23" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5913978">
+              <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Html5" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-dress-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/image-item.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-samples-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wedding-ring.js" />
+        <option value="$PROJECT_DIR$/app/src/components/weddingmv.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-stylist-list.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-mv.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-movie.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-love-mv.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-lovemv.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-lovemovie.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-dress-list.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-weddingpat.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-pringles-detail.js" />
+        <option value="$PROJECT_DIR$/app/build/bundle.js" />
+        <option value="$PROJECT_DIR$/app/src/config/SKMap.js" />
+        <option value="$PROJECT_DIR$/app/src/config/wx-skmap.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js" />
+        <option value="$PROJECT_DIR$/gulpfile.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-scheme-style.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-hotel-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-planner-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/config/routes.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-planner-product.js" />
+        <option value="$PROJECT_DIR$/app/src/vendors/slider.js" />
+        <option value="$PROJECT_DIR$/app/src/config/core.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-home.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-carental-detail.js" />
+        <option value="$PROJECT_DIR$/app/src/components/main.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-samples-list.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-pringles-list.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-suites.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-photographer-list.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-header-menu.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-hotel.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-planners.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-scheme.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-f4.js" />
+        <option value="$PROJECT_DIR$/app/src/config/api.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js" />
+        <option value="$PROJECT_DIR$/app/assets/styles/css.css" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-dress.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-video2-player.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-video-player.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <gulpfiles>
+      <GulpfileState>
+        <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
+      </GulpfileState>
+    </gulpfiles>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="styles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../venus-dev-3" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="JavaScriptLanguageLevel" value="JSX" />
+    <property name="FullScreen" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="JavaScriptPreferStrict" value="false" />
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JsTestDriver-test-runner" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e838b5fd-784e-4aa2-94e4-97871acba492" name="Default" comment="" />
+      <created>1441003885292</created>
+      <option name="number" value="Default" />
+      <updated>1441003885292</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20119047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-stylist-product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.48369566">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-stylist-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29347825">
+          <caret line="210" column="0" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-suite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="141" column="70" selection-start-line="141" selection-start-column="70" selection-end-line="141" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-screening.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/image-item.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/SKMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73382044">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/wx-skmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.099164926">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40501043">
+          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-hotel-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="206" column="108" selection-start-line="206" selection-start-column="108" selection-end-line="206" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-lovemovie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2776618">
+          <caret line="14" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-lovemv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-stylist-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="85" column="16" selection-start-line="85" selection-start-column="16" selection-end-line="87" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-planner-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-movie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-dress-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.008350731">
+          <caret line="44" column="15" selection-start-line="44" selection-start-column="15" selection-end-line="44" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-dress-photographer-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1983298">
+          <caret line="63" column="6" selection-start-line="63" selection-start-column="6" selection-end-line="63" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-planner-product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2776618">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/vendors/slider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="65" selection-start-line="43" selection-start-column="65" selection-end-line="43" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../react-native/test/lijia/index.ios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/phrase.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33298537">
+          <caret line="326" column="16" selection-start-line="326" selection-start-column="16" selection-end-line="326" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-weddingpat.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="21" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="45" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="100" column="21" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="63" selection-start-line="122" selection-start-column="63" selection-end-line="122" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-samples-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="204" column="57" selection-start-line="204" selection-start-column="57" selection-end-line="204" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="57" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-hotel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="228" column="57" selection-start-line="228" selection-start-column="57" selection-end-line="228" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21816283">
+          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-pringles-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19832985">
+          <caret line="179" column="57" selection-start-line="179" selection-start-column="57" selection-end-line="179" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-suites.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71398747">
+          <caret line="138" column="57" selection-start-line="138" selection-start-column="57" selection-end-line="138" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31732777">
+          <caret line="153" column="57" selection-start-line="153" selection-start-column="57" selection-end-line="153" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-planners.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47599164">
+          <caret line="130" column="41" selection-start-line="130" selection-start-column="41" selection-end-line="130" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-f4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7620042">
+          <caret line="319" column="107" selection-start-line="319" selection-start-column="107" selection-end-line="319" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+          <folding>
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449544404000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="183" column="36" selection-start-line="183" selection-start-column="36" selection-end-line="183" selection-end-column="36" />
+          <folding>
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+            <marker date="1449554937000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="151" column="67" selection-start-line="151" selection-start-column="67" selection-end-line="151" selection-end-column="67" />
+          <folding>
+            <marker date="1449560522000" expanded="true" signature="5771:10339" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="5903:10320" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="5971:10181" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="6049:10154" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="6113:8962" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="6531:6993" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="7026:7489" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="7522:7984" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="8017:8642" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="8675:8927" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="8991:10123" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="9221:9974" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="9282:9924" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560522000" expanded="true" signature="9559:9871" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="139" column="67" selection-start-line="139" selection-start-column="67" selection-end-line="139" selection-end-column="67" />
+          <folding>
+            <marker date="1449560537000" expanded="true" signature="5405:8597" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="5537:8578" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="5605:8439" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="5683:8412" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="5747:7215" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="5839:7180" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="6096:6600" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="6637:7141" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="7244:8381" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="7480:8232" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="7541:8182" placeholder="&lt;xml/&gt;" />
+            <marker date="1449560537000" expanded="true" signature="7816:8129" placeholder="&lt;xml/&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="474" column="47" selection-start-line="474" selection-start-column="47" selection-end-line="474" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-header-menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="23" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-dress.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="169" column="124" selection-start-line="169" selection-start-column="124" selection-end-line="169" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-pringles-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-video2-player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="24" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-video-player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5913978">
+          <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

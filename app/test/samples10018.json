@@ -1,0 +1,29 @@
+{
+    "data": [
+        {
+            "contentId": "10159",
+            "contentName": "金色阳光",
+            "contentUrl": "http://192.168.1.250:3000/ftppub/uploadResource/jpg/20150715/1436960307960/20150715193827726790.jpg",
+            "description": "",
+            "detailUrl": "",
+            "weight": "2"
+        },
+        {
+            "contentId": "10162",
+            "contentName": "烟雨蒙蒙",
+            "contentUrl": "http://www.nicenicejpg.com/380/550",
+            "description": "",
+            "detailUrl": "",
+            "weight": "1"
+        },
+        {
+            "contentId": "10090",
+            "contentName": "婚纱摄影首页-样片",
+            "contentUrl": "http://placehold.it/380x550",
+            "description": "",
+            "detailUrl": "",
+            "weight": "1"
+        }
+    ],
+    "code": 200
+}
