@@ -163,7 +163,7 @@ var WXWeddingSupplies = React.createClass({
         var pageData = self.state.payload;
         var type = self.state.typeArr;
         var baseUrl = self.state.baseUrl;
-        var brand = self.state.brand;
+        var brand = self.state.brand;          //品牌
         var types = self.state.types;
 
         return (
@@ -180,7 +180,7 @@ var WXWeddingSupplies = React.createClass({
                                     <span>类型</span>
                                     <ul>
                                         {
-                                            $.map(brand,function(v,i){
+                                            $.map([{name:'暂无'}],function(v,i){
                                                 return(
                                                     <li key={i} onClick={self.clickFunc.bind(self,{weddingSuppliesTypeId:v.id})}><b>{v.name}</b></li>
                                                 )

@@ -240,7 +240,7 @@ var WXWeddingCarRental = React.createClass({
                                                     <h1>{v.title}</h1>
                                                     <div className='price-box'>
                                                         <b><em>￥</em><b>{v.rentalPrice.toFixed(2)}</b></b>
-                                                        <span>{v.marketPrice && '￥' + v.marketPrice.toFixed(2)}</span>
+                                                        <span>{v.marketRentalPrice && '￥' + v.marketRentalPrice.toFixed(2)}</span>
                                                     </div>
                                                 </a>
                                             </li>
