@@ -611,7 +611,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .supplies-list-view .menu-classify{height:50px;position:fixed;z-index:100;left:0;top:50px;background-color:#fff;width:100%;}
 .supplies-list-view .menu-classify span{height:100%;line-height:50px;display:block;float:left;width:33.33%;text-align:center;color:#666;font-size:18px;}
 .supplies-list-view .menu-classify .item-current{background-color:#fff;border-bottom:2px solid #e93b78;}
-.supplies-list-view .menu-classify-car span{width:16.666%;}
+.supplies-list-view .menu-classify-car span{width:20%;}
 .supplies-list-view .menu-classify .pos-box{width:100%;height:100%;}
 .supplies-list-view .menu-classify ul{width:100%;background-color:#fff;position:absolute;left:0;top:51px;padding:10px 0;display:none;}
 .supplies-list-view .menu-classify li{float:left;width:33.333%;text-align:center;}

@@ -188,9 +188,11 @@ var WXWeddingCarRental = React.createClass({
                                 <span onClick={self.clickFunc.bind(self,{})}>全部</span>
                                 <span>品牌</span>
                                 <span>型号</span>
-                                <span>档次</span>
+                                {
+                                //<span>档次</span>
+                                }
                                 <span>价格</span>
-                                <span>性质</span>
+                                <span>类型</span>
                                 <ul>
                                     {
                                         $.map(brands,function(v,i){
@@ -209,15 +211,18 @@ var WXWeddingCarRental = React.createClass({
                                         })
                                     }
                                 </ul>
-                                <ul>
-                                    {
-                                        $.map(levels,function(v,i){
-                                            return(
-                                                <li key={i} onClick={self.clickFunc.bind(self,{carLevelId:v.id})}><b>{v.name}</b></li>
-                                            )
-                                        })
-                                    }
-                                </ul>
+                                {
+                                    //<ul>
+                                    //    {
+                                    //        $.map(levels, function (v, i) {
+                                    //            return (
+                                    //                <li key={i} onClick={self.clickFunc.bind(self,{carLevelId:v.id})}>
+                                    //                    <b>{v.name}</b></li>
+                                    //            )
+                                    //        })
+                                    //    }
+                                    //</ul>
+                                }
                                 <ul>
                                     <li onClick={self.clickFunc.bind(self,{})}><b>全部价格</b></li>
                                     <li onClick={self.clickFunc.bind(self,{priceEnd:999})}><b>1000元以下</b></li>
