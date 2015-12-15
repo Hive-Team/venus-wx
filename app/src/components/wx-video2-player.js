@@ -32,7 +32,6 @@ var WXVideoPlayer = React.createClass({
         var winW = $(window).width();
         var vH = proportion * winW;
 
-        console.log('dfdfdf');
         $('.screening-box-wx').css({display:'none'});
 
         //console.log($video_player.height());
@@ -51,6 +50,9 @@ var WXVideoPlayer = React.createClass({
 
     componentWillUnmount : function(){
         $('.screening-box-wx').css({display:'block'});
+        $('#video_player')[0].load();
+        $('#video_player')[0].currentTime = 0;
+        console.log($('#video_player')[0].crossOrigin);
     },
 
     render: function() {
@@ -66,7 +68,7 @@ var WXVideoPlayer = React.createClass({
         )
         else return (
             <div className="video-player-view">
-                <video controls='controls' name="media" id='video_player'></video>
+                <video controls='controls' name="media" id='video_player' ></video>
             </div>
         )
 

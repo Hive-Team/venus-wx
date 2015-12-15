@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e838b5fd-784e-4aa2-94e4-97871acba492" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/bundle.js" afterPath="$PROJECT_DIR$/app/build/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/styles/css.css" afterPath="$PROJECT_DIR$/app/assets/styles/css.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-video-player.js" afterPath="$PROJECT_DIR$/app/src/components/wx-video-player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-video2-player.js" afterPath="$PROJECT_DIR$/app/src/components/wx-video2-player.js" />
     </list>
     <ignored path="venus-wx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,16 +41,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="169" column="124" selection-start-line="169" selection-start-column="124" selection-end-line="169" selection-end-column="124" />
-              <folding>
-                <marker date="1449628267000" expanded="true" signature="5599:7652" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="5733:7633" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="5804:6314" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="6335:7610" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="6385:7463" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="6460:7432" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="6694:7283" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628267000" expanded="true" signature="7016:7233" placeholder="&lt;xml/&gt;" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -59,11 +50,8 @@
         <entry file="file://$PROJECT_DIR$/app/src/components/wx-video-player.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding>
-                <marker date="1449628736000" expanded="true" signature="1118:1480" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628736000" expanded="true" signature="1299:1461" placeholder="&lt;xml/&gt;" />
-              </folding>
+              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,12 +60,18 @@
         <entry file="file://$PROJECT_DIR$/app/src/components/wx-video2-player.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="51" column="24" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="24" />
-              <folding>
-                <marker date="1449628729000" expanded="true" signature="1738:1957" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628729000" expanded="true" signature="1790:1938" placeholder="&lt;xml/&gt;" />
-                <marker date="1449628729000" expanded="true" signature="2002:2139" placeholder="&lt;xml/&gt;" />
-              </folding>
+              <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bundle.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build/bundle.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43369564">
+              <caret line="0" column="2473" selection-start-line="0" selection-start-column="2473" selection-end-line="0" selection-end-column="2473" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,20 +81,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="182" column="61" selection-start-line="182" selection-start-column="61" selection-end-line="182" selection-end-column="61" />
-              <folding>
-                <marker date="1449805060000" expanded="true" signature="5419:8619" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="5551:8600" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="5619:8461" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="5697:8434" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="5761:7237" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="5853:7202" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="6110:6622" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="6659:7163" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="7266:8403" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="7502:8254" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="7563:8204" placeholder="&lt;xml/&gt;" />
-                <marker date="1449805060000" expanded="true" signature="7838:8151" placeholder="&lt;xml/&gt;" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,10 +96,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wx-wedding-carental.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wx-wedding-carental.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68267226">
+            <state vertical-scroll-proportion="0.0">
               <caret line="231" column="37" selection-start-line="231" selection-start-column="37" selection-end-line="231" selection-end-column="37" />
               <folding />
             </state>
@@ -155,7 +136,6 @@
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-dress-list.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-weddingpat.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-pringles-detail.js" />
-        <option value="$PROJECT_DIR$/app/build/bundle.js" />
         <option value="$PROJECT_DIR$/app/src/config/SKMap.js" />
         <option value="$PROJECT_DIR$/app/src/config/wx-skmap.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js" />
@@ -185,13 +165,14 @@
         <option value="$PROJECT_DIR$/app/src/components/wx-f4.js" />
         <option value="$PROJECT_DIR$/app/src/config/api.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-dress.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-video2-player.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-video-player.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/src/vendors/slider.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js" />
         <option value="$PROJECT_DIR$/app/assets/styles/css.css" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-video-player.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-video2-player.js" />
+        <option value="$PROJECT_DIR$/app/build/bundle.js" />
       </list>
     </option>
   </component>
@@ -769,6 +750,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7620042">
           <caret line="319" column="107" selection-start-line="319" selection-start-column="107" selection-end-line="319" selection-end-column="107" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -791,34 +773,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-dress.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="169" column="124" selection-start-line="169" selection-start-column="124" selection-end-line="169" selection-end-column="124" />
-          <folding>
-            <marker date="1449628267000" expanded="true" signature="5599:7652" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="5733:7633" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="5804:6314" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="6335:7610" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="6385:7463" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="6460:7432" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="6694:7283" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628267000" expanded="true" signature="7016:7233" placeholder="&lt;xml/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-video-player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <marker date="1449628736000" expanded="true" signature="1118:1480" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628736000" expanded="true" signature="1299:1461" placeholder="&lt;xml/&gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -862,47 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-video2-player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="24" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <marker date="1449628729000" expanded="true" signature="1738:1957" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628729000" expanded="true" signature="1790:1938" placeholder="&lt;xml/&gt;" />
-            <marker date="1449628729000" expanded="true" signature="2002:2139" placeholder="&lt;xml/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="182" column="61" selection-start-line="182" selection-start-column="61" selection-end-line="182" selection-end-column="61" />
-          <folding>
-            <marker date="1449805060000" expanded="true" signature="5419:8619" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="5551:8600" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="5619:8461" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="5697:8434" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="5761:7237" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="5853:7202" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="6110:6622" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="6659:7163" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="7266:8403" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="7502:8254" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="7563:8204" placeholder="&lt;xml/&gt;" />
-            <marker date="1449805060000" expanded="true" signature="7838:8151" placeholder="&lt;xml/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -921,8 +834,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68267226">
+        <state vertical-scroll-proportion="0.0">
           <caret line="231" column="37" selection-start-line="231" selection-start-column="37" selection-end-line="231" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-dress.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="169" column="124" selection-start-line="169" selection-start-column="124" selection-end-line="169" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="182" column="61" selection-start-line="182" selection-start-column="61" selection-end-line="182" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-video-player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-video2-player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43369564">
+          <caret line="0" column="2473" selection-start-line="0" selection-start-column="2473" selection-end-line="0" selection-end-column="2473" />
           <folding />
         </state>
       </provider>
