@@ -244,8 +244,8 @@ var WXWeddingCarRental = React.createClass({
                                                     <img src={v.coverUrl} />
                                                     <h1>{v.title}</h1>
                                                     <div className='price-box'>
-                                                        <b><em>￥</em><b>{v.rentalPrice.toFixed(2)}</b></b>
-                                                        <span>{v.marketRentalPrice && '￥' + v.marketRentalPrice.toFixed(2)}</span>
+                                                        <b><em>￥</em><b>{v.rentalPrice != 0 ? v.rentalPrice.toFixed(2) : '面议'}</b></b>
+                                                        <span>{v.marketRentalPrice && v.marketRentalPrice != 0 ? v.marketRentalPrice.toFixed(2) : ''}</span>
                                                     </div>
                                                 </a>
                                             </li>
