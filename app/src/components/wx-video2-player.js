@@ -35,7 +35,7 @@ var WXVideoPlayer = React.createClass({
         $('.screening-box-wx').css({display:'none'});
 
         //console.log($video_player.height());
-        $video_player.css({marginTop:-vH/2})
+        $video_player.css({marginTop:-vH/2});
 
         self.fetchData(router[0] + '/' + router[2])
             .done(function(payload){

@@ -179,7 +179,7 @@ var WXWeddingMV = React.createClass({
             <div className="planner-list-view mobile-main-box">
                 <WXHeaderMenu menuType={self.state.headerType[router[1]]} name={self.state.headerCof[router[1]]} />
 
-                <div className="screening-box-wx" style={{display:(router[1] != 3 && 'none')}}>
+                <div className="screening-box-wx" style={{display:(router[1] != 10 /*3*/ && 'none')}}>
                     <ul className="screening-list-wx" id="style_box">
                         <li onClick={self.selSeason.bind(self,{sort:'hits'})}>{'最佳视频'}</li>
                         {

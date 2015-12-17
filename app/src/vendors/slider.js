@@ -68,6 +68,7 @@ $.fn.Slider = function(obj,func){
 
             },setting.time);
         }
+
         else if(setting.type == "Horizontal"){
             var itemWidth = $items.width();
             var imgIndex = 0;

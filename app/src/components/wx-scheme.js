@@ -179,7 +179,7 @@ var WXScheme = React.createClass({
             <div className="app ng-scope">
                 <WXHeaderMenu menuType={'menu_3'} name={self.getPath() === '/scheme' ? 0 : 1} />
 
-                <div className={self.getPath() === '/scheme' && 'screening-box-wx weddingpat-fj' || 'screening-box-wx'}>
+                <div style={{display:'none'}} className={self.getPath() === '/scheme' && 'screening-box-wx weddingpat-fj' || 'screening-box-wx'}>
                     <ul className="screening-list-wx" id="style_box">
                         <li onClick={self.selSeason.bind(self,null)}>{'最佳案例'}</li>
                         {
@@ -224,8 +224,6 @@ var WXScheme = React.createClass({
                     </div>
                 </div>
             </div>
-
-
         );
     }
 
