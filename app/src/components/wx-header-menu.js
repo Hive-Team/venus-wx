@@ -20,10 +20,10 @@ var HeaderMenu = React.createClass({
                         name : '套系报价',
                         href : '#/suite'
                     },
-                    {
-                        name : '选摄影团队',
-                        href : '#/phototeam'
-                    },
+                    //{
+                    //    name : '选摄影团队',
+                    //    href : '#/phototeam'
+                    //},
                     //{
                     //    name : '造型师',
                     //    href : '#/stylist'
@@ -60,10 +60,10 @@ var HeaderMenu = React.createClass({
                         name : '婚礼视频',
                         href : '#/videos/3'
                     },
-                    {
-                        name : '选策划师',
-                        href : '#/planners'
-                    },
+                    //{
+                    //    name : '选策划师',
+                    //    href : '#/planners'
+                    //},
                     {
                         name : '选婚礼人',
                         href : '#/f4'

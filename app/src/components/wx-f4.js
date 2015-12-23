@@ -299,7 +299,7 @@ var WXF4 = React.createClass({
 
         return (
             <div className="app has-navbar-top">
-                <WXHeaderMenu menuType={'menu_3'} name={4} />
+                <WXHeaderMenu menuType={'menu_3'} name={3} />
 
                 <div className='f4-list-view' id='scroll_box'>
                     <div className='screening-box' id='screening_box'>
