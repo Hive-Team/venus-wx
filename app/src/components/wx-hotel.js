@@ -17,7 +17,46 @@ var WXHotel = React.createClass({
             tplKey:'list#hotel',
             payload:[],
             baseUrl:'',
-            totalCount:0
+            totalCount:0,
+            areas: [
+                {
+                    "id": 99,
+                    "name": "渝北区"
+                },
+                {
+                    "id": 94,
+                    "name": "南岸区"
+                },
+                {
+                    "id": 90,
+                    "name": "渝中区"
+                },{
+                    "id": 92,
+                    "name": "江北区"
+                }, {
+                    "id": 95,
+                    "name": "九龙坡区"
+                },{
+                    "id": 100,
+                    "name": "巴南区"
+                },  {
+                    "id": 91,
+                    "name": "大渡口区"
+                },  {
+                    "id": 101,
+                    "name": "北部新区"
+                },{
+                    "id": 96,
+                    "name": "北碚区"
+                }, {
+                    "id": 93,
+                    "name": "沙坪坝区"
+                },
+                {
+                    "id": 114,
+                    "name": "重庆近郊"
+                }
+            ]
         };
     },
     //取数据
@@ -67,20 +106,25 @@ var WXHotel = React.createClass({
         var $screening_list = $('#screening_list');
 
         $('.item',$nav_box).each(function(i,e){
+            var ind = $(this).index();
+
             $(this).bind('click',function(){
                 //console.log($('ul',$(this))[0].style.display);
-                if($(this).hasClass('item-current') && $('ul',$(this))[0].style.display != ('none' || '')){
-                    $('ul',$(this)).css({display:'none'});
+                if($(this).hasClass('item-current') && $('ul',$nav_box)[ind].style.display != ('none' || '')){
+                    $('ul',$nav_box).css({display:'none'});
                     return;
                 }
 
                 $('.item',$nav_box).removeClass('item-current');
                 $(this).addClass('item-current');
-                $('ul',$('.item',$nav_box)).css({display:'none'});
-                $('ul',$(this)).css({display:'block'});
-
-                //(i != 1) && $screening_list.css({display:'none'}) || $screening_list.css({display:'block'});
+                $('ul',$nav_box).css({display:'none'});
+                $($('ul',$nav_box)[ind]).css({display:'block'});
             });
+        });
+
+        $('li',$nav_box).click(function(){
+            $('li',$nav_box).removeClass('current')
+            $(this).addClass('current').parent().css({display:'none'});
         });
 
         function scrollPos(box,cont){
@@ -220,22 +264,50 @@ var WXHotel = React.createClass({
             })
     },
 
-    render: function() {
+    render : function() {
         var self = this;
         var winWidth = $(window).width();
         var pageData = self.state.payload;
+
         return (
             <div className='hotel-list-view mobile-main-box'>
                 <WXHeaderMenu menuType={'menu_2'} name={0} />
                 <div className="hotel-list" id="scroll_box">
                     <div className='nav-box' id='nav_box'>
-                        <div className='line-bottom'></div>
-                        <span className='item item-current' onClick={function(){self.screeningClick(self.state.baseUrl)}}>默认</span>
-                        <span className='item' style={{display:'none'}}>位置</span>
-                        <span className='item'><span>桌数</span><ul><li onClick={function(){self.screeningClick(self.state.baseUrl,{short:'table',order:'desc'})}}>多</li><li onClick={function(){self.screeningClick(self.state.baseUrl,{short:'table',order:'asc'})}}>少</li></ul></span>
-                        <span className='item'><span>价格</span><ul><li onClick={function(){self.screeningClick(self.state.baseUrl,{short:'price',order:'asc'})}}>低</li><li onClick={function(){self.screeningClick(self.state.baseUrl,{short:'price',order:'desc'})}}>高</li></ul></span>
+                        <span className='item'>位置</span>
+                        <span className='item'>桌数</span>
+                        <span className='item'>价格</span>
                         <span className='item' onClick={function(){self.screeningClick(self.state.baseUrl,{isGift:1})}}>礼包</span>
                         <span className='item' onClick={function(){self.screeningClick(self.state.baseUrl,{isDisaccount:1})}}>优惠</span>
+
+                        <ul className='clearfix'>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl)}}>全部</li>
+                            {
+                                $.map(self.state.areas,function(v,i){
+                                    return(
+                                        <li key={i} onClick={function(){self.screeningClick(self.state.baseUrl,{cityId:v['id']})}}>{v['name']}</li>
+                                    )
+                                })
+                            }
+                        </ul>
+                        <ul className='clearfix'>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:0})}}>全部</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{maxTable:9})}}>10桌以下</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:10,maxTable:20})}}>10-20桌</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:20,maxTable:30})}}>20-30桌</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:30,maxTable:40})}}>30-40桌</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:40,maxTable:50})}}>40-50桌</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:51})}}>50桌以上</li>
+                        </ul>
+                        <ul className='clearfix'>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:0})}}>全部</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{maxPrice:1999})}}>2000元以下</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:2000,maxPrice:3000})}}>2000-3000元</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:3000,maxPrice:4000})}}>3000-4000元</li>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:4001})}}>4000元以上</li>
+                        </ul>
+
+                        <div className='line-bottom'></div>
                     </div>
                     <div className='hotel-scroll-content'>
                         <div id='scroll_content'>

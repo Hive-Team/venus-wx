@@ -288,8 +288,9 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .hotel-list .nav-box .line-bottom{height:1px;background-color:#eee;position:absolute;left:0;bottom:0;width:100%;overflow:hidden;z-index:0;}
 .hotel-list .nav-box .item{width:20%;float:left;display:block;height:40px;line-height:40px;text-align:center;color:#666;font-size:16px;position:relative;z-index:10;}
 .hotel-list .nav-box .item span{font-size:16px;}
-.hotel-list .nav-box ul{position:absolute;left:0;top:40px;width:100%;background-color:#fff;display:none;}
-.hotel-list .nav-box li{width:100%;height:40px;color:#666;border:1px solid #eee;border-top:none;}
+.hotel-list .nav-box ul{position:absolute;left:0;top:40px;width:100%;background-color:#fff;display:none;padding:10px;}
+.hotel-list .nav-box li{width:33.333%;height:30px;line-height:30px;float:left;color:#666;border-top:none;text-align:center;}
+.hotel-list .nav-box li.current{border-radius:5px;background-color:#f3f3f3;}
 .hotel-list .nav-box .item-current{border-bottom:2px solid #f53a7c;color:#f53a7c;}
 .hotel-list .hotel-scroll-content{margin-top:40px;margin-bottom:40px;}
 

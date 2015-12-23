@@ -33,8 +33,6 @@ var WXHotelDetail = React.createClass({
 
         fetchData()
             .done(function(payload){
-
-                console.log(payload.data[0]);
                 (payload.code === 200) &&
                 self.setState({
                     payload:payload.data[0]
@@ -87,7 +85,12 @@ var WXHotelDetail = React.createClass({
         var pageData = self.state.payload;
         var baseUrl = self.state.baseUrl;
         var topSliderData = self.state.payload.imageUrlList || [];
-        //console.log(pageData.hotelMealPackList);
+        var labelArr = {
+            'YH':'优惠',
+            'LB':'礼包',
+            'ZK':'折扣'
+        };
+
         return (
             <div className="hotel-detail-view" id='hotel_detail_view'>
                 <div className="hotel-detail-banner responsive-box" id="slider_box">
@@ -153,6 +156,15 @@ var WXHotelDetail = React.createClass({
                         <p>
                             <b>所在地址：</b><span>{pageData.address}</span>
                         </p>
+                        {
+                            $.map(pageData.hotelLabelList || [],function(v,i){
+                                return(
+                                    <p key={i}>
+                                        <b>{labelArr[v.lableCode] + '：'}</b><span>{v.lableDesc}</span>
+                                    </p>
+                                )
+                            })
+                        }
                         <p>
                             <b>酒店详情：</b><span>{pageData.detailedIntroduction}</span>
                         </p>
