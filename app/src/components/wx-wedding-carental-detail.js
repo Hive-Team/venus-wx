@@ -30,7 +30,7 @@ var WXWeddingCarRentalDetail = React.createClass({
             var url = self.getPath().substr(1);
             return Api.httpGET(url,{});
         };
-        $slider_suite.height(2*winW/3);
+        $slider_suite.height(winW);
 
         fetchData()
             .done(function(payload){
