@@ -9,7 +9,7 @@ var HeaderMenu = React.createClass({
             menu : {
                 'menu_1' : [
                     {
-                        name : '样片欣赏',
+                        name : '作品欣赏',
                         href : '#/samples'
                     },
                     {
