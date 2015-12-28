@@ -17,7 +17,7 @@
 // }
 
 module.exports={
-   '#/samples':'婚纱摄影/样片欣赏',
+   '#/samples':'婚纱摄影/作品欣赏',
    '样片欣赏':'samples',
    '#/pringles':'婚纱摄影/客片欣赏',
    '客片欣赏':'pringles',
