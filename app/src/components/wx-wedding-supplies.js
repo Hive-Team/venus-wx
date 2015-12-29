@@ -160,6 +160,7 @@ var WXWeddingSupplies = React.createClass({
 
     render: function(){
         var self = this;
+        var winW = $(window).width();
         var pageData = self.state.payload;
         var type = self.state.typeArr;
         var baseUrl = self.state.baseUrl;
@@ -203,14 +204,19 @@ var WXWeddingSupplies = React.createClass({
                                     $.map(pageData || [],function(v,i){
                                         return(
                                             <li key={i}>
-                                                <a className='hover-box' href={'#/' + baseUrl + '/' + v.weddingSuppliesId}>
-                                                    <img src={v.coverUrl}/>
+                                                <div className='hover-box'>
+                                                    <ImageListItem
+                                                        frameWidth={winW*2}
+                                                        url={v.coverUrl}
+                                                        sid={v.weddingSuppliesId}
+                                                        detailBaseUrl={baseUrl}
+                                                        />
                                                     <h1>{v.title}</h1>
                                                     <div className='price-box'>
                                                         <b><em>￥</em><b>{v.sellingPrice.toFixed(2)}</b></b>
                                                         <span>{v.marketPrice && '￥' + v.marketPrice.toFixed(2)}</span>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </li>
                                         )
                                     })

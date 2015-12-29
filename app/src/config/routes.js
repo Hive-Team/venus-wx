@@ -10,17 +10,17 @@ var Pringles = require('../components/wx-pringles-list.js');
 var PringlesDetail = require('../components/wx-pringles-detail.js');
 var Suites = require('../components/wx-suites.js');
 var SuiteDetail = require('../components/wx-suite.js');
-var PhotoTeam = require('../components/wx-photographer-list.js');
-var Stylist = require('../components/wx-stylist-list.js');
-var PhotoTeamDetail = require('../components/wx-photographer-stylist-detail.js');
-var PhotoTeamProduct = require('../components/wx-photographer-stylist-product.js');
+//var PhotoTeam = require('../components/wx-photographer-list.js');
+//var Stylist = require('../components/wx-stylist-list.js');
+//var PhotoTeamDetail = require('../components/wx-photographer-stylist-detail.js');
+//var PhotoTeamProduct = require('../components/wx-photographer-stylist-product.js');
 var Hotel = require('../components/wx-hotel.js');
 var HotelDetail = require('../components/wx-hotel-detail.js');
 var Scheme = require('../components/wx-scheme.js');
 var SchemeDetail = require('../components/wx-scheme-detail.js');
-var Planners = require('../components/wx-planners.js');
-var PlannerDetail = require('../components/wx-planner-detail.js');
-var PlannerProduct = require('../components/wx-planner-product.js');
+//var Planners = require('../components/wx-planners.js');
+//var PlannerDetail = require('../components/wx-planner-detail.js');
+//var PlannerProduct = require('../components/wx-planner-product.js');
 var F4 = require('../components/wx-f4.js');
 var DresserPhotographerDetail = require('../components/wx-dress-photographer-detail.js');
 var VideoPlayerDetail = require('../components/wx-video-player.js');
@@ -48,12 +48,11 @@ var routes = (
 		<Route name='pringles-detail' path='pringles/:moduleId/:contentId' handler={PringlesDetail} />
 		<Route name='suite' path='suite' handler={Suites} />
 		<Route name='suite-detail' path='suite/:moduleId/:productId' handler={SuiteDetail} />
-		<Route name='phototeam' path='phototeam' handler={PhotoTeam} />
-		<Route name='phototeam-detail' path='team/:levelId/:ind' handler={PhotoTeamDetail} />
-		<Route name='phototeam-product' path='team/:teamId/works/:contentId' handler={PhotoTeamProduct} />
-		<Route name='stylist' path='stylist' handler={Stylist} />
-		<Route name='stylist-detail' path='stylist/:personId' handler={PhotoTeamDetail} />
-		<Route name='stylist-product' path='stylist/:personId/:productId' handler={PhotoTeamProduct} />
+		{
+			//<Route name='phototeam' path='phototeam' handler={PhotoTeam} />
+			//<Route name='phototeam-detail' path='team/:levelId/:ind' handler={PhotoTeamDetail} />
+			//<Route name='phototeam-product' path='team/:teamId/works/:contentId' handler={PhotoTeamProduct} />
+		}
 		<Route name='wedding-mv' path='videos/1' handler={WeddingMV} />
 		<Route name='wedding-mv-detail' path='videos/1/:videoId' handler={WeddingVideoDetail} />
 		<Route name='hotel' path='hotel' handler={Hotel} />
@@ -61,9 +60,11 @@ var routes = (
 		<Route name='scheme' path='scheme' handler={Scheme} />
 		<Route name='scheme-style' path='scheme/style/:styleId' handler={Scheme} />
     	<Route name='scheme-detail' path='scheme/:moduleId/:contentId' handler={SchemeDetail} />
-    	<Route name='planners' path='planners' handler={Planners} />
-    	<Route name='planner-product' path='planner/:plannerId/:num' handler={PlannerProduct} />
-    	<Route name='planner-detail' path='planner/:plannerId/works' handler={PlannerDetail} />
+		{
+			//<Route name='planners' path='planners' handler={Planners} />
+			//<Route name='planner-product' path='planner/:plannerId/:num' handler={PlannerProduct} />
+			//<Route name='planner-detail' path='planner/:plannerId/works' handler={PlannerDetail} />
+		}
     	<Route name='F4' path='f4' handler={F4} />
     	<Route name='host-detal' path='f4/host/:personId' handler={VideoPlayerDetail} />
     	<Route name='dresser-detail' path='f4/dresser/:personId' handler={DresserPhotographerDetail} />

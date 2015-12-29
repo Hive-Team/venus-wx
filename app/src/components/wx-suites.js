@@ -156,8 +156,13 @@ var WXPringlesList = React.createClass({
                                                            <span className='subtitle'>{'（' + v.dressModeling + '）'}</span>
                                                        </div>
                                                        <div className='img-box relative-box'>
-                                                           <a className='href-box' href={'#/'+baseUrl+'/'+ v.productId}></a>
-                                                           <ImageListItem frameWidth={winWidth} url={v.imageUrl} />
+                                                           <ImageListItem
+                                                               detailBaseUrl={baseUrl}
+                                                               frameWidth={winWidth*2}
+                                                               url={v.imageUrl}
+                                                               sid={v.productId}
+                                                               errorUrl={'http://placehold.it/375x250'}
+                                                               />
                                                        </div>
                                                        <div className='info-box'>
                                                            <div className='containor clearfix'>

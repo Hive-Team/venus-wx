@@ -171,6 +171,7 @@ var WXPringlesList = React.createClass({
 
     render : function() {
         var self = this;
+        var winW = $(window).width();
         var pageData = self.state.payload || [];
         var quarterly = self.state.quarterly || [];
         var baseUrl = self.state.baseUrl;
@@ -207,9 +208,12 @@ var WXPringlesList = React.createClass({
                                             $.map(pageData,function(v,i){
                                                 return (
                                                     <li key={i}>
-                                                        <a href={'#/'+baseUrl+'/'+v.contentId} style={{textAlign:'center',backgroundColor:'#fefefe'}} className="img-box" >
-                                                            <img src={v.contentUrl} />
-                                                        </a>
+                                                        <ImageListItem
+                                                            frameWidth={winW*2}
+                                                            url={v.contentUrl}
+                                                            sid={v.contentId}
+                                                            detailBaseUrl={baseUrl}
+                                                            />
                                                         <div className="title">
                                                             <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
                                                             <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>

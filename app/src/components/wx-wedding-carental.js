@@ -175,6 +175,7 @@ var WXWeddingCarRental = React.createClass({
         var baseUrl = self.state.baseUrl;
         var brands = self.state.brands;
         var models = self.state.models;
+        var winW = $(window).width();
         var levels = self.state.levels;
 
         return (
@@ -240,14 +241,19 @@ var WXWeddingCarRental = React.createClass({
                                     $.map(pageData,function(v,i){
                                         return(
                                             <li key={i}>
-                                                <a className='hover-box' href={'#/' + baseUrl + '/' + v.weddingCarRentalId}>
-                                                    <img src={v.coverUrl} />
+                                                <div className='hover-box'>
+                                                    <ImageListItem
+                                                        frameWidth={winW*2}
+                                                        url={v.coverUrl}
+                                                        sid={v.weddingCarRentalId}
+                                                        detailBaseUrl={baseUrl}
+                                                        />
                                                     <h1>{v.title}</h1>
                                                     <div className='price-box'>
                                                         <b><em>￥</em><b>{v.rentalPrice != 0 ? v.rentalPrice.toFixed(2) : '面议'}</b></b>
                                                         <span>{v.marketRentalPrice && v.marketRentalPrice != 0 ? v.marketRentalPrice.toFixed(2) : ''}</span>
                                                     </div>
-                                                </a>
+                                                </div>
                                             </li>
                                         )
                                     })

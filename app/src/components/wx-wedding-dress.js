@@ -179,7 +179,12 @@ var WXWeddingDress = React.createClass({
                                                 <div className='title-box'><img style={{display:'none'}} /><h3>{v.weddingDressBrandName}</h3><span style={{display:'none'}}>共12款</span></div>
                                                 <p>{v.description}</p>
                                                 <div className='product-box'>
-                                                    <a href={'#/dress/brand/' +  v.weddingDressBrandId}><img src={v.imageUrl} /></a>
+                                                    <ImageListItem
+                                                        frameWidth={winWidth*2}
+                                                        url={v.imageUrl}
+                                                        sid={v.weddingDressBrandId}
+                                                        detailBaseUrl={'dress/brand'}
+                                                        />
                                                 </div>
                                             </li>
                                         )

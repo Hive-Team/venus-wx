@@ -32,7 +32,7 @@ var WXSampleDetail = React.createClass({
 
             var items = $.map(payload.data,function(v,i){
                 var dimension = v.contentUrl && v.contentUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
-                var src = v.contentUrl;
+                var src = v.contentUrl + '@watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10';
                 var w = dimension.length>2 ?parseInt(dimension[1]):-1;
                 var h = dimension.length>2 ?parseInt(dimension[2]):-1;
                 return {

@@ -34,7 +34,7 @@ var WXWeddingDressDetail = React.createClass({
 
             var items = $.map(payload.data||[],function(v,i){
                 var dimension = v.imageUrl && v.imageUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
-                var src = (window.Core.mode ==='dev')?v.imageUrl:v.imageUrl+'@1e_'+ winWidth*2+'w_1c_0i_1o_90q_1x';
+                var src = (window.Core.mode ==='dev')?v.imageUrl + '@watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10':v.imageUrl+'@1e_'+ winWidth*2+'w_1c_0i_1o_90q_1x' + '@watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10';
                 var w = dimension.length>2 ?parseInt(dimension[1]):-1;
                 var h = dimension.length>2 ?parseInt(dimension[2]):-1;
                 return {

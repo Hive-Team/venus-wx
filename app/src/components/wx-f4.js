@@ -353,7 +353,7 @@ var WXF4 = React.createClass({
                                                                             function(vv,ii){
                                                                                 return(
                                                                                     <li key={ii} onClick={self.saveData.bind(self,vv[srcArr[2]])}>
-                                                                                        <ImageListItem frameWidth={winWidth} detailBaseUrl={baseUrl} sid={v.personId} url={vv[srcArr[1]]} />
+                                                                                        <ImageListItem frameWidth={200} detailBaseUrl={baseUrl} sid={v.personId} url={vv[srcArr[1]]} />
                                                                                     </li>
                                                                                 )
                                                                             }

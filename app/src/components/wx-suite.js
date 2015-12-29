@@ -86,7 +86,7 @@ var WXPringlesList = React.createClass({
                                         return (
                                             <li className="item transition-opacity-1" key={i}>
                                                 <ImageListItem
-                                                    frameWidth={winWidth}
+                                                    frameWidth={winWidth*2}
                                                     url={v.imageUrl}
                                                     errorUrl={'http://placehold.it/375x250'}
                                                     />
@@ -95,7 +95,7 @@ var WXPringlesList = React.createClass({
                                     })
                             }
                         </ul>
-                        <div className='point-box'>
+                        <div className='slider-point-box'>
                             {
                                 $.map(
                                     topSliderData
@@ -139,7 +139,12 @@ var WXPringlesList = React.createClass({
                                 return(
                                     $.map(pageData[imgArr[i]] || [],function(vv,ii){
                                         return(
-                                            <img key={i+'.'+ii} src={vv.imageUrl} />
+                                            <ImageListItem
+                                                key={i+'.'+ii}
+                                                frameWidth={winWidth*2}
+                                                url={vv.imageUrl}
+                                                errorUrl={'http://placehold.it/375x250'}
+                                                />
                                         )
                                     })
                                 )
@@ -154,7 +159,12 @@ var WXPringlesList = React.createClass({
                                         {
                                             $.map(pageData[imgArr[i]] || [],function(vv,ii){
                                                 return(
-                                                    <img key={ii} src={vv.imageUrl} />
+                                                    <ImageListItem
+                                                        key={i+'.'+ii}
+                                                        frameWidth={winWidth*2}
+                                                        url={vv.imageUrl}
+                                                        errorUrl={'http://placehold.it/375x250'}
+                                                        />
                                                 )
                                             })
                                         }

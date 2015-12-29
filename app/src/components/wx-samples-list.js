@@ -234,9 +234,6 @@ var WXSampleList = React.createClass({
                         <span className="btn-wx">场景</span>
                     </div>
                 </div>
-                <div className="app-content-loading">
-                    <i className="fa fa-spin loading-spinner" />
-                </div>
                 <div className="scroll-able">
                     <div className="scroll-able-content" id="scroll_box">
                         <div className="list-group list-box" id="scroll_content">
@@ -245,9 +242,12 @@ var WXSampleList = React.createClass({
                                     $.map(pageData,function(v,i){
                                         return (
                                             <li key={i}>
-                                                <a href={'#'+baseUrl+'/'+v.contentId} style={{textAlign:'center',backgroundColor:'#fefefe'}} className="img-box" >
-                                                    <img src={v.contentUrl} />
-                                                </a>
+                                                <ImageListItem
+                                                    frameWidth={winWidth*2}
+                                                    url={v.contentUrl}
+                                                    sid={v.contentId}
+                                                    detailBaseUrl={baseUrl}
+                                                    />
                                                 <div className="title">
                                                     <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
                                                     <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>

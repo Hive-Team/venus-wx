@@ -204,7 +204,11 @@ var WXScheme = React.createClass({
                                             pageData.length>0&&$.map(pageData,function(v,k){
                                                 return (
                                                     <li key={k}>
-                                                        <a href={'#/'+baseUrl+'/'+ v.weddingCaseId} className="img-box"><img src={(window.Core.mode=== 'dev')?v.weddingCaseImage:v.weddingCaseImage+'@1e_'+ $(window).width()+'w_1c_0i_1o_90q_2x'}/></a>
+                                                        <ImageListItem
+                                                            url={v.weddingCaseImage}
+                                                            sid={v.weddingCaseId}
+                                                            detailBaseUrl={baseUrl}
+                                                            />
                                                         <div className="white-block" />
                                                         <div className="info">
                                                             <h1>{v.schemeName}</h1>

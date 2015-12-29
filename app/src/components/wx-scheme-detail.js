@@ -38,6 +38,8 @@ var WXSchemeDetail = React.createClass({
     },
     render: function() {
         var pageData = this.state.payload;
+        var winW = $(window).width();
+
         return (
 
             <div className="app ng-scope">
@@ -51,7 +53,7 @@ var WXSchemeDetail = React.createClass({
                                             pageData.length > 0 && pageData[0].imageList.map(function(v,i){
                                                 return (
                                                     <li className="item-box" key={i}>
-                                                        <img src={window.Core.mode==='dev'?v.contentUrl: v.contentUrl+'@1e_'+ $(window).width()+'w_1c_0i_1o_90q_2x'} />
+                                                        <ImageListItem url={v.contentUrl} frameWidth={winW*2} />
                                                     </li>
                                                 )
                                             })

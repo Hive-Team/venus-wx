@@ -201,10 +201,12 @@ var WXWeddingMV = React.createClass({
                                 $.map(pageData,function(v,i){
                                     return (
                                         <li key={i}>
-                                            <a href={'#'+self.getPath()+'/'+v.videoId} style={{textAlign:'center',backgroundColor:'#fefefe'}} className="img-box" >
-                                                <i className='play'></i>
-                                                <img src={v.coverImage.imageUrl} />
-                                            </a>
+                                            <ImageListItem
+                                                frameWidth={winWidth*2}
+                                                url={v.coverImage.imageUrl}
+                                                sid={v.videoId}
+                                                detailBaseUrl={self.getPath()}
+                                                />
                                             <div className="title">
                                                 <span className="cn" >{v.name}</span>
                                                 <span className="en">{v.createDate.split(' ')[0]}</span>

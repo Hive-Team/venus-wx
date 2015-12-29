@@ -65,9 +65,8 @@ var WXWeddingCarRentalDetail = React.createClass({
                                         return (
                                             <li className="item transition-opacity-1" key={i}>
                                                 <ImageListItem
-                                                    frameWidth={winWidth}
+                                                    frameWidth={winWidth*2}
                                                     url={v}
-                                                    detailBaseUrl={baseUrl}
                                                     errorUrl={'http://placehold.it/375x250'}
                                                     />
                                             </li>

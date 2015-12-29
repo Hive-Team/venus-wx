@@ -209,16 +209,18 @@ var WXHotelDetail = React.createClass({
                                 ,function(v,i){
                                     return (
                                         <li className='list-item-4-wxjs' key={i}>
-                                            <a className='relative-box'>
-                                                <div className='img-box'>
-                                                    <img src={v.image_url} />
-                                                </div>
-                                                <h3>{v.banquetHallName}</h3>
-                                                <div className='info-box clearfix'>
-                                                    <span className='table-num'>{'桌数：' + v.capacity + '桌'}</span>
-                                                    <span className='comsuption'>{'低消：' + v.leastConsumption + '元／桌'}</span>
-                                                </div>
-                                            </a>
+                                            <div className='img-box'>
+                                                <ImageListItem
+                                                    frameWidth={winWidth}
+                                                    url={v.image_url}
+                                                    errorUrl={'http://placehold.it/375x250'}
+                                                    />
+                                            </div>
+                                            <h3>{v.banquetHallName}</h3>
+                                            <div className='info-box clearfix'>
+                                                <span className='table-num'>{'桌数：' + v.capacity + '桌'}</span>
+                                                <span className='comsuption'>{'低消：' + v.leastConsumption + '元／桌'}</span>
+                                            </div>
                                         </li>
                                     )
                                 })

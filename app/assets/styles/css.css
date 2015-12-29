@@ -234,6 +234,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .suite-view .discription-box .cont{display:none;}
 .suite-view .discription-box .current{display:block;}
 .suite-view .discription-box img{width:100%;}
+.suite-view .discription-box a,.suite-view .discription-box img{display:block;}
 
 .btn-fixed-bottom-box{height:40px;width:100%;position:fixed;left:0;bottom:0;background-color:#eece81;}
 .btn-fixed-bottom-box .btn{float:left;width:50%;float:left;height:100%;padding:0;}
