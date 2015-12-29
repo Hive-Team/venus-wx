@@ -82,7 +82,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .menu-1 a:active{background-color:#ccc;}
 
 .list-box{}
-.list-box .list-1-wxjs{width:94%;margin:60px auto 40px;}
+.list-box .list-1-wxjs{width:94%;margin:110px auto 40px;}
 .list-box .img-box{cursor:pointer;}
 .list-box-1{padding-top:50px;}
 
@@ -600,6 +600,10 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .global-menu-wx .btn-box-wx{background-color:rgba(233,59,120,0.5);float:left}
 .global-menu-wx .btn-wx{background-color:#e93b78;}
 
+
+.samples-view .menu-classify{height:50px;position:fixed;z-index:100;left:0;top:50px;background-color:#fff;width:100%;border-bottom:1px solid #ccc;}
+.samples-view .menu-classify span{height:100%;line-height:50px;display:block;float:left;width:50%;text-align:center;color:#666;font-size:18px;}
+.samples-view .menu-classify .item-current{background-color:#fff;border-bottom:2px solid #e93b78;}
 
 
 /* 婚礼纪实MV */

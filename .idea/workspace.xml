@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e838b5fd-784e-4aa2-94e4-97871acba492" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/config/wx-skmap.js" afterPath="$PROJECT_DIR$/app/src/config/wx-skmap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/bundle.js" afterPath="$PROJECT_DIR$/app/build/bundle.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/styles/css.css" afterPath="$PROJECT_DIR$/app/assets/styles/css.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-samples-list.js" afterPath="$PROJECT_DIR$/app/src/components/wx-samples-list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" afterPath="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
     </list>
     <ignored path="venus-wx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,31 +28,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <file leaf-file-name="wx-wedding-video.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+              <caret line="205" column="64" selection-start-line="205" selection-start-column="64" selection-end-line="205" selection-end-column="64" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
+      <file leaf-file-name="wx-scheme.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="66" selection-start-line="20" selection-start-column="66" selection-end-line="20" selection-end-column="81" />
+              <caret line="188" column="32" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wx-photographer-stylist-product.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js">
+      <file leaf-file-name="wx-scheme-detail.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme-detail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3966597">
+              <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="css.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="21" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="21" />
+              <caret line="605" column="95" selection-start-line="605" selection-start-column="95" selection-end-line="605" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -68,7 +83,22 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="61" column="62" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="62" />
-              <folding />
+              <folding>
+                <marker date="1451379087000" expanded="true" signature="6049:9088" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="6165:6898" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="6220:6725" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="6746:6875" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="6915:9069" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="6962:9046" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7016:7157" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7182:9019" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7240:8988" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7326:8953" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7420:8782" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7683:8600" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="7752:8150" placeholder="&lt;xml/&gt;" />
+                <marker date="1451379087000" expanded="true" signature="8207:8542" placeholder="&lt;xml/&gt;" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,31 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wx-skmap.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/config/wx-skmap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.059498955">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="wx-wedding-carental.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="247" column="147" selection-start-line="247" selection-start-column="147" selection-end-line="247" selection-end-column="147" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wx-wedding-carental-detail.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental-detail.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="58" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -146,7 +156,6 @@
         <option value="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-scheme-style.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-photographer-stylist-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-planner-detail.js" />
         <option value="$PROJECT_DIR$/app/src/config/routes.js" />
@@ -154,7 +163,6 @@
         <option value="$PROJECT_DIR$/app/src/config/core.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-home.js" />
         <option value="$PROJECT_DIR$/app/src/components/main.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-samples-list.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-pringles-list.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-suites.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-photographer-list.js" />
@@ -168,18 +176,20 @@
         <option value="$PROJECT_DIR$/app/src/components/wx-video2-player.js" />
         <option value="$PROJECT_DIR$/app/src/vendors/slider.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-scheme.js" />
-        <option value="$PROJECT_DIR$/app/assets/styles/css.css" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-hotel-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-hotel.js" />
         <option value="$PROJECT_DIR$/app/src/config/api.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-f4.js" />
         <option value="$PROJECT_DIR$/app/src/app.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-carental-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-header-menu.js" />
         <option value="$PROJECT_DIR$/app/src/config/wx-skmap.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
+        <option value="$PROJECT_DIR$/app/assets/styles/css.css" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-samples-list.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" />
       </list>
     </option>
   </component>
@@ -223,7 +233,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -336,8 +345,49 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="styles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="venus-wx" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,6 +470,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20119047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -427,9 +479,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -470,13 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme-detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40501043">
-          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -565,13 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-samples-list.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="204" column="57" selection-start-line="204" selection-start-column="57" selection-end-line="204" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/wx-suites.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.71398747">
@@ -635,25 +671,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="188" column="32" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/webstorm.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33298537">
           <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="293" column="29" selection-start-line="293" selection-start-column="29" selection-end-line="293" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -693,20 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="45" selection-start-line="175" selection-start-column="45" selection-end-line="175" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/wx-f4.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -722,19 +730,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/config/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -758,15 +757,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="61" column="62" selection-start-line="61" selection-start-column="57" selection-end-line="61" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="247" column="147" selection-start-line="247" selection-start-column="147" selection-end-line="247" selection-end-column="147" />
-          <folding />
+          <folding>
+            <marker date="1451379087000" expanded="true" signature="6049:9088" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="6165:6898" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="6220:6725" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="6746:6875" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="6915:9069" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="6962:9046" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7016:7157" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7182:9019" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7240:8988" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7326:8953" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7420:8782" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7683:8600" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="7752:8150" placeholder="&lt;xml/&gt;" />
+            <marker date="1451379087000" expanded="true" signature="8207:8542" placeholder="&lt;xml/&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -785,6 +791,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/SKMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/wx-skmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/config/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07933194">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -793,10 +822,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js">
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="21" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="21" />
+        <state vertical-scroll-proportion="-1.3006263">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -809,18 +838,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/config/SKMap.js">
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="26" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.48434237">
+          <caret line="68" column="21" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/config/wx-skmap.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.059498955">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="605" column="95" selection-start-line="605" selection-start-column="95" selection-end-line="605" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="58" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-samples-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60334027">
+          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="205" column="64" selection-start-line="205" selection-start-column="64" selection-end-line="205" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="188" column="32" selection-start-line="188" selection-start-column="32" selection-end-line="188" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-scheme-detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3966597">
+          <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
           <folding />
         </state>
       </provider>

@@ -171,6 +171,7 @@ var WXWeddingMV = React.createClass({
 
     render: function(){
         var self = this;
+        var winW = $(window).width();
         var pageData = self.state.payload || [];
         var router = self.state.router || [];
         var quarterly = self.state.quarterly;
@@ -202,7 +203,7 @@ var WXWeddingMV = React.createClass({
                                     return (
                                         <li key={i}>
                                             <ImageListItem
-                                                frameWidth={winWidth*2}
+                                                frameWidth={winW*2}
                                                 url={v.coverImage.imageUrl}
                                                 sid={v.videoId}
                                                 detailBaseUrl={self.getPath()}

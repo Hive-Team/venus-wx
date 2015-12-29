@@ -15,6 +15,7 @@ var WXSampleList = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
+            sampleType:0,
             tplKey:'list#samples',
             payload:[],
             baseUrl:'',
@@ -35,6 +36,29 @@ var WXSampleList = React.createClass({
         var $btn_address = $('#btn_address');
         var isStyleMenu = false;
         var isAddressMenu = false;
+        var $menu_classify = $('.menu-classify');
+
+        $('span',$menu_classify).eq(0).addClass('item-current');
+        $menu_classify.on('click','span',function(){
+            var ind = $(this).index();
+
+            $(this).addClass('item-current');
+            $(this).siblings().removeClass('item-current');
+            $('ul',$menu_classify).eq(ind - 1).css({display:'block'})
+                .siblings().removeAttr('style');
+
+            if(ind <= 0){
+                $('ul',$menu_classify).removeAttr('style');
+            }
+
+            ind === 1 && $('.screening-box-wx').css({display:'none'}) || $('.screening-box-wx').css({display:'block'})
+        });
+
+        $menu_classify.on('click','li',function(){
+            $(this).parent().removeAttr('style');
+            $('li',$menu_classify).removeAttr('class');
+            $(this).addClass('li-current');
+        });
 
         $btn_style.on('click',function(){
           if(!isStyleMenu){
@@ -82,7 +106,8 @@ var WXSampleList = React.createClass({
             self.fetchData(resourceLinks.split('#')[1],
                 {
                     pageSize:self.state.pageSize,
-                    pageIndex:self.state.pageIndex
+                    pageIndex:self.state.pageIndex,
+                    sampleType:self.state.sampleType
                 })
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
@@ -104,6 +129,7 @@ var WXSampleList = React.createClass({
 
                 })
         };
+
         var fetchStyle = function(){
             Api.httpGET('condition/styleAddress',{})
                 .done(function(payload){
@@ -126,6 +152,7 @@ var WXSampleList = React.createClass({
             .then(parseResource);
 
     },
+
     screeningFunc : function(obj){
         var self = this;
         var params = {
@@ -201,7 +228,7 @@ var WXSampleList = React.createClass({
         var addressList = self.state.addressList ||[];
 
         return (
-            <div className="app has-navbar-top">
+            <div className="app has-navbar-top samples-view">
                 <WXHeaderMenu menuType={'menu_1'} name={0} />
 
                 <div className="screening-box-wx">
@@ -237,6 +264,10 @@ var WXSampleList = React.createClass({
                 <div className="scroll-able">
                     <div className="scroll-able-content" id="scroll_box">
                         <div className="list-group list-box" id="scroll_content">
+                            <div className='menu-classify menu-classify-car clearfix'>
+                                <span className='item-current' onClick={self.screeningFunc.bind(self,{sampleType:0})}>婚纱摄影</span>
+                                <span onClick={self.screeningFunc.bind(self,{sampleType:1})}>艺术写真</span>
+                            </div>
                             <ul className="list-1-wxjs clearfix">
                                 {
                                     $.map(pageData,function(v,i){

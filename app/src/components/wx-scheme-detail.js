@@ -53,7 +53,7 @@ var WXSchemeDetail = React.createClass({
                                             pageData.length > 0 && pageData[0].imageList.map(function(v,i){
                                                 return (
                                                     <li className="item-box" key={i}>
-                                                        <ImageListItem url={v.contentUrl} frameWidth={winW*2} />
+                                                        <ImageListItem url={v.contentUrl} frameWidth={winW*2} mask={true} />
                                                     </li>
                                                 )
                                             })
