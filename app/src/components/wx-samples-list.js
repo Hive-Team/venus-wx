@@ -51,7 +51,7 @@ var WXSampleList = React.createClass({
                 $('ul',$menu_classify).removeAttr('style');
             }
 
-            ind === 1 && $('.screening-box-wx').css({display:'none'}) || $('.screening-box-wx').css({display:'block'})
+            ind === 1 && $('.samples-view .screening-box-wx').css({display:'none'}) || $('.samples-view .screening-box-wx').css({display:'block'})
         });
 
         $menu_classify.on('click','li',function(){

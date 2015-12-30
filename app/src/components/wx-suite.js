@@ -46,7 +46,7 @@ var WXPringlesList = React.createClass({
                 },function(){
                     $('#slider_box').length>0 && $('#slider_box').Slider();
                 });
-                console.log(self.state.payload);
+                //console.log(self.state.payload);
             })
 
         $nav_conts.each(function(i){
@@ -89,6 +89,7 @@ var WXPringlesList = React.createClass({
                                                     frameWidth={winWidth*2}
                                                     url={v.imageUrl}
                                                     errorUrl={'http://placehold.it/375x250'}
+                                                    mask={true}
                                                     />
                                             </li>
                                         )
@@ -144,6 +145,7 @@ var WXPringlesList = React.createClass({
                                                 frameWidth={winWidth*2}
                                                 url={vv.imageUrl}
                                                 errorUrl={'http://placehold.it/375x250'}
+                                                mask={true}
                                                 />
                                         )
                                     })
@@ -164,6 +166,7 @@ var WXPringlesList = React.createClass({
                                                         frameWidth={winWidth*2}
                                                         url={vv.imageUrl}
                                                         errorUrl={'http://placehold.it/375x250'}
+                                                        mask={true}
                                                         />
                                                 )
                                             })

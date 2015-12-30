@@ -4,6 +4,7 @@ var Router = require('react-router-ie8');
 var Api = require('../config/api.js');
 var SKMap = require('../config/wx-skmap.js');
 var ImageListItem = require('./image-item.js');
+
 var WXSchemeDetail = React.createClass({
 
     mixins:[Router.State], //我们需要知道当前的path params 等等信息
@@ -17,9 +18,11 @@ var WXSchemeDetail = React.createClass({
             tplKey:'list#scheme'
         };
     },
+
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
+
     componentDidMount: function() {
         var self = this;
         var fetchData = function(){
@@ -36,6 +39,7 @@ var WXSchemeDetail = React.createClass({
                 })
             })
     },
+
     render: function() {
         var pageData = this.state.payload;
         var winW = $(window).width();

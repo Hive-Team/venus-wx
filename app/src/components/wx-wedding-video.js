@@ -206,7 +206,7 @@ var WXWeddingMV = React.createClass({
                                                 frameWidth={winW*2}
                                                 url={v.coverImage.imageUrl}
                                                 sid={v.videoId}
-                                                detailBaseUrl={self.getPath()}
+                                                detailBaseUrl={self.getPath().substr(1)}
                                                 />
                                             <div className="title">
                                                 <span className="cn" >{v.name}</span>

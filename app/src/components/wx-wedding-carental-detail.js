@@ -68,6 +68,7 @@ var WXWeddingCarRentalDetail = React.createClass({
                                                     frameWidth={winWidth*2}
                                                     url={v}
                                                     errorUrl={'http://placehold.it/375x250'}
+                                                    mask={true}
                                                     />
                                             </li>
                                         )

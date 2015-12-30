@@ -107,6 +107,7 @@ var WXHotelDetail = React.createClass({
                                                     url={v}
                                                     detailBaseUrl={baseUrl}
                                                     errorUrl={'http://placehold.it/375x250'}
+                                                    mask={true}
                                                     />
                                             </li>
                                         )
