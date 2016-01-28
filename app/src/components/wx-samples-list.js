@@ -12,7 +12,26 @@ var WXSampleList = React.createClass({
     //初始化状态。
     // 分页，资源标示，数据，根路由，总条数， 风格类型
     getInitialState: function() {
+        return {}
+    },
+
+    getDefaultProps : function(){
         return {
+            historyBool:false,
+            historyState:{}
+        }
+    },
+
+    propTypes : {
+        historyBool:React.PropTypes.bool,
+        historyState:React.PropTypes.object
+    },
+
+    componentWillMount : function(){
+        var self = this;
+
+        //初始化状态
+        self.setState({
             pageSize:6,
             pageIndex:1,
             sampleType:0,
@@ -21,14 +40,21 @@ var WXSampleList = React.createClass({
             baseUrl:'',
             totalCount:0,
             stylesList:[]
-        };
-    },
-    //取数据
-    fetchData:function(url,params){
-        return Api.httpGET(url,params);
+        });
+
+        //是否有历史数据
+        var history = eval(window.sessionStorage.userHistory);
+        var nowRoute = self.getPathname();
+
+        if(history.length > 0){
+            if(history[history.length-1].historyRoute === nowRoute){
+                self.props.historyState=history.pop().state;
+                self.props.historyBool=true;
+            }
+        }
     },
 
-    componentDidMount: function() {
+    componentDidMount : function() {
         var self = this;
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
@@ -75,6 +101,8 @@ var WXSampleList = React.createClass({
         $style_box.on('click','li',function(){
             isStyleMenu = !isStyleMenu;
             $style_box.css({display:'none'});
+            $(this).addClass('current').siblings().removeClass('current');
+            $('li',$address_box).removeClass('current');
         });
 
         $btn_address.on('click',function(){
@@ -92,6 +120,8 @@ var WXSampleList = React.createClass({
         $address_box.on('click','li',function(){
             isAddressMenu = !isAddressMenu;
             $address_box.css({display:'none'});
+            $(this).addClass('current').siblings().removeClass('current');
+            $('li',$style_box).removeClass('current');
         });
 
         // 从菜单获取资源链接。
@@ -149,8 +179,43 @@ var WXSampleList = React.createClass({
 
         $.when(window.Core.promises['/'])
             .then(fetchStyle)
-            .then(parseResource);
+            .then(parseResource)
 
+    },
+
+    componentWillReceiveProps : function(nextProps){
+        console.log(nextProps);
+        self.setState(nextProps.historyState);
+    },
+
+    componentWillUnmount : function(){
+        var self = this;
+        var history = eval(window.sessionStorage.userHistory);
+        var nextRoute = self.getPathname();
+        var tempObj;
+
+        //console.log('history',history);
+        //console.log(nextRoute);
+        if(history.length > 1){
+            if(history[history.length-1].historyRoute !== nextRoute){
+                histroy();
+            }
+        }else histroy();
+
+        function histroy(){
+            tempObj = {
+                state:self.state,
+                historyRoute:'/samples'
+            }
+
+            history.push(tempObj);
+            window.sessionStorage.userHistory = JSON.stringify(history);
+        }
+    },
+
+    //取数据
+    fetchData : function(url,params){
+        return Api.httpGET(url,params);
     },
 
     screeningFunc : function(obj){
@@ -261,34 +326,38 @@ var WXSampleList = React.createClass({
                         <span className="btn-wx">场景</span>
                     </div>
                 </div>
-                <div className="scroll-able">
-                    <div className="scroll-able-content" id="scroll_box">
-                        <div className="list-group list-box" id="scroll_content">
-                            <div className='menu-classify menu-classify-car clearfix'>
-                                <span className='item-current' onClick={self.screeningFunc.bind(self,{sampleType:0})}>婚纱摄影</span>
-                                <span onClick={self.screeningFunc.bind(self,{sampleType:1})}>艺术写真</span>
+                <div className='supplies-list'>
+                    <div className='menu-classify menu-classify-car clearfix'>
+                        <span className='item-current' onClick={self.screeningFunc.bind(self,{sampleType:0})}>婚纱摄影</span>
+                        <span onClick={self.screeningFunc.bind(self,{sampleType:1})}>艺术写真</span>
+                    </div>
+                    <div className='scroll-box scroll-padding-100'>
+                        <div className='hidden-box'>
+                            <div className='scroll-view' id='scroll_box'>
+                                <div className='list-view' id='scroll_content'>
+                                    <ul className="list-1-wxjs clearfix">
+                                        {
+                                            $.map(pageData,function(v,i){
+                                                return (
+                                                    <li key={i}>
+                                                        <ImageListItem
+                                                            frameWidth={winWidth*2}
+                                                            url={v.contentUrl}
+                                                            sid={v.contentId}
+                                                            detailBaseUrl={baseUrl}
+                                                            />
+                                                        <div className="title">
+                                                            <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
+                                                            <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>
+                                                        </div>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                                <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
                             </div>
-                            <ul className="list-1-wxjs clearfix">
-                                {
-                                    $.map(pageData,function(v,i){
-                                        return (
-                                            <li key={i}>
-                                                <ImageListItem
-                                                    frameWidth={winWidth*2}
-                                                    url={v.contentUrl}
-                                                    sid={v.contentId}
-                                                    detailBaseUrl={baseUrl}
-                                                    />
-                                                <div className="title">
-                                                    <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
-                                                    <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>
-                                                </div>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
-                            <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
                         </div>
                     </div>
                 </div>

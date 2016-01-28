@@ -195,38 +195,32 @@ var WXPringlesList = React.createClass({
                         <span className="btn-wx">分季</span>
                     </div>
                 </div>
-                <div className="app-body">
-                    <div className="app-content">
-                        <div className="app-content-loading">
-                            <i className="fa fa-spin loading-spinner" />
-                        </div>
-                        <div className="scroll-able">
-                            <div className="scroll-able-content" id="scroll_box">
-                                <div className="list-group list-box" id="scroll_content">
-                                    <ul className="list-1-wxjs clearfix">
-                                        {
-                                            $.map(pageData,function(v,i){
-                                                return (
-                                                    <li key={i}>
-                                                        <ImageListItem
-                                                            frameWidth={winW*2}
-                                                            url={v.contentUrl}
-                                                            sid={v.contentId}
-                                                            detailBaseUrl={baseUrl}
-                                                            />
-                                                        <div className="title">
-                                                            <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
-                                                            <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>
-                                                        </div>
-                                                    </li>
-                                                )
-                                            })
-                                        }
-
-                                    </ul>
-                                    <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
-                                </div>
+                <div className='scroll-box scroll-padding-50 pringles-view'>
+                    <div className='hidden-box'>
+                        <div className='scroll-view' id='scroll_box'>
+                            <div className='list-view' id='scroll_content'>
+                                <ul className="list-1-wxjs clearfix">
+                                    {
+                                        $.map(pageData,function(v,i){
+                                            return (
+                                                <li key={i}>
+                                                    <ImageListItem
+                                                        frameWidth={winW*2}
+                                                        url={v.contentUrl}
+                                                        sid={v.contentId}
+                                                        detailBaseUrl={baseUrl}
+                                                        />
+                                                    <div className="title">
+                                                        <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
+                                                        <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>
+                                                    </div>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
                             </div>
+                            <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
                         </div>
                     </div>
                 </div>

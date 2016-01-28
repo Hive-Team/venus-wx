@@ -143,6 +143,7 @@
 	}
 
 	win.Core = new Core();
+	win.sessionStorage.userHistory = "[]";
 	//console.log(win.Core);
 
 })(window);
