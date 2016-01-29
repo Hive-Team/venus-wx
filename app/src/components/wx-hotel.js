@@ -123,13 +123,14 @@ var WXHotel = React.createClass({
         });
 
         $('li',$nav_box).click(function(){
-            $('li',$nav_box).removeClass('current')
+            $('li',$nav_box).removeClass('current');
             $(this).addClass('current').parent().css({display:'none'});
         });
 
         function scrollPos(box,cont){
             box.bind("scroll",function(){
-                if(box.scrollTop() + box.height() >= cont.height() + 80 && !window.Core.isFeching){
+                //console.log(box.scrollTop() + box.height(),cont.height());
+                if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
                     scrollFunc(self.state.baseUrl,{
                         pageSize:self.state.pageSize,
                         pageIndex:self.state.pageIndex
@@ -216,8 +217,8 @@ var WXHotel = React.createClass({
                 });
 
                 $("#scroll_box").unbind('scroll');
-                console.log(payload);
-                console.log(JSON.stringify(payload.data,null,4));
+                //console.log(payload);
+                //console.log(JSON.stringify(payload.data,null,4));
                 //console.log(params);
                 self.scrollPos($("#scroll_box"),$("#scroll_content"),params);
             })
@@ -227,7 +228,7 @@ var WXHotel = React.createClass({
       var self = this;
         if(!params) params = {
             pageSize:self.state.pageSize,
-            pageIndex:self.state.pageIndex
+            pageIndex:self.state.pageIndex,
         }
 
         box.bind("scroll",function(){
@@ -272,7 +273,7 @@ var WXHotel = React.createClass({
         return (
             <div className='hotel-list-view mobile-main-box'>
                 <WXHeaderMenu menuType={'menu_2'} name={0} />
-                <div className="hotel-list" id="scroll_box">
+                <div className="hotel-list">
                     <div className='nav-box' id='nav_box'>
                         <span className='item'>位置</span>
                         <span className='item'>桌数</span>
@@ -309,43 +310,47 @@ var WXHotel = React.createClass({
 
                         <div className='line-bottom'></div>
                     </div>
-                    <div className='hotel-scroll-content'>
-                        <div id='scroll_content'>
-                            <ul className='hotel-screening-list' id='screening_list' style={{display:'none'}}>
-                                <li>
-                                    <div className='item-box input-box'><i className='ico-magnifier'></i><input type='text' /><span>搜索</span></div>
-                                </li>
-                            </ul>
-                            <ul className='list-hotel'>
-                                {
-                                    $.map(pageData || [],function(v,i){
-                                        return(
-                                            <li key={i} className='list-item-2-wxjs'>
-                                                <a href={'#/'+self.state.baseUrl+'/'+ v.hotelId} className='relative-box'>
-                                                    <div className='img-box'><img src={v.imageUrl} /></div>
-                                                    <div className='info-box'>
-                                                        <div className='title-box'><h1 className='title'>{v.hotelName}</h1><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div>
-                                                        <div className='score-box'>
-                                                            <div className='star-box' style={{display:'none'}}><i className='ico-star-1-js ico-star-1-gray-js'></i><i className='ico-star-1-js ico-star-1-pink-js' style={{width:'35px'}}></i></div>
-                                                            <b className='red-1-wxjs' style={{display:'none'}}>3.5</b><span className='gray-1-wxjs'>{v.typeName}</span>
-                                                        </div>
-                                                        <div className='desk-box'>
-                                                            <strong>桌数：</strong><b className='red-1-wxjs'>{v.banquetHallCount}</b><span className='gray-1-wxjs'>个大厅，</span><span className='gray-1-wxjs'>容纳</span><b className='red-1-wxjs'>{v.capacityPerTable}</b><span className='gray-1-wxjs'>桌</span>
-                                                        </div>
-                                                        <div className='addr-box'><strong>位置：</strong><span className='gray-1-wxjs'>{v.address}</span></div>
-                                                        <div className='price-box'>
-                                                            <b className='red-1-wxjs'>￥</b><b className='red-1-wxjs big'>{v.lowestConsumption}</b><b className='red-1-wxjs'>-</b><b className='red-1-wxjs big'>{v.highestConsumption}</b>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                    <div className='scroll-box scroll-padding-100'>
+                        <div className='hidden-box'>
+                            <div className='scroll-view' id='scroll_box'>
+                                <div className='list-view' id='scroll_content'>
+                                    <ul className='hotel-screening-list' id='screening_list' style={{display:'none'}}>
+                                        <li>
+                                            <div className='item-box input-box'><i className='ico-magnifier'></i><input type='text' /><span>搜索</span></div>
+                                        </li>
+                                    </ul>
+                                    <ul className='list-hotel'>
+                                        {
+                                            $.map(pageData || [],function(v,i){
+                                                return(
+                                                    <li key={i} className='list-item-2-wxjs'>
+                                                        <a href={'#/'+self.state.baseUrl+'/'+ v.hotelId} className='relative-box'>
+                                                            <div className='img-box'><img src={v.imageUrl} /></div>
+                                                            <div className='info-box'>
+                                                                <div className='title-box'><h1 className='title'>{v.hotelName}</h1><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div>
+                                                                <div className='score-box'>
+                                                                    <div className='star-box' style={{display:'none'}}><i className='ico-star-1-js ico-star-1-gray-js'></i><i className='ico-star-1-js ico-star-1-pink-js' style={{width:'35px'}}></i></div>
+                                                                    <b className='red-1-wxjs' style={{display:'none'}}>3.5</b><span className='gray-1-wxjs'>{v.typeName}</span>
+                                                                </div>
+                                                                <div className='desk-box'>
+                                                                    <strong>桌数：</strong><b className='red-1-wxjs'>{v.banquetHallCount}</b><span className='gray-1-wxjs'>个大厅，</span><span className='gray-1-wxjs'>容纳</span><b className='red-1-wxjs'>{v.capacityPerTable}</b><span className='gray-1-wxjs'>桌</span>
+                                                                </div>
+                                                                <div className='addr-box'><strong>位置：</strong><span className='gray-1-wxjs'>{v.address}</span></div>
+                                                                <div className='price-box'>
+                                                                    <b className='red-1-wxjs'>￥</b><b className='red-1-wxjs big'>{v.lowestConsumption}</b><b className='red-1-wxjs'>-</b><b className='red-1-wxjs big'>{v.highestConsumption}</b>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                                <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
+                            </div>
                         </div>
                     </div>
-                    <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
                 </div>
             </div>
         );

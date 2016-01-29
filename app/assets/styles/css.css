@@ -183,7 +183,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .video-player-view video{top:50%;position:absolute;}
 
 .f4-hidden-box{width:100%;overflow:hidden;margin-top:100px;}
-.f4-hidden-box .content{width:100%;overflow:auto;height:100%;}
+.f4-hidden-box .content{width:100%;overflow:auto;height:100%;-webkit-overflow-scrolling:touch;}
 
 
 /* ========================= 婚礼礼服 ========================= */
@@ -294,13 +294,13 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 
 /* ========================= 婚宴预定 ========================= */
 
-.hotel-list{width:100%;height:100%;padding-top:50px;overflow:auto;-webkit-overflow-scrolling:touch;}
-.hotel-list .nav-box{height:40px;width:100%;position:relative;background-color:#fff;position:fixed;left:0;top:50px;z-index:500;}
+.hotel-list{width:100%;height:100%;}
+.hotel-list .nav-box{height:50px;width:100%;position:relative;background-color:#fff;position:fixed;left:0;top:50px;z-index:500;}
 .hotel-list .nav-box .line-bottom{height:1px;background-color:#eee;position:absolute;left:0;bottom:0;width:100%;overflow:hidden;z-index:0;}
-.hotel-list .nav-box .item{width:20%;float:left;display:block;height:40px;line-height:40px;text-align:center;color:#666;font-size:16px;position:relative;z-index:10;}
+.hotel-list .nav-box .item{width:20%;float:left;display:block;height:50px;line-height:50px;text-align:center;color:#666;font-size:16px;position:relative;z-index:10;}
 .hotel-list .nav-box .item span{font-size:16px;}
 .hotel-list .nav-box ul{position:absolute;left:0;top:40px;width:100%;background-color:#fff;display:none;padding:10px;}
-.hotel-list .nav-box li{width:33.333%;height:30px;line-height:30px;float:left;color:#666;border-top:none;text-align:center;}
+.hotel-list .nav-box li{width:33.333%;height:40px;line-height:40px;float:left;color:#666;border-top:none;text-align:center;}
 .hotel-list .nav-box li.current{border-radius:5px;background-color:#f3f3f3;}
 .hotel-list .nav-box .item-current{border-bottom:2px solid #f53a7c;color:#f53a7c;}
 .hotel-list .hotel-scroll-content{margin-top:40px;margin-bottom:40px;}
@@ -313,6 +313,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .hotel-scroll-content .item-box span:nth-child(1){margin-left:10px;}
 .hotel-scroll-content .input-box .ico-magnifier{width:30px;height:24px;display:block;position:absolute;left:5px;top:3px;background-image:url(../images/ico-magnifier-1.png);}
 .hotel-scroll-content .input-box span{position:absolute;right:2px;top:2px;margin:0;}
+.list-hotel{margin-bottom:40px;}
 
 
 
@@ -453,8 +454,8 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .list-item-2-wxjs .img-box{display:block;position:absolute;left:10px;top:10px;width:150px;height:100px;}
 .list-item-2-wxjs .img-box img{width:100%;height:100%;}
 .list-item-2-wxjs .info-box{height:100%;overflow:hidden;}
-.list-item-2-wxjs .title-box{height:20px;}
-.list-item-2-wxjs .title{font-size:14px;font-weight:normal;float:left;margin-right:5px;}
+.list-item-2-wxjs .title-box{height:20px;overflow:hidden;}
+.list-item-2-wxjs .title{font-size:14px;line-height:20px;font-weight:normal;float:left;margin-right:5px;}
 .list-item-2-wxjs .title-box i{float:left;margin-right:1px;font-size:12px;color:#fff;text-align:center;line-height:16px;display:none;}
 .list-item-2-wxjs .score-box{height:18px;line-height:18px;overflow:hidden;}
 .list-item-2-wxjs .score-box b{margin-right:10px;}
@@ -624,12 +625,12 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 /* 婚礼用品 */
 .pos-box{position:relative;}
 .supplies-list-view{background-color:#ccc;}
-.supplies-list-view .menu-classify{height:50px;position:fixed;z-index:100;left:0;top:50px;background-color:#fff;width:100%;}
+.supplies-list-view .menu-classify{border-bottom:1px solid #ccc;height:50px;position:fixed;z-index:100;left:0;top:50px;background-color:#fff;width:100%;}
 .supplies-list-view .menu-classify span{height:100%;line-height:50px;display:block;float:left;width:33.33%;text-align:center;color:#666;font-size:18px;}
 .supplies-list-view .menu-classify .item-current{background-color:#fff;border-bottom:2px solid #e93b78;}
 .supplies-list-view .menu-classify-car span{width:20%;}
 .supplies-list-view .menu-classify .pos-box{width:100%;height:100%;}
-.supplies-list-view .menu-classify ul{width:100%;background-color:#fff;position:absolute;left:0;top:51px;padding:10px 0;display:none;}
+.supplies-list-view .menu-classify ul{width:100%;background-color:#fff;position:absolute;left:0;top:50px;padding:10px 0;display:none;}
 .supplies-list-view .menu-classify li{float:left;width:33.333%;text-align:center;}
 .supplies-list-view .menu-classify li b{display:block;width:80%;height:30px;border-radius:5px;overflow:hidden;font-size:16px;line-height:30px;border:none;margin:0 auto;float:none;font-weight:normal;}
 .supplies-list-view .menu-classify .li-current b{background-color:#eee;border:none;}
@@ -660,7 +661,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 
 
 .supplies-list-view{}
-.supplies-list-view .list-7-wxjs{padding:110px 0 40px;}
+.supplies-list-view .list-7-wxjs{padding:10px 0 40px;}
 .supplies-list{width:100%;height:100%;}
 
 
@@ -810,7 +811,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 }
 .app-content{}
 .list-group{margin-bottom:0;overflow:hidden;}
-.ui-container{height:100%;}
+.ui-container{height:100%;overflow:auto;-webkit-overflow-scrolling:touch;}
 .isShow{display:block}
 .isHide{display:none;}
 img{max-width:none;}

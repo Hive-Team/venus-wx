@@ -182,86 +182,88 @@ var WXWeddingCarRental = React.createClass({
             <div className="supplies-list-view mobile-main-box">
                 <WXHeaderMenu menuType={'menu_8'} name={0} />
 
-                <div className='supplies-list' id='scroll_box'>
-                    <div id='scroll_content' className='scroll-countent'>
-                        <div className='content-first-box'>
-                            <div className='menu-classify menu-classify-car clearfix'>
-                                <span onClick={self.clickFunc.bind(self,{})}>全部</span>
-                                <span>品牌</span>
-                                <span>型号</span>
-                                {
-                                //<span>档次</span>
-                                }
-                                <span>价格</span>
-                                <span>类型</span>
-                                <ul>
+                <div className='scroll-box scroll-padding-100'>
+                    <div className='hidden-box'>
+                        <div className='scroll-view' id='scroll_box'>
+                            <div className='list-view' id='scroll_content'>
+                                <div className='menu-classify menu-classify-car clearfix'>
+                                    <span onClick={self.clickFunc.bind(self,{})}>全部</span>
+                                    <span>品牌</span>
+                                    <span>型号</span>
                                     {
-                                        $.map(brands,function(v,i){
+                                        //<span>档次</span>
+                                    }
+                                    <span>价格</span>
+                                    <span>类型</span>
+                                    <ul>
+                                        {
+                                            $.map(brands,function(v,i){
+                                                return(
+                                                    <li key={i} onClick={self.clickFunc.bind(self,{carBrandId:v.id})}><b>{v.name}</b></li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                    <ul>
+                                        {
+                                            $.map(models,function(v,i){
+                                                return(
+                                                    <li key={i} onClick={self.clickFunc.bind(self,{carModelsId:v.id})}><b>{v.name}</b></li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                    {
+                                        //<ul>
+                                        //    {
+                                        //        $.map(levels, function (v, i) {
+                                        //            return (
+                                        //                <li key={i} onClick={self.clickFunc.bind(self,{carLevelId:v.id})}>
+                                        //                    <b>{v.name}</b></li>
+                                        //            )
+                                        //        })
+                                        //    }
+                                        //</ul>
+                                    }
+                                    <ul>
+                                        <li onClick={self.clickFunc.bind(self,{})}><b>全部价格</b></li>
+                                        <li onClick={self.clickFunc.bind(self,{priceEnd:999})}><b>1000元以下</b></li>
+                                        <li onClick={self.clickFunc.bind(self,{priceStart:1000,priceEnd:2000})}><b>1000-2000元</b></li>
+                                        <li onClick={self.clickFunc.bind(self,{priceStart:2000,priceEnd:3000})}><b>2000-3000元</b></li>
+                                        <li onClick={self.clickFunc.bind(self,{priceStart:3001})}><b>3000元以上</b></li>
+                                    </ul>
+                                    <ul>
+                                        <li onClick={self.clickFunc.bind(self,{carNature:1})}><b>单车</b></li>
+                                        <li onClick={self.clickFunc.bind(self,{carNature:2})}><b>车队</b></li>
+                                    </ul>
+                                </div>
+                                <ul className="list-7-wxjs clearfix">
+                                    {
+                                        $.map(pageData,function(v,i){
                                             return(
-                                                <li key={i} onClick={self.clickFunc.bind(self,{carBrandId:v.id})}><b>{v.name}</b></li>
+                                                <li key={i}>
+                                                    <div className='hover-box'>
+                                                        <ImageListItem
+                                                            frameWidth={winW*2}
+                                                            url={v.coverUrl}
+                                                            sid={v.weddingCarRentalId}
+                                                            detailBaseUrl={baseUrl}
+                                                            />
+                                                        <h1>{v.title}</h1>
+                                                        <div className='price-box'>
+                                                            <b><em>￥</em><b>{v.rentalPrice != 0 ? v.rentalPrice.toFixed(2) : '面议'}</b></b>
+                                                            <span>{v.marketRentalPrice && v.marketRentalPrice != 0 ? v.marketRentalPrice.toFixed(2) : ''}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
                                             )
                                         })
                                     }
-                                </ul>
-                                <ul>
-                                    {
-                                        $.map(models,function(v,i){
-                                            return(
-                                                <li key={i} onClick={self.clickFunc.bind(self,{carModelsId:v.id})}><b>{v.name}</b></li>
-                                            )
-                                        })
-                                    }
-                                </ul>
-                                {
-                                    //<ul>
-                                    //    {
-                                    //        $.map(levels, function (v, i) {
-                                    //            return (
-                                    //                <li key={i} onClick={self.clickFunc.bind(self,{carLevelId:v.id})}>
-                                    //                    <b>{v.name}</b></li>
-                                    //            )
-                                    //        })
-                                    //    }
-                                    //</ul>
-                                }
-                                <ul>
-                                    <li onClick={self.clickFunc.bind(self,{})}><b>全部价格</b></li>
-                                    <li onClick={self.clickFunc.bind(self,{priceEnd:999})}><b>1000元以下</b></li>
-                                    <li onClick={self.clickFunc.bind(self,{priceStart:1000,priceEnd:2000})}><b>1000-2000元</b></li>
-                                    <li onClick={self.clickFunc.bind(self,{priceStart:2000,priceEnd:3000})}><b>2000-3000元</b></li>
-                                    <li onClick={self.clickFunc.bind(self,{priceStart:3001})}><b>3000元以上</b></li>
-                                </ul>
-                                <ul>
-                                    <li onClick={self.clickFunc.bind(self,{carNature:1})}><b>单车</b></li>
-                                    <li onClick={self.clickFunc.bind(self,{carNature:2})}><b>车队</b></li>
                                 </ul>
                             </div>
-                            <ul className="list-7-wxjs clearfix">
-                                {
-                                    $.map(pageData,function(v,i){
-                                        return(
-                                            <li key={i}>
-                                                <div className='hover-box'>
-                                                    <ImageListItem
-                                                        frameWidth={winW*2}
-                                                        url={v.coverUrl}
-                                                        sid={v.weddingCarRentalId}
-                                                        detailBaseUrl={baseUrl}
-                                                        />
-                                                    <h1>{v.title}</h1>
-                                                    <div className='price-box'>
-                                                        <b><em>￥</em><b>{v.rentalPrice != 0 ? v.rentalPrice.toFixed(2) : '面议'}</b></b>
-                                                        <span>{v.marketRentalPrice && v.marketRentalPrice != 0 ? v.marketRentalPrice.toFixed(2) : ''}</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                            <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
                         </div>
                     </div>
-                    <div id="loaderIndicator" className="btn-more"><span id="loading-info">正在加载... ...</span></div>
                 </div>
             </div>
         );
