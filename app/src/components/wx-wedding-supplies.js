@@ -171,35 +171,36 @@ var WXWeddingSupplies = React.createClass({
             <div className="supplies-list-view mobile-main-box">
                 <WXHeaderMenu menuType={'menu_7'} name={0} />
 
+                <div className='menu-classify clearfix' id='supplies_menu'>
+                    <div className='pos-box'>
+                        <span onClick={self.clickFunc.bind(self,{})}>全部</span>
+                        <span>品牌</span>
+                        <span>类型</span>
+                        <ul>
+                            {
+                                $.map([{name:'暂无'}],function(v,i){
+                                    return(
+                                        <li key={i} onClick={self.clickFunc.bind(self,{weddingSuppliesTypeId:v.id})}><b>{v.name}</b></li>
+                                    )
+                                })
+                            }
+                        </ul>
+                        <ul>
+                            {
+                                $.map(types,function(v,i){
+                                    return(
+                                        <li key={i} onClick={self.clickFunc.bind(self,{weddingSuppliesTypeId:v.id})}><b>{v.name}</b></li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
+
                 <div className='scroll-box scroll-padding-100'>
                     <div className='hidden-box'>
                         <div className='scroll-view' id='scroll_box'>
                             <div className='list-view' id='scroll_content'>
-                                <div className='menu-classify clearfix' id='supplies_menu'>
-                                    <div className='pos-box'>
-                                        <span onClick={self.clickFunc.bind(self,{})}>全部</span>
-                                        <span>品牌</span>
-                                        <span>类型</span>
-                                        <ul>
-                                            {
-                                                $.map([{name:'暂无'}],function(v,i){
-                                                    return(
-                                                        <li key={i} onClick={self.clickFunc.bind(self,{weddingSuppliesTypeId:v.id})}><b>{v.name}</b></li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
-                                        <ul>
-                                            {
-                                                $.map(types,function(v,i){
-                                                    return(
-                                                        <li key={i} onClick={self.clickFunc.bind(self,{weddingSuppliesTypeId:v.id})}><b>{v.name}</b></li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
                                 <ul className="list-7-wxjs clearfix">
                                     {
                                         $.map(pageData || [],function(v,i){
