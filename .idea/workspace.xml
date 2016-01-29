@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e838b5fd-784e-4aa2-94e4-97871acba492" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/bundle.js" afterPath="$PROJECT_DIR$/app/build/bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/styles/css.css" afterPath="$PROJECT_DIR$/app/assets/styles/css.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-hotel.js" afterPath="$PROJECT_DIR$/app/src/components/wx-hotel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-header-menu.js" afterPath="$PROJECT_DIR$/app/src/components/wx-header-menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" afterPath="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
     </list>
     <ignored path="venus-wx.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,31 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wx-weddingpat.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-weddingpat.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="css.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="css.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13340935">
-              <caret line="185" column="94" selection-start-line="185" selection-start-column="94" selection-end-line="185" selection-end-column="94" />
+            <state vertical-scroll-proportion="-30.694445">
+              <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wx-header-menu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-header-menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -68,61 +57,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wx-wedding-carental.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-carental.js">
+      <file leaf-file-name="wx-wedding-class.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="261" column="37" selection-start-line="261" selection-start-column="37" selection-end-line="261" selection-end-column="37" />
+              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wx-suites.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-suites.js">
+      <file leaf-file-name="wx-wedding-video.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="138" column="57" selection-start-line="138" selection-start-column="57" selection-end-line="138" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wx-suite.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-suite.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="75" selection-start-line="88" selection-start-column="75" selection-end-line="88" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wx-samples-list.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-samples-list.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="361" column="26" selection-start-line="333" selection-start-column="20" selection-end-line="361" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wx-hotel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-hotel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="312" column="20" selection-start-line="312" selection-start-column="20" selection-end-line="352" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wx-pringles-list.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/components/wx-pringles-list.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="197" column="16" selection-start-line="197" selection-start-column="16" selection-end-line="225" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.49945235">
+              <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -175,14 +124,11 @@
         <option value="$PROJECT_DIR$/app/src/components/wx-scheme.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class-detail.js" />
         <option value="$PROJECT_DIR$/app/src/config/api.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-f4.js" />
         <option value="$PROJECT_DIR$/app/src/app.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-header-menu.js" />
         <option value="$PROJECT_DIR$/app/src/config/wx-skmap.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-scheme-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-dress-detail.js" />
-        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-carental-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-hotel-detail.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-suite.js" />
@@ -195,6 +141,9 @@
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-supplies.js" />
         <option value="$PROJECT_DIR$/app/src/components/wx-wedding-carental.js" />
         <option value="$PROJECT_DIR$/app/assets/styles/css.css" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-header-menu.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-class.js" />
+        <option value="$PROJECT_DIR$/app/src/components/wx-wedding-video.js" />
       </list>
     </option>
   </component>
@@ -635,13 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-header-menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="38" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/components/wx-photographer-stylist-product.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48434237">
@@ -712,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="171" column="10" selection-start-line="171" selection-start-column="4" selection-end-line="171" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/config/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -761,21 +696,6 @@
             <marker date="1452501422000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
             <marker date="1452501422000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
             <marker date="1452501422000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="6" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-          <folding>
-            <marker date="1450859601000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-            <marker date="1450859601000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-            <marker date="1450859601000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-            <marker date="1450859601000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-            <marker date="1450859601000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
-            <marker date="1450859601000" expanded="true" signature="-1:-1" placeholder="&lt;xml/&gt;" />
           </folding>
         </state>
       </provider>
@@ -897,8 +817,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/styles/css.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13340935">
-          <caret line="185" column="94" selection-start-line="185" selection-start-column="94" selection-end-line="185" selection-end-column="94" />
+        <state vertical-scroll-proportion="-30.694445">
+          <caret line="187" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="187" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-class.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-header-menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/components/wx-wedding-video.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49945235">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
           <folding />
         </state>
       </provider>

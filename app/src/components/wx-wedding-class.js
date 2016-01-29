@@ -17,7 +17,7 @@ var WXWeddingClass = React.createClass({
             payload:[],
             baseUrl:'',
             totalCount:0,
-            headerCof:[4,1,4,1,3,'钻石百科',1,1],       //所在菜单中的下标
+            headerCof:[5,1,4,1,3,'钻石百科',1,1],       //所在菜单中的下标
             headerType:['menu_1','menu_2','menu_3','menu_4','menu_5','menu_6','menu_7','menu_8'],
             router:self.getPath().substr(1).split('/')
         };

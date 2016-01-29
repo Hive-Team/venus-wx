@@ -20,6 +20,10 @@ var HeaderMenu = React.createClass({
                         name : '套系报价',
                         href : '#/suite'
                     },
+                    {
+                        name : '旅拍',
+                        href : 'http://mtrip.jsbn.com'
+                    },
                     //{
                     //    name : '选摄影团队',
                     //    href : '#/phototeam'
