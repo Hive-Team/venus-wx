@@ -128,6 +128,10 @@ var WXHotel = React.createClass({
             $(this).addClass('current').parent().css({display:'none'});
         });
 
+        $('.single',$nav_box).click(function(){
+            $('li',$nav_box).removeClass('current');
+        });
+
         function scrollPos(box,cont){
             box.bind("scroll",function(){
                 //console.log(box.scrollTop() + box.height(),cont.height());
@@ -296,8 +300,8 @@ var WXHotel = React.createClass({
                         <span className='item'>桌数</span>
                         <span className='item'>价格</span>
                         <span className='item'>星级</span>
-                        <span className='item' onClick={function(){self.screeningClick(self.state.baseUrl,{isGift:1})}}>礼包</span>
-                        <span className='item' onClick={function(){self.screeningClick(self.state.baseUrl,{isDisaccount:1})}}>优惠</span>
+                        <span className='item single' onClick={function(){self.screeningClick(self.state.baseUrl,{isGift:1})}}>礼包</span>
+                        <span className='item single' onClick={function(){self.screeningClick(self.state.baseUrl,{isDisaccount:1})}}>优惠</span>
 
                         <ul className='clearfix'>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl)}}>全部</li>
@@ -330,7 +334,7 @@ var WXHotel = React.createClass({
                             {
                                 $.map(hotelTypes,function(v,i){
                                     return(
-                                        <li key={i} onClick={function(){self.screeningClick(self.state.baseUrl,{hotelTypeId:v.hotelTypeId})}}>{v.typeName}</li>
+                                        <li key={i} onClick={function(){self.screeningClick(self.state.baseUrl,{hotelType:v.hotelTypeId})}}>{v.typeName}</li>
                                     )
                                 })
                             }

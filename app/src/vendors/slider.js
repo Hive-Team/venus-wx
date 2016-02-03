@@ -49,9 +49,6 @@ $.fn.Slider = function(obj){
             var $lefBtn = $(lefBtn);
             var $rigBtn = $(rigBtn);
 
-            //加入左右按钮
-            setting.displayBtn && $sliderBox.append($lefBtn).append($rigBtn);
-
             $($points[0]).addClass(setting.pointCurClass);
             $items.each(function (i) {
                 $(this).css({position:"absolute",left:0,top:0});
@@ -97,6 +94,11 @@ $.fn.Slider = function(obj){
                 }
             })
 
+            //加入左右按钮
+            setting.displayBtn &&
+            $points.length > 1 &&
+            $sliderBox.append($lefBtn).append($rigBtn);
+
             function clickMove(i){
                 clearInterval(sliderInterval);
                 sliderPlay(i);
@@ -121,8 +123,8 @@ $.fn.Slider = function(obj){
         else if(setting.type == "Horizontal"){
             var itemWidth = $items.width() + setting.margin;
             var imgIndex = 0;
-
-            setting.displayBtn && $sliderBox.append(lefBtn + rigBtn);
+            var $lefBtn = $(lefBtn);
+            var $rigBtn = $(rigBtn);
 
             changeImg($($items[0]),imgIndex);
 
@@ -160,6 +162,31 @@ $.fn.Slider = function(obj){
                     return false;
                 });
             });
+
+            $lefBtn.bind('click',function(){
+                if(imgIndex <= 0){
+                    imgIndex = $points.length - 1;
+                    clickMove(imgIndex);
+                }else{
+                    imgIndex -= 1;
+                    clickMove(imgIndex);
+                }
+            })
+
+            $rigBtn.bind('click',function(){
+                if(imgIndex >= $points.length - 1){
+                    imgIndex = 0;
+                    clickMove(imgIndex);
+                }else{
+                    imgIndex += 1;
+                    clickMove(imgIndex);
+                }
+            })
+
+            //加入左右按钮
+            setting.displayBtn &&
+            $points.length > 1 &&
+            $sliderBox.append($lefBtn).append($rigBtn);
 
             function arrowFunc(ind,iW){
                 if($itemBox.length < 1)
