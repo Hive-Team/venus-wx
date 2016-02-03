@@ -37,7 +37,7 @@ var WXHotelDetail = React.createClass({
                 self.setState({
                     payload:payload.data[0]
                 },function(){
-                    $('#slider_box').length>0 && $('#slider_box').Slider();
+                    $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
             });
     },
@@ -94,7 +94,7 @@ var WXHotelDetail = React.createClass({
         return (
             <div className="hotel-detail-view" id='hotel_detail_view'>
                 <div className="hotel-detail-banner responsive-box" id="slider_box">
-                    <div id="slider_hotel_detail" className="slider-box-1-js responsive-box">
+                    <div id="slider_hotel_detail" className="slider-box slider-box-1-js responsive-box">
                         <ul className="slider">
                             {
                                 $.map(
@@ -114,7 +114,7 @@ var WXHotelDetail = React.createClass({
                                     })
                             }
                         </ul>
-                        <div className='slider-point-box'>
+                        <div className='point-box'>
                             {
                                 $.map(
                                     topSliderData

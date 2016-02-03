@@ -40,7 +40,7 @@ var WXWeddingCarRentalDetail = React.createClass({
                     payload:payload.data,
                     parameter:payload.data.parameter.split('|')
                 },function(){
-                    $('#slider_box').length>0 && $('#slider_box').Slider();
+                    $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
             });
     },
@@ -56,7 +56,7 @@ var WXWeddingCarRentalDetail = React.createClass({
         return (
             <div className="hotel-detail-view" id='hotel_detail_view'>
                 <div className="hotel-detail-banner responsive-box" id="slider_box">
-                    <div id="slider_hotel_detail" className="slider-box-1-js responsive-box">
+                    <div id="slider_hotel_detail" className="slider-box slider-box-1-js responsive-box">
                         <ul className="slider">
                             {
                                 $.map(
@@ -75,7 +75,7 @@ var WXWeddingCarRentalDetail = React.createClass({
                                     })
                             }
                         </ul>
-                        <div className='slider-point-box'>
+                        <div className='point-box'>
                             {
                                 $.map(
                                     pageData.detailPics || []

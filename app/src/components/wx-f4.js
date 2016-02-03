@@ -79,6 +79,7 @@ var WXF4 = React.createClass({
         var $f4_hidden = $('#f4_hidden');
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
+        var $f4_box = $('.f4-hidden-box');
         var isStyleMenu = false;
 
         $btn_style.on('click',function(){
@@ -103,6 +104,10 @@ var WXF4 = React.createClass({
 
         $f4_hidden.height($(window).height()-100);
 
+        $f4_box.on('click','.more-cont',function(){
+            $(this).hide().siblings('.description').css({height:'auto'});
+        });
+
         function scrollPos(box,cont){
             box.bind("scroll",function(){
                 //console.log(box.scrollTop() + box.height() + "  , " + cont.height());
@@ -115,6 +120,7 @@ var WXF4 = React.createClass({
 
             });
         }
+
         function scrollFunc(url,params) {
             //console.log(self.state.totalCount +" , "+ parseInt(self.state.pageSize)*parseInt(self.state.pageIndex));
             if(parseInt(self.state.totalCount)>0 &&
@@ -207,7 +213,7 @@ var WXF4 = React.createClass({
                 //console.log(payload);
                 //console.log(JSON.stringify(payload.data,null,4));
                 //console.log(self.state.baseUrl);
-                self.scrollPos($("#f4_hidden"),$("#scroll_content"),params)
+                self.scrollPos($("#f4_hidden"),$("#scroll_content"),params);
             })
     },
 
@@ -346,6 +352,10 @@ var WXF4 = React.createClass({
                                                                     <h3 className='title'>{v.personName}</h3>
                                                                     <div style={{display:'none'}}><i>+</i><span>关注</span></div>
                                                                 </div>
+                                                                <div className='description-box'>
+                                                                    <p className='description'>{v.description === '' && '简介：暂无' || '简介：' + v.description}</p>
+                                                                    <span className={v.description === '' && 'more-cont none' || 'more-cont'}>查看全部</span>
+                                                                </div>
                                                                 <ul className='list-img clearfix'>
                                                                     {
                                                                         $.map(
@@ -361,6 +371,7 @@ var WXF4 = React.createClass({
                                                                     }
                                                                 </ul>
                                                                 <div className='price-box'><strong>报价：</strong><span>￥</span><b>{v.skillPrice}</b></div>
+                                                                <p className='price-des'>{v.skillPriceRemark}</p>
                                                             </div>
                                                         </li>
                                                     )

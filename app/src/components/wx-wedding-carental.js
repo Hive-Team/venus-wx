@@ -37,25 +37,33 @@ var WXWeddingCarRental = React.createClass({
     componentDidMount: function() {
         var self = this;
         var $menu_classify = $('.menu-classify');
+        var B_ul = false;
 
         $('span',$menu_classify).eq(0).addClass('item-current');
         $menu_classify.on('click','span',function(){
             var ind = $(this).index();
+
+            if($(this).hasClass('item-current') && B_ul){
+                $('ul',$menu_classify).removeAttr('style');
+                B_ul = false;
+                return;
+            }
+
+            B_ul = true;
 
             $(this).addClass('item-current');
             $(this).siblings().removeClass('item-current');
             $('ul',$menu_classify).eq(ind - 1).css({display:'block'})
                 .siblings().removeAttr('style');
 
-            if(ind <= 0){
-                $('ul',$menu_classify).removeAttr('style');
-            }
+            ind <= 0 && $('ul',$menu_classify).removeAttr('style');
         });
 
         $menu_classify.on('click','li',function(){
             $(this).parent().removeAttr('style');
             $('li',$menu_classify).removeAttr('class');
             $(this).addClass('li-current');
+            B_ul = false;
         });
 
         var parseResource = function(){
@@ -253,7 +261,7 @@ var WXWeddingCarRental = React.createClass({
                                                         <h1>{v.title}</h1>
                                                         <div className='price-box'>
                                                             <b><em>￥</em><b>{v.rentalPrice != 0 ? v.rentalPrice.toFixed(2) : '面议'}</b></b>
-                                                            <span>{v.marketRentalPrice && v.marketRentalPrice != 0 ? v.marketRentalPrice.toFixed(2) : ''}</span>
+                                                            <span>{v.marketRentalPrice && v.marketRentalPrice !== v.rentalPrice && v.marketRentalPrice != 0 && '￥' + v.marketRentalPrice.toFixed(2)}</span>
                                                         </div>
                                                     </div>
                                                 </li>

@@ -107,7 +107,13 @@ var WXTeamDetail = React.createClass({
                         $.map(pageData.workList || [],
                             function(v,i){
                                 return(
-                                    <li key={i}><ImageListItem frameWidth={1000} detailBaseUrl={'/' + 'team' + '/' + pageData.teamId + '/works' } url={v.contentUrl} sid={v.contentId} /></li>
+                                    <li key={i}>
+                                        <ImageListItem
+                                            frameWidth={1000}
+                                            detailBaseUrl={'/' + 'team' + '/' + pageData.teamId + '/works' }
+                                            url={v.contentUrl}
+                                            sid={v.contentId} />
+                                    </li>
                                 )
                             }
                         )

@@ -18,6 +18,7 @@ var WXHotel = React.createClass({
             payload:[],
             baseUrl:'',
             totalCount:0,
+            hotelTypes:[],
             areas: [
                 {
                     "id": 99,
@@ -185,13 +186,28 @@ var WXHotel = React.createClass({
                     });
 
                     //console.log(JSON.stringify(payload.data,null,4));
-                    //console.log(payload.totalCount);
+                    //console.log(payload);
                     // 绑上滚动加载。
                     scrollPos($("#scroll_box"),$("#scroll_content"));
                 })
         };
 
+        // 酒店类型
+        var hotelTypes = function(){
+            self.fetchData('hotel/types')
+                .done(function(payload){
+                    (payload.data && payload.code === 200) &&
+                    self.setState({
+                        hotelTypes : payload.data
+                    });
+
+                    console.log(payload);
+                })
+        };
+
+
         $.when(window.Core.promises['/'])
+            .then(hotelTypes)
             .then(parseResource);
     },
 
@@ -269,6 +285,7 @@ var WXHotel = React.createClass({
         var self = this;
         var winWidth = $(window).width();
         var pageData = self.state.payload;
+        var hotelTypes = self.state.hotelTypes;
 
         return (
             <div className='hotel-list-view mobile-main-box'>
@@ -278,6 +295,7 @@ var WXHotel = React.createClass({
                         <span className='item'>位置</span>
                         <span className='item'>桌数</span>
                         <span className='item'>价格</span>
+                        <span className='item'>星级</span>
                         <span className='item' onClick={function(){self.screeningClick(self.state.baseUrl,{isGift:1})}}>礼包</span>
                         <span className='item' onClick={function(){self.screeningClick(self.state.baseUrl,{isDisaccount:1})}}>优惠</span>
 
@@ -307,6 +325,16 @@ var WXHotel = React.createClass({
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:3000,maxPrice:4000})}}>3000-4000元</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:4001})}}>4000元以上</li>
                         </ul>
+                        <ul className='clearfix'>
+                            <li onClick={function(){self.screeningClick(self.state.baseUrl)}}>全部</li>
+                            {
+                                $.map(hotelTypes,function(v,i){
+                                    return(
+                                        <li key={i} onClick={function(){self.screeningClick(self.state.baseUrl,{hotelTypeId:v.hotelTypeId})}}>{v.typeName}</li>
+                                    )
+                                })
+                            }
+                        </ul>
 
                         <div className='line-bottom'></div>
                     </div>
@@ -327,7 +355,7 @@ var WXHotel = React.createClass({
                                                         <a href={'#/'+self.state.baseUrl+'/'+ v.hotelId} className='relative-box'>
                                                             <div className='img-box'><img src={v.imageUrl} /></div>
                                                             <div className='info-box'>
-                                                                <div className='title-box'><h1 className='title'>{v.hotelName}</h1><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div>
+                                                                <div className='title-box'><div className='pos-box'><h1 className='title'>{v.hotelName}</h1><div className='ico-box'><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div></div></div>
                                                                 <div className='score-box'>
                                                                     <div className='star-box' style={{display:'none'}}><i className='ico-star-1-js ico-star-1-gray-js'></i><i className='ico-star-1-js ico-star-1-pink-js' style={{width:'35px'}}></i></div>
                                                                     <b className='red-1-wxjs' style={{display:'none'}}>3.5</b><span className='gray-1-wxjs'>{v.typeName}</span>

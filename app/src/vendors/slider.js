@@ -1,9 +1,10 @@
-//
-$.fn.Slider = function(obj,func){
+$.fn.Slider = function(obj){
     var setting = {
-        time : 3000,                                //时间间隔
-        changeClass : "item-current",           //当前
+        device : 'pc',                           //pc,mobile
+        time : 3000,                             //时间间隔
+        changeClass : "item-current",            //当前
         sliderBoxClass : "slider-box",
+        pointBoxClass : 'point-box',
         pointClass : 'point',
         pointCurClass : 'point-current',
         itemBoxClass : "item-box",
@@ -15,9 +16,11 @@ $.fn.Slider = function(obj,func){
         bigImgBox : "kpxq-img-box",
         bigImgClass : "big-img",
         bigImgUrls : null,
-        proportion : 1.5,
+        proportion : 1.5,                        //大图比例
         margin:0,
-        type : "alpha"                       //默认alpha;Horizontal
+        focusShift:true,                         //
+        displayBtn:false,                        //左右按钮是否现实
+        type : "alpha",                          //默认alpha;Horizontal
     }
 
     if(obj){
@@ -28,6 +31,7 @@ $.fn.Slider = function(obj,func){
 
     var _self = $(this);
     var $sliderBox = $("." + setting.sliderBoxClass,_self);
+    var $pointBox = $("." + setting.pointBoxClass,_self);
     var $points = $('.' +  setting.pointClass,_self);
     var $itemBox = $("." + setting.itemBoxClass,_self);
     var $items = $("." + setting.itemClass,_self);
@@ -36,80 +40,115 @@ $.fn.Slider = function(obj,func){
     var $bigImgBox = $("." + setting.bigImgBox,_self);
     var $bigImg = $("." + setting.bigImgClass,_self);
     var clickBool = false;
+    var lefBtn = '<div class="slider-btn-box slider-btn-lef"><i></i></div>';
+    var rigBtn = '<div class="slider-btn-box slider-btn-rig"><i></i></div>';
 
     function slider(){
         if (setting.type == "alpha") {
+            var imgIndex = 0;
+            var $lefBtn = $(lefBtn);
+            var $rigBtn = $(rigBtn);
+
+            //加入左右按钮
+            setting.displayBtn && $sliderBox.append($lefBtn).append($rigBtn);
+
             $($points[0]).addClass(setting.pointCurClass);
             $items.each(function (i) {
-                $(this).css({position: "absolute", left: 0, top: 0});
+                $(this).css({position:"absolute",left:0,top:0});
 
                 if (i == 0) {
                     $(this).addClass(setting.changeClass);
                 }
             });
 
-            setInterval(function(){
-                $items.each(function(i){
-                    if($(this).hasClass(setting.changeClass)){
-                        imgIndex = i;
-                    }
+            var sliderInterval = sliderIntervalFunc();
+
+            if($points.length > 1){
+                $pointBox.css({display:'block'});
+                setting.device === 'pc' && $points.each(function(i,e){
+                    $(e).bind('mouseenter',function(){
+                        imgIndex = $(this).index();
+
+                        clearInterval(sliderInterval);
+                        sliderPlay(imgIndex);
+                    }).bind('mouseleave',function(){
+                        sliderInterval = sliderIntervalFunc();
+                    });
                 });
+            }
 
-                $($items[imgIndex]).removeClass(setting.changeClass);
-                $($points[imgIndex]).removeClass(setting.pointCurClass);
-
-                if(imgIndex < $items.length - 1){
-                    $($items[imgIndex + 1]).addClass(setting.changeClass);
-                    $($points[imgIndex + 1]).addClass(setting.pointCurClass);
+            $lefBtn.bind('click',function(){
+                if(imgIndex <= 0){
+                    imgIndex = $points.length - 1;
+                    clickMove(imgIndex);
                 }else{
-                    $($items[0]).addClass(setting.changeClass);
-                    $($points[0]).addClass(setting.pointCurClass);
+                    imgIndex -= 1;
+                    clickMove(imgIndex);
                 }
+            })
 
-            },setting.time);
+            $rigBtn.bind('click',function(){
+                if(imgIndex >= $points.length - 1){
+                    imgIndex = 0;
+                    clickMove(imgIndex);
+                }else{
+                    imgIndex += 1;
+                    clickMove(imgIndex);
+                }
+            })
+
+            function clickMove(i){
+                clearInterval(sliderInterval);
+                sliderPlay(i);
+                sliderInterval = sliderIntervalFunc();
+            }
+
+            function sliderIntervalFunc(){
+                return setInterval(function(){
+                    imgIndex = imgIndex < $items.length - 1 ? imgIndex + 1 : 0;
+
+                    sliderPlay(imgIndex);
+                },setting.time);
+            }
+
+            function sliderPlay(i){
+                $items.removeClass(setting.changeClass);
+                $points.removeClass(setting.pointCurClass);
+                $($items[i]).addClass(setting.changeClass);
+                $($points[i]).addClass(setting.pointCurClass);
+            }
         }
-
         else if(setting.type == "Horizontal"){
-            var itemWidth = $items.width();
+            var itemWidth = $items.width() + setting.margin;
             var imgIndex = 0;
+
+            setting.displayBtn && $sliderBox.append(lefBtn + rigBtn);
 
             changeImg($($items[0]),imgIndex);
 
             $itemBox.width(function(){
-                return $items.length * itemWidth + ($items.length - 1) * setting.margin
+                return $items.length * itemWidth - setting.margin;
             });
             $items.each(function(i){
-                $(this).css({left:itemWidth * i})
+                $(this).css({left:itemWidth * i })
             });
 
             var itemBoxWidth = $itemBox.width();
             var displayWidth = $sliderBox.width();
 
             $btnPrev.bind("click",function(){
-                if(imgIndex > 0 && imgIndex <= $items.length - 1){
+                if(imgIndex > 0){
                     imgIndex --;
 
-                    changeImg($($items[imgIndex]),imgIndex);
-
-                    var left = $itemBox.position().left;
-
-                    if(!clickBool && $itemBox.position().left < 0){
-                        itemBoxMove(left + itemWidth);
-                    }
+                    arrowFunc(imgIndex,itemWidth);
                 }
             });
 
             $btnNext.bind("click",function(){
-                if(imgIndex >= 0 && imgIndex < $items.length - 1){
+                if(imgIndex < $items.length - 1){
                     imgIndex ++;
 
-                    changeImg($($items[imgIndex]),imgIndex);
-
-                    var left = $itemBox.position().left;
-
-                    if(!clickBool && $itemBox.position().left > displayWidth - itemBoxWidth){
-                        itemBoxMove(left - itemWidth);
-                    }
+                    arrowFunc(imgIndex,-itemWidth);
                 }
             });
 
@@ -122,6 +161,22 @@ $.fn.Slider = function(obj,func){
                 });
             });
 
+            function arrowFunc(ind,iW){
+                if($itemBox.length < 1)
+                    if(setting.focusShift === true){
+                        changeImg($($items[ind]),ind);
+                        return;
+                    }
+
+                var left = $itemBox.position().left;
+                setting.focusShift === true && changeImg($($items[imgIndex]),imgIndex);
+
+                !clickBool &&
+                ((iW > 0 && $itemBox.position().left < 0) ||
+                (iW < 0 && $itemBox.position().left > displayWidth - itemBoxWidth)) &&
+                itemBoxMove(left + iW);
+            }
+
             function changeImg(dom,i){
                 var index = i;
 
@@ -133,28 +188,41 @@ $.fn.Slider = function(obj,func){
 
                 $bigImg.css({opacity:0}).attr("src",$($items[index]).attr(setting.itemBigUrl));
 
-                var width = $("." + setting.imgBox,dom).attr("data-width");
-                var height = $("." + setting.imgBox,dom).attr("data-height");
+                var imgWidth = dom.find('a').attr("data-width");
+                var imgHeight = dom.find('a').attr("data-height");
+                var imgBoxWidth = $bigImgBox.width();
+                var imgBoxHeight = $bigImgBox.height();
 
-                if(width/height >= setting.proportion){
-                    $bigImg.width("100%").height($bigImgBox.width()*height/width);
-                    $bigImg.css({
-                        marginTop : ($bigImgBox.height() - $bigImg.height())/2,
-                        marginLeft : "auto"
-                    });
-                    imgLoad($bigImg[0],function(){
-                        $bigImg.animate({opacity:1});
-                    });
+                if(imgWidth/imgHeight >= setting.proportion){
+                    imgHeight = imgBoxWidth * imgHeight / imgWidth;
+                    $bigImg.width(imgBoxWidth).height(imgHeight);
+
+                    imgWH((imgBoxHeight - imgHeight)/2,'auto');
                 }else{
-                    $bigImg.height("100%").width($bigImgBox.height()*width/height);
+                    imgWidth = imgBoxHeight * imgWidth / imgHeight;
+                    $bigImg.height(imgBoxHeight).width(imgWidth);
+
+                    imgWH('auto',(imgBoxWidth - imgWidth)/2);
                     $bigImg.css({
-                        marginLeft : ($bigImgBox.width() - $bigImg.width())/2,
-                        marginTop : "auto"
+                        marginLeft : (imgBoxWidth - imgWidth)/2,
+                        marginTop : "auto",
+                        display:'block'
                     });
                     imgLoad($bigImg[0],function(){
                         $bigImg.animate({opacity:1});
                     });
                 }
+            }
+
+            function imgWH(t,l){
+                $bigImg.css({
+                    marginTop : t,
+                    marginLeft : l,
+                    display:'block'
+                });
+                imgLoad($bigImg[0],function(){
+                    $bigImg.animate({opacity:1});
+                });
             }
 
             function itemBoxMove(n){
