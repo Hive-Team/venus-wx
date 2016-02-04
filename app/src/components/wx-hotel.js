@@ -205,7 +205,7 @@ var WXHotel = React.createClass({
                         hotelTypes : payload.data
                     });
 
-                    console.log(payload);
+                    //console.log(payload);
                 })
         };
 
