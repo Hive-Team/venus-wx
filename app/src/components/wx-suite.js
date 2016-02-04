@@ -44,7 +44,7 @@ var WXPringlesList = React.createClass({
                 self.setState({
                     payload:payload.data[0]
                 },function(){
-                    $('#slider_box').length>0 && $('#slider_box').Slider();
+                    $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
                 //console.log(self.state.payload);
             })
@@ -77,7 +77,7 @@ var WXPringlesList = React.createClass({
         return (
             <div className="suite-view" id='suite_view'>
                 <div className="suite-banner responsive-box" id="slider_box">
-                    <div id="slider_suite" className="slider-box-1-js responsive-box">
+                    <div id="slider_suite" className="slider-box slider-box-1-js responsive-box">
                         <ul className="slider">
                             {
                                 $.map(
@@ -96,7 +96,7 @@ var WXPringlesList = React.createClass({
                                     })
                             }
                         </ul>
-                        <div className='slider-point-box'>
+                        <div className='point-box'>
                             {
                                 $.map(
                                     topSliderData
