@@ -542,9 +542,9 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .slider-box-1-js{height:100%;position:relative;}
 .slider-box-1-js .slider-btn-box{height:40px;width:20px;background-color:rgba(0,0,0,0.2);position:absolute;top:50%;margin-top:-20px;z-index:100;}
 .slider-box-1-js .slider-btn-box i{border:20px solid transparent;display:block;width:0;height:0;overflow:hidden;}
-.slider-box-1-js .slider-btn-lef{left:0;}
+.slider-box-1-js .slider-btn-lef{left:0;z-index:110;}
 .slider-box-1-js .slider-btn-lef i{border-right:20px solid rgba(255,255,255,0.4);border-left:none;}
-.slider-box-1-js .slider-btn-rig{right:0;}
+.slider-box-1-js .slider-btn-rig{right:0;z-index:120;}
 .slider-box-1-js .slider-btn-rig i{border-left:20px solid rgba(255,255,255,0.4);border-right:none;}
 .slider-box-1-js .slider{height:100%;position:relative;z-index:10;}
 .slider-box-1-js .item{display:block;overflow:hidden;height:100%;width:100%;overflow:hidden;opacity:0;}

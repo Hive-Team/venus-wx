@@ -75,6 +75,7 @@ $.fn.Slider = function(obj){
             }
 
             $lefBtn.bind('click',function(){
+                alert('left')
                 if(imgIndex <= 0){
                     imgIndex = $points.length - 1;
                     clickMove(imgIndex);
@@ -85,6 +86,7 @@ $.fn.Slider = function(obj){
             })
 
             $rigBtn.bind('click',function(){
+                alert('right')
                 if(imgIndex >= $points.length - 1){
                     imgIndex = 0;
                     clickMove(imgIndex);

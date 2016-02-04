@@ -53,7 +53,8 @@ var WXTeamProduct = React.createClass({
                 closeEl:false,
                 escKey:false,
                 closeOnVerticalDrag:false,
-                closeOnScroll:false
+                closeOnScroll:false,
+                pinchToClose:false,
             };
 
             // Initializes and opens PhotoSwipe

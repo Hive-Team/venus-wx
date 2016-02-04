@@ -54,7 +54,7 @@ var WXPringlesDetail = React.createClass({
                 escKey:false,
                 closeOnVerticalDrag:false,
                 closeOnScroll:false,
-                clickToCloseNonZoomable:true
+                pinchToClose:false
             };
 
             // Initializes and opens PhotoSwipe
