@@ -74,8 +74,9 @@ $.fn.Slider = function(obj){
                 });
             }
 
-            $lefBtn.bind('click',function(){
-                alert('left')
+            $lefBtn.bind('click',function(e){
+                e.preventDefault();
+
                 if(imgIndex <= 0){
                     imgIndex = $points.length - 1;
                     clickMove(imgIndex);
@@ -85,8 +86,9 @@ $.fn.Slider = function(obj){
                 }
             })
 
-            $rigBtn.bind('click',function(){
-                alert('right')
+            $rigBtn.bind('click',function(e){
+                e.preventDefault();
+                
                 if(imgIndex >= $points.length - 1){
                     imgIndex = 0;
                     clickMove(imgIndex);
