@@ -123,7 +123,7 @@ var WXHotel = React.createClass({
             });
         });
 
-        $('li',$nav_box).click(function(){
+        $nav_box.on('click','li',function(){
             $('li',$nav_box).removeClass('current');
             $(this).addClass('current').parent().css({display:'none'});
         });

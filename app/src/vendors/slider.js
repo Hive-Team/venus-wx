@@ -88,7 +88,7 @@ $.fn.Slider = function(obj){
 
             $rigBtn.bind('click',function(e){
                 e.preventDefault();
-                
+
                 if(imgIndex >= $points.length - 1){
                     imgIndex = 0;
                     clickMove(imgIndex);
