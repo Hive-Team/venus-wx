@@ -67,19 +67,15 @@ var WXWeddingCarRental = React.createClass({
         });
 
         var parseResource = function(){
-            var resourceLinks = window.Core.resource[SKMap['#'+self.getPath()]];
+            var url = 'car/car_list';
 
-            $.each(resourceLinks,function(k,v){
-                resourceLinks = v;
-            });
-
-            self.fetchData(resourceLinks.split('#')[1],self.state.params)
+            self.fetchData(url,self.state.params)
                 .done(function(payload){
                     (payload && payload.data.length>0 && payload.code === 200) &&
                     self.setState({
                         payload:payload.data,
-                        baseUrl:resourceLinks.split('#')[1],
-                        totalCount:parseInt(payload.totalCount)
+                        baseUrl:url,
+                        totalCount:parseInt(payload.count)
                     });
                     //console.log(payload.data);
                     //绑上滚动加载。
@@ -89,7 +85,7 @@ var WXWeddingCarRental = React.createClass({
         }
 
         var brands = function(){
-            self.fetchData('car/brands')
+            self.fetchData('weddingCarBrand/all')
                 .done(function(payload){
                     self.setState({
                         brands:payload.data
@@ -97,7 +93,7 @@ var WXWeddingCarRental = React.createClass({
                 });
         }
         var models = function(){
-            self.fetchData('car/models')
+            self.fetchData('weddingCarModels/all')
                 .done(function(payload){
                     self.setState({
                         models:payload.data
@@ -105,7 +101,7 @@ var WXWeddingCarRental = React.createClass({
                 });
         }
         var levels = function(){
-            self.fetchData('car/levels')
+            self.fetchData('weddingCarLevel/all')
                 .done(function(payload){
                     self.setState({
                         levels:payload.data
@@ -113,7 +109,7 @@ var WXWeddingCarRental = React.createClass({
                 });
         }
 
-        $.when(window.Core.promises['/'])
+        $.when({})
             .then(brands)
             .then(models)
             .then(levels)
@@ -132,7 +128,7 @@ var WXWeddingCarRental = React.createClass({
                 (payload.data && payload.code===200)&&
                 self.setState({
                     payload:payload.data,
-                    totalCount:payload.totalCount
+                    totalCount:payload.count
                 })
                 //console.log(payload.data);
 
@@ -146,7 +142,7 @@ var WXWeddingCarRental = React.createClass({
 
         params.pageIndex ++;
         box.bind("scroll",function(){
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,params);
                 params.pageIndex ++;
             }
@@ -160,9 +156,9 @@ var WXWeddingCarRental = React.createClass({
             parseInt(params.pageSize)*parseInt(params.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -171,7 +167,7 @@ var WXWeddingCarRental = React.createClass({
                     payload:((params.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
@@ -254,9 +250,9 @@ var WXWeddingCarRental = React.createClass({
                                                     <div className='hover-box'>
                                                         <ImageListItem
                                                             frameWidth={winW*2}
-                                                            url={v.coverUrl}
-                                                            sid={v.weddingCarRentalId}
-                                                            detailBaseUrl={baseUrl}
+                                                            url={v.coverUrlWx}
+                                                            sid={v.id}
+                                                            detailBaseUrl={'car/detail'}
                                                             />
                                                         <h1>{v.title}</h1>
                                                         <div className='price-box'>

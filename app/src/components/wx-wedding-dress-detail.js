@@ -24,13 +24,12 @@ var WXWeddingDressDetail = React.createClass({
     },
     loadDetail:function(baseUrl,id,evt){
         //evt.preventDefault();
-        var winWidth = $(window).width();
 
         Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
             if(payload.code !== 200 || !payload.data) return;
 
+            console.log(payload.data);
             var pswpElement = document.querySelectorAll('.pswp')[0];
-            var mask = 'watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10';
 
             var items = $.map(payload.data||[],function(v,i){
                 var dimension = v.imageUrl && v.imageUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
@@ -61,13 +60,13 @@ var WXWeddingDressDetail = React.createClass({
             };
 
             // Initializes and opens PhotoSwipe
-            window.Core.gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            window.Core.gallery.init();
+            window.gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+            window.gallery.init();
         });
     },
 
     componentWillMount : function() {
-        window.Core.gallery && window.Core.gallery.close();
+        window.gallery && window.gallery.close();
     },
 
     componentDidMount: function() {
@@ -79,7 +78,7 @@ var WXWeddingDressDetail = React.createClass({
     },
 
     componentWillUnmount : function(){
-        window.Core.gallery.close();
+        window.gallery.close();
     },
 
     render: function() {

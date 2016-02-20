@@ -16,7 +16,7 @@ var WXWeddingClassDetail = React.createClass({
             payload:[],
             baseUrl:'',
             totalCount:0,
-            router:self.getPath().substr(1).split('/')
+            router:self.getPath().substr(1)
         };
     },
 
@@ -29,13 +29,11 @@ var WXWeddingClassDetail = React.createClass({
         var router = self.state.router;
         var $weddingclass_content = $('#weddingclass_content');
 
-        self.fetchData(router[0] + '/' + router[2])
+        self.fetchData(router)
             .done(function(payload){
                 (payload.data && payload.code === 200) && self.setState({
                     payload:payload.data
                 });
-
-                $weddingclass_content.html(payload.data.content);
 
                 //(payload.data && payload.code === 200) && console.log(payload.data);
             }
@@ -50,7 +48,7 @@ var WXWeddingClassDetail = React.createClass({
             <div className="weddingclass-detail-view mobile-main-box">
                 <h1 style={{display:'none'}}>{payload.title}</h1>
                 <div style={{display:'none'}} className='info-box'><b>{'作者：'+payload.author}</b><span>{'时间：'+payload.publishTime}</span></div>
-                <div className='content' id='weddingclass_content'></div>
+                <div className='content' dangerouslySetInnerHTML={{__html:payload.content}}></div>
             </div>
         );
     }

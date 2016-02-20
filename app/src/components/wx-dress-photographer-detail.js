@@ -31,8 +31,10 @@ var WXDresserPhotographerDetail = React.createClass({
 
             //console.log(payload.data);
             var pswpElement = document.querySelectorAll('.pswp')[0];
+            var imgList = JSON.parse(window.localStorage.f4ImgData);
+            //console.log(imgList);
 
-            var items = $.map(window.localStorage || [],function(v,i){
+            var items = $.map(imgList || [],function(v,i){
                 var dimension = v && v.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
                 var src = v + '@watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10';
                 var w = dimension.length>2 ?parseInt(dimension[1]):-1;
@@ -59,8 +61,8 @@ var WXDresserPhotographerDetail = React.createClass({
             };
 
             // Initializes and opens PhotoSwipe
-            window.Core.gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            window.Core.gallery.init();
+            window.gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+            window.gallery.init();
         });
     },
 
@@ -72,7 +74,7 @@ var WXDresserPhotographerDetail = React.createClass({
     },
 
     componentWillUnmount : function(){
-        window.Core.gallery.close();
+        window.gallery.close();
     },
 
     render: function() {

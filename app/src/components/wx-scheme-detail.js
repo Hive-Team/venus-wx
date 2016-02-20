@@ -11,6 +11,7 @@ var WXSchemeDetail = React.createClass({
     getInitialState: function() {
         return {
             payload:[],
+            imgList:[],
             totalCount:0,
             pageSize:4,
             pageIndex:1,
@@ -35,6 +36,7 @@ var WXSchemeDetail = React.createClass({
                 //console.log(payload.data);
                 (payload.code === 200) &&
                 self.setState({
+                    imgList:JSON.parse(payload.data.wxDetailImages),
                     payload:payload.data
                 })
             })
@@ -42,6 +44,7 @@ var WXSchemeDetail = React.createClass({
 
     render: function() {
         var pageData = this.state.payload;
+        var imgList = this.state.imgList;
         var winW = $(window).width();
 
         return (
@@ -54,10 +57,10 @@ var WXSchemeDetail = React.createClass({
                                 <section className="wedding-detail-box">
                                     <ul className="ul-box">
                                         {
-                                            pageData.length > 0 && pageData[0].imageList.map(function(v,i){
+                                            imgList.map(function(v,i){
                                                 return (
                                                     <li className="item-box" key={i}>
-                                                        <ImageListItem url={v.contentUrl} frameWidth={winW*2} mask={true} />
+                                                        <ImageListItem url={v.url} frameWidth={winW*2} mask={true} />
                                                     </li>
                                                 )
                                             })
@@ -65,14 +68,12 @@ var WXSchemeDetail = React.createClass({
                                     </ul>
                                     <div className="case-detail-box">
                                         <div className="intro">
-                                            <h2 ng-bind="casesDetail.data.schemeName">{pageData.length > 0 && pageData[0].schemeName}</h2>
-                                            <p ng-bind="casesDetail.data.schemeDesc">
-                                                {pageData.length > 0 && pageData[0].schemeDesc}
-                                            </p>
+                                            <h2>{pageData.name}</h2>
+                                            <p>{pageData.description}</p>
                                         </div>
                                         <div className="person">
                                             <ul className="list-4-wxjs clearfix">
-                                                <li className="item-box"><div className="box"><a className="avatar-box"><span>{pageData.length > 0 && pageData[0].schemeStyles[0].styleName}</span></a><div className="title"><h2><b>风格</b></h2></div></div></li>
+                                                <li className="item-box"><div className="box"><a className="avatar-box"><span>{pageData.theme}</span></a><div className="title"><h2><b>风格</b></h2></div></div></li>
                                                 <li className="item-box" style={{display:'none'}}><div className="box"><a href={'#/scheme/style/' + (pageData.length > 0 && pageData[0].schemeStyles[0].styleId)} className="avatar-box"><b><i>更多相似</i><br/><i>风格欣赏</i></b></a></div></li>
                                             </ul>
                                         </div>

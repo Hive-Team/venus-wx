@@ -68,11 +68,6 @@ var WXF4 = React.createClass({
 
     },
 
-    componentWillMount : function() {
-        //$('.pswp').css({display:'none'});
-
-    },
-
     componentDidMount: function() {
         var self = this;
         var $screening_box = $('#screening_box');
@@ -128,9 +123,9 @@ var WXF4 = React.createClass({
                 return;
 
             $('#loaderIndicator').addClass('isShow');
-            window.Core.isFeching = true;
+            window.isFeching = true;
             var timeout = window.setTimeout(function(){
-                window.Core.isFeching = false;
+                window.isFeching = false;
             },5000);
             self.fetchData(url,params)
                 .done(function(payload){
@@ -139,7 +134,7 @@ var WXF4 = React.createClass({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1
                     });
-                    window.Core.isFeching = false;
+                    window.isFeching = false;
                     window.clearTimeout(timeout);
                     //console.log(payload);
                     $('#loaderIndicator').removeClass('isShow');
@@ -161,7 +156,7 @@ var WXF4 = React.createClass({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         baseUrl:'f4/host',
-                        totalCount:parseInt(payload.totalCount)
+                        totalCount:parseInt(payload.count)
                     });
 
                     //console.log(payload.totalCount);
@@ -185,7 +180,7 @@ var WXF4 = React.createClass({
                     })
                 });
         };
-        $.when(window.Core.promises['/'])
+        $.when({})
             .then(fetchStyle)
             .then(parseResource);
 
@@ -206,7 +201,7 @@ var WXF4 = React.createClass({
                     payload:payload.data,
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     baseUrl:url,
-                    totalCount:parseInt(payload.totalCount)
+                    totalCount:parseInt(payload.count)
                 })
 
                 $("#f4_hidden").unbind('scroll');
@@ -227,7 +222,7 @@ var WXF4 = React.createClass({
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() + box.height() + " , " + cont.height());
-            if(box.scrollTop() + box.height() >= (cont.height() - 5) && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= (cont.height() - 5) && !window.isFeching){
                 //console.log(params);
                 params.pageIndex = self.state.pageIndex;
                 self.scrollFunc(self.state.baseUrl,params);
@@ -241,9 +236,9 @@ var WXF4 = React.createClass({
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -252,7 +247,7 @@ var WXF4 = React.createClass({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
                 //console.log(payload.data);
@@ -274,7 +269,7 @@ var WXF4 = React.createClass({
                 self.setState({
                     pageIndex:params.pageIndex,
                     payload:payload.data,
-                    totalCount:payload.totalCount
+                    totalCount:payload.count
                 })
             })
     },
@@ -283,17 +278,18 @@ var WXF4 = React.createClass({
         var self = this;
         window.localStorage.clear();
         var storage = window.localStorage;
+        var url = self.state.baseUrl.split('/')[1];
 
-        if(data instanceof Array)for(var i in data) storage[i] = data[i];
-        else storage.video = data;
+        (url == 'host' || url == 'camera') &&
+        (storage.f4VideoData = data) ||
+        (storage.f4ImgData = data);
     },
 
     render: function() {
         var self = this;
-        var winWidth = $(window).width();
         var pageData = self.state.payload;
         var baseUrl = self.state.baseUrl;
-        var srcArr = self.state.dataConf[baseUrl] !== undefined && self.state.dataConf[baseUrl].split('/');
+        //var srcArr = self.state.dataConf[baseUrl] !== undefined && self.state.dataConf[baseUrl].split('/');
         var priceArr = [
             {minPrice:3001},
             {minPrice:2500,maxPrice:3000},
@@ -349,7 +345,7 @@ var WXF4 = React.createClass({
                                                             <div className='avatar-box'><img src={v.photoUrl} /></div>
                                                             <div className='info-box'>
                                                                 <div className='title-box'>
-                                                                    <h3 className='title'>{v.personName}</h3>
+                                                                    <h3 className='title'>{v.nickName}</h3>
                                                                     <div style={{display:'none'}}><i>+</i><span>关注</span></div>
                                                                 </div>
                                                                 <div className='description-box'>
@@ -359,18 +355,18 @@ var WXF4 = React.createClass({
                                                                 <ul className='list-img clearfix'>
                                                                     {
                                                                         $.map(
-                                                                            v[srcArr[0]] || [],
+                                                                            v.workList || [],
                                                                             function(vv,ii){
                                                                                 return(
-                                                                                    <li key={ii} onClick={self.saveData.bind(self,vv[srcArr[2]])}>
-                                                                                        <ImageListItem frameWidth={200} detailBaseUrl={baseUrl} sid={v.personId} url={vv[srcArr[1]]} />
+                                                                                    <li key={ii} onClick={self.saveData.bind(self,vv.videoUrl || vv.wxDetailImages)}>
+                                                                                        <ImageListItem frameWidth={200} detailBaseUrl={baseUrl} sid={vv.id} url={vv.wechatUrl} />
                                                                                     </li>
                                                                                 )
                                                                             }
                                                                         )
                                                                     }
                                                                 </ul>
-                                                                <div className='price-box'><strong>报价：</strong><span>￥</span><b>{v.skillPrice}</b></div>
+                                                                <div className='price-box'><strong>报价：</strong><span>￥</span><b>{v.price}</b></div>
                                                                 <p className='price-des'>{v.skillPriceRemark}</p>
                                                             </div>
                                                         </li>

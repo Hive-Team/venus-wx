@@ -11,9 +11,9 @@ var apiUrl = function(){
 
 var Api = {
 	httpGET:function(url,params){
-		//var turl = apiUrl()+url+'?';
-		//for(var i in params) turl += i + '=' + params[i] + '&';
-		//console.log(turl.substring(0,turl.length-1));
+		var turl = apiUrl()+url+'?';
+		for(var i in params) turl += i + '=' + params[i] + '&';
+		console.log(turl.substring(0,turl.length-1));
 
 		return $.get(apiUrl()+url,params);
 	},

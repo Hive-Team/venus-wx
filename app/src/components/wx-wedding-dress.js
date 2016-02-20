@@ -12,23 +12,20 @@ var WXWeddingDress = React.createClass({
     // 分页，资源标示，数据，根路由，总条数， 风格类型
     getInitialState: function() {
         return {
-            pageSize:6,
+            pageSize:50,
             pageIndex:1,
             tplKey:'list#planner',
             payload:[],
             baseUrl:'',
             totalCount:0,
-            stylesList:[]
+            stylesList:[],
+            id:1,
         };
     },
+
     //取数据
     fetchData:function(url,params){
         return Api.httpGET(url,params);
-    },
-
-    componentWillMount : function() {
-        //$('.pswp').css({display:'none'});
-
     },
 
     componentDidMount: function() {
@@ -43,22 +40,17 @@ var WXWeddingDress = React.createClass({
         // 从菜单获取资源链接。
         var parseResource = function(){
 
-            self.fetchData('dress/brands',
-                {
-                    pageSize:self.state.pageSize,
-                    pageIndex:self.state.pageIndex,
-                    weddingDressType:1
-                })
+            self.fetchData('dress/brands/1')
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
-                        payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
+                        payload:payload.data,
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         baseUrl:'dress/brands',
                         totalCount:parseInt(payload.totalCount)
                     });
 
-                    //console.log(payload.data)
+                    console.log(payload.data)
                     // 绑上滚动加载。
                     //self.scrollPos($("#scroll_box"),$("#scroll_content"));
 
@@ -80,77 +72,29 @@ var WXWeddingDress = React.createClass({
                     })
                 });
         };
-        $.when(window.Core.promises['/'])
+        $.when({})
             .then(fetchStyle)
             .then(parseResource);
 
     },
 
-    screeningClick : function(url,obj){
+    screeningClick : function(url,id){
         var self = this;
-        self.state.pageIndex = 1;
-        var params = {
-            pageSize: self.state.pageSize,
-            pageIndex: self.state.pageIndex
-        }
 
-        for(var i in obj)
-            params[i] = obj[i];
-
-        self.fetchData(url,params)
+        self.fetchData(url + '/' + id)
             .done(function(payload){
                 (payload.data && payload.code === 200) &&
                 self.setState({
                     payload:payload.data,
-                    pageIndex:parseInt(self.state.pageIndex)+1,
                     baseUrl:url,
+                    id:id,
                     totalCount:parseInt(payload.totalCount)
                 });
 
                 $("#scroll_box").unbind('scroll');
-                //console.log(JSON.stringify(payload.data,null,4));
+
+                console.log(payload.data);
                 //self.scrollPos($("#scroll_box"),$("#scroll_content"),params);
-            })
-    },
-
-    scrollPos : function(box,cont,params){
-        var self = this;
-        if(!params) params = {
-            pageSize:self.state.pageSize,
-            pageIndex:self.state.pageIndex
-        }
-
-        box.bind("scroll",function(){
-            //console.log(box.scrollTop() + box.height() + " , " + (cont.height() + 80));
-            if(box.scrollTop() + box.height() >= cont.height() + 80 && !window.Core.isFeching){
-                //console.log(params);
-                params.pageIndex = self.state.pageIndex;
-                self.scrollFunc(self.state.baseUrl,params);
-            }
-        });
-    },
-
-    scrollFunc : function(url,params) {
-        var self = this;
-        if(parseInt(self.state.totalCount)>0 &&
-            parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
-            return;
-        $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
-        var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
-        },5000);
-        self.fetchData(url,params)
-            .done(function(payload){
-                (payload.data && payload.code === 200) &&
-                self.setState({
-                    payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                    pageIndex:parseInt(self.state.pageIndex)+1
-                });
-                window.Core.isFeching = false;
-                window.clearTimeout(timeout);
-                $('#loaderIndicator').removeClass('isShow')
-                //console.log(payload.data);
             })
     },
 
@@ -165,9 +109,9 @@ var WXWeddingDress = React.createClass({
                 <WXHeaderMenu menuType={'menu_4'} name={0} />
                 <div className="weddindress-list" id="scroll_box">
                     <div className='screening-box' id='screening_box'>
-                        <div className='item item-current'><span onClick={self.screeningClick.bind(self,baseUrl,{weddingDressType:1})}>国际婚纱</span></div>
-                        <div className='item'><span onClick={self.screeningClick.bind(self,baseUrl,{weddingDressType:2})}>新娘礼服</span></div>
-                        <div className='item'><span onClick={self.screeningClick.bind(self,baseUrl,{weddingDressType:3})}>男士礼服</span></div>
+                        <div className='item item-current'><span onClick={self.screeningClick.bind(self,baseUrl,1)}>国际婚纱</span></div>
+                        <div className='item'><span onClick={self.screeningClick.bind(self,baseUrl,2)}>新娘礼服</span></div>
+                        <div className='item'><span onClick={self.screeningClick.bind(self,baseUrl,3)}>男士礼服</span></div>
                     </div>
                     <div id='scroll_content'>
                         <div className='wedding-dress-scroll-content'>
@@ -176,14 +120,18 @@ var WXWeddingDress = React.createClass({
                                     $.map(pageData || [],function(v,i){
                                         return(
                                             <li key={i}>
-                                                <div className='title-box'><img style={{display:'none'}} /><h3>{v.weddingDressBrandName}</h3><span style={{display:'none'}}>共12款</span></div>
+                                                <div className='title-box'><img style={{display:'none'}} /><h3>{v.name}</h3><span style={{display:'none'}}>共12款</span></div>
                                                 <p>{v.description}</p>
                                                 <div className='product-box'>
                                                     <ImageListItem
                                                         frameWidth={winWidth*2}
-                                                        url={v.imageUrl}
-                                                        sid={v.weddingDressBrandId}
-                                                        detailBaseUrl={'dress/brand'}
+                                                        url={v.coverUrlWx}
+                                                        sid={v.id}
+                                                        detailBaseUrl={
+                                                            self.state.id === 1 && 'dress/dress_brand_top' ||
+                                                            self.state.id === 2 && 'dress/dress_brand_female' ||
+                                                            self.state.id === 3 && 'dress/dress_brand_male'
+                                                        }
                                                         />
                                                 </div>
                                             </li>

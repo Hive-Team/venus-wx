@@ -13,7 +13,6 @@ var WXPringlesDetail = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#pringles',
             payload:[],
             baseUrl:'',
             totalCount:0
@@ -30,10 +29,11 @@ var WXPringlesDetail = React.createClass({
             //console.log(payload.data);
             if(payload.code !== 200 || !payload.data) return;
             var pswpElement = document.querySelectorAll('.pswp')[0];
+            var imgUrls = JSON.parse(payload.data.wxDetailImages) || [];
 
-            var items = $.map(payload.data,function(v,i){
-                var dimension = v.contentUrl && v.contentUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
-                var src = v.contentUrl + '@watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10';
+            var items = $.map(imgUrls,function(v,i){
+                var dimension = v && v.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
+                var src = v + '@watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10';
                 var w = dimension.length>2 ?parseInt(dimension[1]):-1;
                 var h = dimension.length>2 ?parseInt(dimension[2]):-1;
                 return {
@@ -58,14 +58,10 @@ var WXPringlesDetail = React.createClass({
             };
 
             // Initializes and opens PhotoSwipe
-            window.Core.gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            window.Core.gallery.init();
+            window.gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+            window.gallery.init();
         });
 
-    },
-
-    componentWillMount : function() {
-        window.Core.gallery && window.Core.gallery.close();
     },
 
     componentDidMount: function() {
@@ -77,15 +73,12 @@ var WXPringlesDetail = React.createClass({
     },
 
     componentWillUnmount : function(){
-        window.Core.gallery.close();
+        window.gallery.close();
     },
 
     render: function() {
         var self = this;
-        var winWidth = $(window).width();
-        var pageData = self.state.payload;
-        var baseUrl = self.state.baseUrl;
-        //console.log(pageData.hotelMealPackList);
+
         return (
             <div className="pringles-detail-view"></div>
         );

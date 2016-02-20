@@ -8,7 +8,7 @@ var ImageListItem = React.createClass({
         url:PropTypes.string,
         frameWidth:PropTypes.number,
         frameHeight:PropTypes.number,
-        sid:PropTypes.string,
+        sid:PropTypes.number,
         errorUrl:PropTypes.string,
         detailUrl:PropTypes.string
     },
@@ -21,7 +21,7 @@ var ImageListItem = React.createClass({
         var scaleW = (this.props.frameWidth)? this.props.frameWidth+'w_':'';
         var scaleH = (this.props.frameHeight)? this.props.frameHeight+'h_':'';
         var water = this.props.mask === true ?'|watermark=1&object=c2h1aXlpbi5wbmc&t=60&p=5&y=10&x=10':'';
-        var url = /*(window.Core.mode === 'dev') ? this.props.url + '@' + water : */this.props.url + '@' + scaleW + scaleH + '90Q' + water;
+        var url = /*(window.Core.mode === 'dev') ? this.props.url + '@' + water : */this.props.url ;// + '@' + scaleW + scaleH + '90Q' + water;
 
         var found = this.props.url && this.props.url.match(reg);
         var width = -1;

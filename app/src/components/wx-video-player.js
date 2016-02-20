@@ -35,7 +35,7 @@ var WXDresserPhotographerDetail = React.createClass({
         $('.screening-box-wx').css({display:'block'});
         $('#video_player')[0].load();
         $('#video_player')[0].currentTime = 0;
-        console.log($('#video_player')[0].crossOrigin);
+        //console.log($('#video_player')[0].crossOrigin);
     },
 
     render: function() {
@@ -43,7 +43,7 @@ var WXDresserPhotographerDetail = React.createClass({
             <div className="video-player-view">
                 <div style={{display:'none',position:'absolute',color:'#ffffff',zIndex:'100'}}>{window.localStorage.video}</div>
                 <video controls='controls' name="media" id='video_player'>
-                    <source src={window.localStorage.video} type='video/mp4'/>
+                    <source src={window.localStorage.f4VideoData} type='video/mp4'/>
                 </video>
             </div>
         );

@@ -13,15 +13,17 @@ var WXPringlesList = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#suite',
+            sliderData:[],
             payload:[],
             baseUrl:'',
             totalCount:0
         };
     },
+
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
+
     componentDidMount: function() {
         var self = this;
         var $suite_view = $('#suite_view');
@@ -30,23 +32,33 @@ var WXPringlesList = React.createClass({
         var $discription_box = $('#discription_box');
         var $nav_box = $('#nav_box');
         var winW = $(window).width();
-        var fetchData = function(){
-            var url = self.getPath();
+
+        var fetchData = function(url){
             return Api.httpGET(url,{});
         };
 
         $slider_suite.height(2*winW/3);
 
-        fetchData()
+        fetchData(self.getPath().substr(1))
             .done(function(payload){
 
                 (payload.code === 200) &&
                 self.setState({
-                    payload:payload.data[0]
+                    payload:payload.data
+                });
+                //console.log(self.state.payload);
+            })
+
+        fetchData('adv/suite_top')
+            .done(function(payload){
+
+                (payload.code === 200) &&
+                self.setState({
+                    sliderData:payload.data
                 },function(){
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
-                //console.log(self.state.payload);
+                console.log(self.state.payload);
             })
 
         $nav_conts.each(function(i){
@@ -67,13 +79,12 @@ var WXPringlesList = React.createClass({
         var self = this;
         var winWidth = $(window).width();
         var pageData = self.state.payload;
+        var sliderData = self.state.sliderData;
         var baseUrl = self.state.baseUrl;
         var navCont = ['详情','服务','服装','化妆品','景点','流程'];
         var subTit = ['可自选摄影师','可自选造型师','可自选摄影师／造型师','不可自选摄影师／造型师'];
         var imgArr = ['detailImages','serviceImages','clothShootImages','cosmeticImages','baseSampleImages','processImages'];
 
-        var topSliderData = self.state.payload.slidesImages || [];
-        //console.log(topSliderData);
         return (
             <div className="suite-view" id='suite_view'>
                 <div className="suite-banner responsive-box" id="slider_box">
@@ -81,13 +92,13 @@ var WXPringlesList = React.createClass({
                         <ul className="slider">
                             {
                                 $.map(
-                                    topSliderData
+                                    sliderData
                                     ,function(v,i){
                                         return (
                                             <li className="item transition-opacity-1" key={i}>
                                                 <ImageListItem
                                                     frameWidth={winWidth*2}
-                                                    url={v.imageUrl}
+                                                    url={v.coverUrlWx}
                                                     errorUrl={'http://placehold.it/375x250'}
                                                     mask={true}
                                                     />
@@ -96,10 +107,10 @@ var WXPringlesList = React.createClass({
                                     })
                             }
                         </ul>
-                        <div className='point-box'>
+                        <div className='-point-box'>
                             {
                                 $.map(
-                                    topSliderData
+                                    sliderData
                                     ,function(v,i){
                                         return (
                                             <i key={i} className='point'></i>
@@ -110,7 +121,7 @@ var WXPringlesList = React.createClass({
                     </div>
                 </div>
                 <div className='title-box clearfix'>
-                    <h1 className='title'>{pageData.productName}</h1>
+                    <h1 className='title'>{pageData.name}</h1>
                     <h2 className='subtitle'>
                         {pageData.isOptionalCameraman === 1 && pageData.isOptionalStylist === 1 && subTit[2]
                         || pageData.isOptionalCameraman === 1 && subTit[0]
@@ -119,8 +130,8 @@ var WXPringlesList = React.createClass({
                     </h2>
                 </div>
                 <div className='price-box'>
-                    <span className='red-1-wxjs'>¥</span><span className='red-1-wxjs big'>{pageData.price + '.00'}</span>
-                    <b className='gray-1-wxjs'>定金</b><b className='gray-1-wxjs'>{'¥' + pageData.deposit}</b>
+                    <span className='red-1-wxjs'>¥</span><span className='red-1-wxjs big'>{pageData.salePrice + '.00'}</span>
+                    <b className='gray-1-wxjs'>原价</b><b className='gray-1-wxjs'>{'¥' + pageData.originalPrice + '.00'}</b>
                 </div>
                 <div className='nav'>
                     <div className='nav-box' id='nav_box'>

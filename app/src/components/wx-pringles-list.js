@@ -14,7 +14,6 @@ var WXPringlesList = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#pringles',
             payload:[],
             baseUrl:'',
             quarterly:[],
@@ -51,17 +50,7 @@ var WXPringlesList = React.createClass({
 
         // 从菜单获取资源链接。
         var parseResource = function(){
-            var pathArr = SKMap['#'+self.getPathname()].split('/');
-            var resourceLinks = window.Core.resource;
-
-            $.each(pathArr,function(k,v){
-                resourceLinks = resourceLinks[v];
-            });
-
-            self.state.listUrl = resourceLinks['分季欣赏'].split('#')[1];
-            self.state.recommend = resourceLinks['最佳客片'].split('#')[1];
-
-            self.fetchData(self.state.recommend,
+            self.fetchData('pringles/pringles_list',
                 {
                     pageSize:self.state.pageSize,
                     pageIndex:self.state.pageIndex
@@ -71,8 +60,8 @@ var WXPringlesList = React.createClass({
                     self.setState({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1,
-                        baseUrl:self.state.recommend,
-                        totalCount:parseInt(payload.totalCount)
+                        baseUrl:'pringles/pringles_list',
+                        totalCount:parseInt(payload.count)
                     });
 
                     //console.log(payload.totalCount);
@@ -85,30 +74,28 @@ var WXPringlesList = React.createClass({
                     );
                 });
 
-            self.fetchData('condition/season')
+            self.fetchData('pringlesSeason/list')
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
                         quarterly:payload.data
                     });
-                    //console.log(payload.data);
                 });
         };
 
-        $.when(window.Core.promises['/'])
+        $.when({})
             //.then(fetchStyle)
             .then(parseResource);
     },
 
     selSeason : function(obj){
         var self = this;
-        var num = 0;
         var params = {
             pageSize:6,
             pageIndex:1
         }
-        for(var i in obj) num ++;
-        var url = num<1 ? self.state.recommend : self.state.listUrl;
+
+        var url = 'pringles/pringles_season';
 
         self.state.pageIndex = 1;
         $.extend(obj,params);
@@ -120,7 +107,7 @@ var WXPringlesList = React.createClass({
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     payload:payload.data,
                     baseUrl:url,
-                    totalCount:payload.totalCount
+                    totalCount:payload.count
                 })
                 //console.log(payload.totalCount);
                 obj.pageIndex ++;
@@ -137,9 +124,9 @@ var WXPringlesList = React.createClass({
             return;
 
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
 
         self.fetchData(url,params)
@@ -150,7 +137,7 @@ var WXPringlesList = React.createClass({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
@@ -160,7 +147,7 @@ var WXPringlesList = React.createClass({
         var self = this;
 
         box.bind("scroll",function(){
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,params);
                 params.pageIndex = params.pageIndex + 1;
                 //console.log(params.pageIndex);
@@ -186,7 +173,7 @@ var WXPringlesList = React.createClass({
                         {
                             $.map(quarterly || [],function(v,i){
                                 return (
-                                    <li key={i} onClick={self.selSeason.bind(self,{seasonId:v.seasonId})}>{v.seasonName}</li>
+                                    <li key={i} onClick={self.selSeason.bind(self,{seasonId:v.id})}>{v.name}</li>
                                 )
                             })
                         }
@@ -206,13 +193,13 @@ var WXPringlesList = React.createClass({
                                                 <li key={i}>
                                                     <ImageListItem
                                                         frameWidth={winW*2}
-                                                        url={v.contentUrl}
-                                                        sid={v.contentId}
-                                                        detailBaseUrl={baseUrl}
+                                                        url={v.wechatUrl}
+                                                        sid={v.id}
+                                                        detailBaseUrl={'pringles/detail'}
                                                         />
                                                     <div className="title">
-                                                        <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
-                                                        <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>
+                                                        <span className="cn" >{v.name}</span>
+                                                        <span className="en">{}</span>
                                                     </div>
                                                 </li>
                                             )

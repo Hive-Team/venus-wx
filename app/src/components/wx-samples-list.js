@@ -22,11 +22,6 @@ var WXSampleList = React.createClass({
         }
     },
 
-    propTypes : {
-        historyBool:React.PropTypes.bool,
-        historyState:React.PropTypes.object
-    },
-
     componentWillMount : function(){
         var self = this;
 
@@ -35,23 +30,16 @@ var WXSampleList = React.createClass({
             pageSize:6,
             pageIndex:1,
             sampleType:0,
-            tplKey:'list#samples',
             payload:[],
             baseUrl:'',
             totalCount:0,
-            stylesList:[]
+            stylesList:[],
+            addressList:[]
         });
 
         //是否有历史数据
         var history = eval(window.sessionStorage.userHistory);
         var nowRoute = self.getPathname();
-
-        if(history.length > 0){
-            if(history[history.length-1].historyRoute === nowRoute){
-                self.props.historyState=history.pop().state;
-                self.props.historyBool=true;
-            }
-        }
     },
 
     componentDidMount : function() {
@@ -126,14 +114,7 @@ var WXSampleList = React.createClass({
 
         // 从菜单获取资源链接。
         var parseResource = function(){
-            var pathArr = SKMap['#'+self.getPathname()].split('/');
-            var resourceLinks = window.Core.resource;
-
-            $.each(pathArr,function(k,v){
-                resourceLinks = resourceLinks[v];
-            });
-
-            self.fetchData(resourceLinks.split('#')[1],
+            self.fetchData('sample/samples_list',
                 {
                     pageSize:self.state.pageSize,
                     pageIndex:self.state.pageIndex,
@@ -144,8 +125,8 @@ var WXSampleList = React.createClass({
                     self.setState({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1,
-                        baseUrl:resourceLinks.split('#')[1],
-                        totalCount:parseInt(payload.totalCount)
+                        totalCount:parseInt(payload.count),
+                        baseUrl:'sample/samples_list',
                     });
 
                     //console.log(JSON.stringify(payload.data,null,4))
@@ -156,61 +137,41 @@ var WXSampleList = React.createClass({
                             pageIndex:self.state.pageIndex
                         }
                     );
-
                 })
         };
 
         var fetchStyle = function(){
-            Api.httpGET('condition/styleAddress',{})
+            Api.httpGET('shootStyle/all',{})
                 .done(function(payload){
-                    (payload.data && payload.code === '200') &&
+                    //console.log(payload.data);
+                    (payload.data && payload.code === 200) &&
                     self.setState({
-                        stylesList:payload.data.style || [],
-                        addressList:payload.data.address
-                    },function(){
-                        self.state.stylesList.length>0 &&
-                        $('ul.screening-list').css({height:'100%'}).hide();
-                        $('#btn_style').on('click',function(){
-                            $('ul.screening-list').toggle();
-                        })
+                        stylesList:payload.data
                     })
                 });
         };
 
-        $.when(window.Core.promises['/'])
+        var fetchExterior = function(){
+            Api.httpGET('exterior/all',{})
+                .done(function(payload){
+                    //console.log(payload.data);
+                    (payload.data && payload.code === 200) &&
+                    self.setState({
+                        addressList:payload.data
+                    })
+                });
+        };
+
+        $.when({})
+            .then(fetchExterior)
             .then(fetchStyle)
             .then(parseResource)
 
     },
 
     componentWillReceiveProps : function(nextProps){
-        console.log(nextProps);
+        //console.log(nextProps);
         self.setState(nextProps.historyState);
-    },
-
-    componentWillUnmount : function(){
-        var self = this;
-        var history = eval(window.sessionStorage.userHistory);
-        var nextRoute = self.getPathname();
-        var tempObj;
-
-        //console.log('history',history);
-        //console.log(nextRoute);
-        if(history.length > 1){
-            if(history[history.length-1].historyRoute !== nextRoute){
-                histroy();
-            }
-        }else histroy();
-
-        function histroy(){
-            tempObj = {
-                state:self.state,
-                historyRoute:'/samples'
-            }
-
-            history.push(tempObj);
-            window.sessionStorage.userHistory = JSON.stringify(history);
-        }
     },
 
     //取数据
@@ -234,7 +195,8 @@ var WXSampleList = React.createClass({
                 self.setState({
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     payload:payload.data,
-                    totalCount:payload.totalCount
+                    totalCount:payload.count,
+                    sampleType:obj.sampleType || self.state.sampleType
                 })
 
                 obj.pageIndex = obj.pageIndex + 1;
@@ -249,7 +211,7 @@ var WXSampleList = React.createClass({
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() + box.height() + ' ' + cont.height());
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,params);
                 params.pageIndex = params.pageIndex + 1;
             }
@@ -260,15 +222,13 @@ var WXSampleList = React.createClass({
     scrollFunc:function(url,params) {
         var self = this;
 
-        //console.log(self.state.pageIndex);
-        //console.log(parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1));
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -277,7 +237,7 @@ var WXSampleList = React.createClass({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
@@ -289,8 +249,8 @@ var WXSampleList = React.createClass({
         var winWidth = $(window).width();
         var pageData = self.state.payload;
         var baseUrl = self.state.baseUrl;
-        var stylesList = self.state.stylesList ||[];
-        var addressList = self.state.addressList ||[];
+        var stylesList = self.state.stylesList;
+        var addressList = self.state.addressList;
 
         return (
             <div className="app has-navbar-top samples-view">
@@ -302,7 +262,7 @@ var WXSampleList = React.createClass({
                         {
                             $.map(stylesList || [],function(v,i){
                                 return (
-                                    <li key={i} onClick={self.screeningFunc.bind(self,{styleId:v.styleId})}>{v.styleName}</li>
+                                    <li key={i} onClick={self.screeningFunc.bind(self,{shootingStyleId:v.id})}>{v.name}</li>
                                 )
                             })
                         }
@@ -317,7 +277,7 @@ var WXSampleList = React.createClass({
                         {
                             $.map(addressList || [],function(v,i){
                                 return (
-                                    <li key={i} onClick={self.screeningFunc.bind(self,{addressId:v.addressId})}>{v.addressName}</li>
+                                    <li key={i} onClick={self.screeningFunc.bind(self,{exteriorId:v.id})}>{v.name}</li>
                                 )
                             })
                         }
@@ -342,13 +302,13 @@ var WXSampleList = React.createClass({
                                                     <li key={i}>
                                                         <ImageListItem
                                                             frameWidth={winWidth*2}
-                                                            url={v.contentUrl}
-                                                            sid={v.contentId}
-                                                            detailBaseUrl={baseUrl}
+                                                            url={v.wechatUrl}
+                                                            sid={v.id}
+                                                            detailBaseUrl={'sample/detail'}
                                                             />
                                                         <div className="title">
-                                                            <span className="cn" >{v.contentName.split(/\s(.+)?/)[0]}</span>
-                                                            <span className="en">{v.contentName.split(/\s(.+)?/)[1]}</span>
+                                                            <span className="cn" >{v.name}</span>
+                                                            <span className="en">{}</span>
                                                         </div>
                                                     </li>
                                                 )

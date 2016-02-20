@@ -16,6 +16,7 @@ var SuiteDetail = require('../components/wx-suite.js');
 //var PhotoTeamProduct = require('../components/wx-photographer-stylist-product.js');
 var Hotel = require('../components/wx-hotel.js');
 var HotelDetail = require('../components/wx-hotel-detail.js');
+var BanquetDetail = require('../components/wx-banquet-detail.js');
 var Scheme = require('../components/wx-scheme.js');
 var SchemeDetail = require('../components/wx-scheme-detail.js');
 //var Planners = require('../components/wx-planners.js');
@@ -43,9 +44,9 @@ var routes = (
 	<Route handler={Main} path='/' name='app'>
 		<Route name='home' path='home' handler={Home} />
 		<Route name='samples' path='samples' handler={Samples} />
-		<Route name='samples-detail' path='samples/:moduleId/:contentId' handler={SamplesDetail} />
+		<Route name='samples-detail' path='sample/detail/:id' handler={SamplesDetail} />
 		<Route name='pringles' path='pringles' handler={Pringles} />
-		<Route name='pringles-detail' path='pringles/:moduleId/:contentId' handler={PringlesDetail} />
+		<Route name='pringles-detail' path='pringles/detail/:id' handler={SamplesDetail} />
 		<Route name='suite' path='suite' handler={Suites} />
 		<Route name='suite-detail' path='suite/:moduleId/:productId' handler={SuiteDetail} />
 		{
@@ -53,13 +54,14 @@ var routes = (
 			//<Route name='phototeam-detail' path='team/:levelId/:ind' handler={PhotoTeamDetail} />
 			//<Route name='phototeam-product' path='team/:teamId/works/:contentId' handler={PhotoTeamProduct} />
 		}
-		<Route name='wedding-mv' path='videos/1' handler={WeddingMV} />
-		<Route name='wedding-mv-detail' path='videos/1/:videoId' handler={WeddingVideoDetail} />
+		<Route name='wedding-mv' path='recordvideo/record_video_list/1' handler={WeddingMV} />
+		<Route name='wedding-mv-detail' path='recordvideo/detail/:id' handler={WeddingVideoDetail} />
 		<Route name='hotel' path='hotel' handler={Hotel} />
-		<Route name='hotel-detail' path='hotel/:moduleId/:hotelId' handler={HotelDetail} />
-		<Route name='scheme' path='scheme' handler={Scheme} />
+		<Route name='hotel-detail' path='hotel/detail/:id' handler={HotelDetail} />
+		<Route name='banquet-detail' path='banquetHall/detail/:id' handler={BanquetDetail} />
+		<Route name='scheme' path='cases' handler={Scheme} />
 		<Route name='scheme-style' path='scheme/style/:styleId' handler={Scheme} />
-    	<Route name='scheme-detail' path='scheme/:moduleId/:contentId' handler={SchemeDetail} />
+    	<Route name='scheme-detail' path='cases/detail/:id' handler={SchemeDetail} />
 		{
 			//<Route name='planners' path='planners' handler={Planners} />
 			//<Route name='planner-product' path='planner/:plannerId/:num' handler={PlannerProduct} />
@@ -71,34 +73,29 @@ var routes = (
     	<Route name='f4-photographer-detail' path='f4/photographer/:personId' handler={DresserPhotographerDetail} />
     	<Route name='cameraman-detail' path='f4/camera/:personId' handler={VideoPlayerDetail} />
     	<Route name='wedding-dress' path='weddingdress' handler={WeddingDress} />
-    	<Route name='wedding-dress-detail' path='dress/brand/:brandId' handler={WeddingDressDetail} />
-		<Route name='wedding-video' path='videos/3' handler={WeddingVideo} />
-		<Route name='wedding-video-detail' path='videos/3/:videoId' handler={WeddingVideoDetail} />
-		<Route name='wedding-movie' path='videos/0' handler={WeddingMovie} />
-		<Route name='wedding-movie-detail' path='videos/0/:videoId' handler={WeddingVideoDetail} />
-		<Route name='wedding-lovemv' path='videos/4' handler={WeddingLoveMV} />
-		<Route name='wedding-lovemv-detail' path='videos/4/:videoId' handler={WeddingVideoDetail} />
-		<Route name='wedding-lovemovie' path='videos/5' handler={WeddingLoveMovie} />
-		<Route name='wedding-lovemovie-detail' path='videos/5/:videoId' handler={WeddingVideoDetail} />
-		<Route name='wedding-class1' path='wenddingroom/1' handler={WeddingClass} />
-		<Route name='wedding-class1-detail' path='wenddingroom/1/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-class2' path='wenddingroom/2' handler={WeddingClass} />
-		<Route name='wedding-class2-detail' path='wenddingroom/2/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-class3' path='wenddingroom/3' handler={WeddingClass} />
-		<Route name='wedding-class3-detail' path='wenddingroom/3/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-class4' path='wenddingroom/4' handler={WeddingClass} />
-		<Route name='wedding-class4-detail' path='wenddingroom/4/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-class5' path='wenddingroom/5' handler={WeddingClass} />
-		<Route name='wedding-class5-detail' path='wenddingroom/5/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-class7' path='wenddingroom/7' handler={WeddingClass} />
-		<Route name='wedding-class7-detail' path='wenddingroom/7/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-class8' path='wenddingroom/8' handler={WeddingClass} />
-		<Route name='wedding-class8-detail' path='wenddingroom/8/:weddingClassroomId' handler={WeddingClassDetail} />
-		<Route name='wedding-pat' path='weddingpat' handler={WeddingPat} />
+    	<Route name='wedding-dress-detail' path='dress/:module/:id' handler={WeddingDressDetail} />
+		<Route name='wedding-video' path='followvideo/weddingvideo_list/3' handler={WeddingVideo} />
+		<Route name='wedding-video-detail' path='followvideo/detail/:id' handler={WeddingVideoDetail} />
+		<Route name='wedding-movie' path='video/movie_latest/0' handler={WeddingMovie} />
+		<Route name='wedding-movie-detail' path='video/detail/:id' handler={WeddingVideoDetail} />
+		<Route name='wedding-lovemv' path='video/movie_love_mv/4' handler={WeddingLoveMV} />
+		<Route name='wedding-lovemv-detail' path='video/detail/:id' handler={WeddingVideoDetail} />
+		<Route name='wedding-lovemovie' path='video/movie_love_movies/5' handler={WeddingLoveMovie} />
+		<Route name='wedding-lovemovie-detail' path='video/detail/:id' handler={WeddingVideoDetail} />
+		<Route name='wedding-class1' path='suite_weddingclass/1' handler={WeddingClass} />
+		<Route name='wedding-class1-detail' path='weddingroom/detail/:id' handler={WeddingClassDetail} />
+		<Route name='wedding-class2' path='hotel_weddingclass/2' handler={WeddingClass} />
+		<Route name='wedding-class3' path='f4_weddingclass/3' handler={WeddingClass} />
+		<Route name='wedding-class4' path='dress_weddingclass/4' handler={WeddingClass} />
+		<Route name='wedding-class5' path='movie_weddingclass/5' handler={WeddingClass} />
+		<Route name='wedding-class7' path='supplies_weddingclass/7' handler={WeddingClass} />
+		<Route name='wedding-class8' path='car_weddingclass/8' handler={WeddingClass} />
+		<Route name='wedding-pat' path='follow' handler={WeddingPat} />
+		<Route name='wedding-pat-detail' path='follow/detail/:id' handler={SchemeDetail} />
 		<Route name='wedding-supplies' path='weddingsupplies' handler={WeddingSupplies} />
-		<Route name='wedding-supplies-detail' path='supplies/:suppliesid/:detailId' handler={WeddingCarRentalDetail} />
+		<Route name='wedding-supplies-detail' path='weddingsupplies/detail/:id' handler={WeddingCarRentalDetail} />
 		<Route name='wedding-carental' path='weddingcarental' handler={WeddingCarRental} />
-		<Route name='wedding-carental-detail' path='car/:carID/:weddingCarRentalId' handler={WeddingCarRentalDetail} />
+		<Route name='wedding-carental-detail' path='car/detail/:id' handler={WeddingCarRentalDetail} />
 		<DefaultRoute handler={Home} />
 	</Route>
 );

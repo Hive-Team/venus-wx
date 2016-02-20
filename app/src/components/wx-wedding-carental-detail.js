@@ -16,6 +16,7 @@ var WXWeddingCarRentalDetail = React.createClass({
             payload:'',
             baseUrl:'',
             totalCount:0,
+            sliderList:[],
             parameter:[]
         };
     },
@@ -26,19 +27,30 @@ var WXWeddingCarRentalDetail = React.createClass({
         var self = this;
         var $slider_suite = $('#slider_hotel_detail');
         var winW = $(window).width()
-        var fetchData = function(){
-            var url = self.getPath().substr(1);
+
+        var fetchData = function(url){
             return Api.httpGET(url,{});
         };
+        var advUrl = self.getPath().substr(1).split('/')[0] === 'weddingsupplies' ? 'supplies' : 'car';
+
         $slider_suite.height(winW);
 
-        fetchData()
+        fetchData(self.getPath().substr(1))
             .done(function(payload){
-                //console.log(payload.data);
+                console.log(payload.data);
                 (payload.code === 200) &&
                 self.setState({
                     payload:payload.data,
                     parameter:payload.data.parameter.split('|')
+                });
+            });
+
+        fetchData('adv/' + advUrl + '_top')
+            .done(function(payload){
+                //console.log(payload.data);
+                (payload.code === 200) &&
+                self.setState({
+                    sliderList:payload.data
                 },function(){
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
@@ -48,10 +60,9 @@ var WXWeddingCarRentalDetail = React.createClass({
     render: function() {
         var self = this;
         var winWidth = $(window).width();
+        var sliderList = self.state.sliderList;
         var pageData = self.state.payload;
         var parameter = self.state.parameter;
-        var baseUrl = self.state.baseUrl;
-        parameter.pop();
 
         return (
             <div className="hotel-detail-view" id='hotel_detail_view'>
@@ -60,13 +71,13 @@ var WXWeddingCarRentalDetail = React.createClass({
                         <ul className="slider">
                             {
                                 $.map(
-                                    pageData.detailPics || []
+                                    sliderList
                                     ,function(v,i){
                                         return (
-                                            <li className="item transition-opacity-1" key={i}>
+                                            <li className='item transition-opacity-1' key={i}>
                                                 <ImageListItem
                                                     frameWidth={winWidth*2}
-                                                    url={v}
+                                                    url={v.coverUrlWx}
                                                     errorUrl={'http://placehold.it/375x250'}
                                                     mask={true}
                                                     />
@@ -78,7 +89,7 @@ var WXWeddingCarRentalDetail = React.createClass({
                         <div className='point-box'>
                             {
                                 $.map(
-                                    pageData.detailPics || []
+                                    sliderList
                                     ,function(v,i){
                                         return (
                                             <i key={i} className='point'></i>
@@ -100,7 +111,7 @@ var WXWeddingCarRentalDetail = React.createClass({
                         })
                     }
                 </div>
-                <div className='car-info-box mgb10' dangerouslySetInnerHTML={{__html:pageData.detail}}></div>
+                <div className='car-info-box mgb10' dangerouslySetInnerHTML={{__html:pageData.content}}></div>
             </div>
 
         );

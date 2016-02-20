@@ -13,7 +13,7 @@ var WXHotelDetail = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#hotel',
+            sliderData:[],
             payload:[],
             baseUrl:'',
             totalCount:0
@@ -26,16 +26,27 @@ var WXHotelDetail = React.createClass({
     componentWillMount:function(){
         var self = this;
 
-        var fetchData = function(){
-            var url = self.getPath().substr(1);
+        var fetchData = function(url){
             return Api.httpGET(url,{});
         };
 
-        fetchData()
+        fetchData(self.getPath().substr(1))
             .done(function(payload){
+                //console.log(payload.data);
                 (payload.code === 200) &&
                 self.setState({
-                    payload:payload.data[0]
+                    payload:payload.data
+                },function(){
+                    $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
+                });
+            });
+
+        fetchData('adv/hotel_top')
+            .done(function(payload){
+                //console.log(payload.data);
+                (payload.code === 200) &&
+                self.setState({
+                    sliderData:payload.data
                 },function(){
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
@@ -84,7 +95,12 @@ var WXHotelDetail = React.createClass({
         var winWidth = $(window).width();
         var pageData = self.state.payload;
         var baseUrl = self.state.baseUrl;
-        var topSliderData = self.state.payload.imageUrlList || [];
+        var topSliderData = self.state.sliderData;
+        var lableDetail = pageData.lableDetail != undefined ? JSON.parse(pageData.lableDetail) : [];
+        var setMealDetail = pageData.setMealDetail != undefined ? JSON.parse(pageData.setMealDetail) : [];
+        var banquetList = pageData.banquetHall || [];
+        //console.log(banquetList);
+
         var labelArr = {
             'YH':'优惠',
             'LB':'礼包',
@@ -104,8 +120,7 @@ var WXHotelDetail = React.createClass({
                                             <li className="item transition-opacity-1" key={i}>
                                                 <ImageListItem
                                                     frameWidth={winWidth}
-                                                    url={v}
-                                                    detailBaseUrl={baseUrl}
+                                                    url={v.coverUrlWx}
                                                     errorUrl={'http://placehold.it/375x250'}
                                                     mask={true}
                                                     />
@@ -128,7 +143,7 @@ var WXHotelDetail = React.createClass({
                     </div>
                 </div>
                 <div className='title-box mgb10 clearfix'>
-                    <h1 className='title'>{pageData.hotelName}</h1>
+                    <h1 className='title'>{pageData.name}</h1>
                     <h2 className='subtitle'>{''}</h2>
                     <div className='addr-score-box'>
                         <span className='addr'>{pageData.address}</span>
@@ -152,22 +167,16 @@ var WXHotelDetail = React.createClass({
                             <b>场厅数量：</b><span>{(pageData.banquetHallList || []).length + '个专用宴会厅'}</span>
                         </p>
                         <p>
-                            <b>最大容客数：</b><span>{pageData.capacityPerTable + '桌'}</span>
+                            <b>最大容客数：</b><span>{pageData.maxTableNum + '桌'}</span>
                         </p>
                         <p>
                             <b>所在地址：</b><span>{pageData.address}</span>
                         </p>
-                        {
-                            $.map(pageData.hotelLabelList || [],function(v,i){
-                                return(
-                                    <p key={i}>
-                                        <b>{labelArr[v.lableCode] + '：'}</b><span>{v.lableDesc}</span>
-                                    </p>
-                                )
-                            })
-                        }
                         <p>
-                            <b>酒店详情：</b><span>{pageData.detailedIntroduction}</span>
+                            <b>{labelArr[lableDetail.length > 0 && lableDetail[0]['code']] + '：'}</b><span>{lableDetail.length > 0 && lableDetail[0]['description']}</span>
+                        </p>
+                        <p>
+                            <b>酒店详情：</b><span>{pageData.introduction}</span>
                         </p>
                     </div>
                 </div>
@@ -175,26 +184,27 @@ var WXHotelDetail = React.createClass({
                     <h2 className='detail-title'>婚宴套系菜单</h2>
                     <ul className='list-dishes' id='list_dishes'>
                         {
-                            $.map(pageData.hotelMealPackList || []
+                            $.map(setMealDetail || []
                                 ,function(v,i){
                                     return (
                                         <li className='list-item-3-wxjs' key={i}>
                                             <a className='relative-box'>
-                                                <span>{v.mealPackName}</span><b>{'（' + v.mealPackPrice + '／桌）'}</b><span className="arrow-1-js"><i className="transition"></i></span>
+                                                <span>{v.name}</span><b>{'（' + v.price + '／桌）'}</b><span className="arrow-1-js"><i className="transition"></i></span>
                                             </a>
                                             <div className='dishes clearfix'>
-                                              <dl>
-                                                {
-                                                    $.map(
-                                                        v.mealPackDishList || [],
-                                                        function(vv,ii){
-                                                            return(
-                                                                <dd key={ii}>{'. ' + vv}</dd>
-                                                            )
-                                                        }
-                                                    )
-                                                }
-                                              </dl>
+                                                <p style={{display:v.dishesList.length > 0 && 'none'}}>该酒店未提供菜肴，请以店谈为准</p>
+                                                <dl>
+                                                    {
+                                                        $.map(
+                                                            v.dishesList || [],
+                                                            function(vv,ii){
+                                                                return(
+                                                                    <dd key={ii}>{'. ' + vv}</dd>
+                                                                )
+                                                            }
+                                                        )
+                                                    }
+                                                </dl>
                                             </div>
                                         </li>
                                     )
@@ -206,21 +216,23 @@ var WXHotelDetail = React.createClass({
                     <h2 className='detail-title'>宴会厅介绍</h2>
                     <ul className='list-banquet'>
                         {
-                            $.map(pageData.banquetHallList || []
+                            $.map(banquetList
                                 ,function(v,i){
                                     return (
                                         <li className='list-item-4-wxjs' key={i}>
                                             <div className='img-box'>
                                                 <ImageListItem
                                                     frameWidth={winWidth}
-                                                    url={v.image_url}
+                                                    url={v.wechatUrl}
+                                                    sid={v.id}
+                                                    detailBaseUrl={'banquetHall/detail'}
                                                     errorUrl={'http://placehold.it/375x250'}
                                                     />
                                             </div>
                                             <h3>{v.banquetHallName}</h3>
                                             <div className='info-box clearfix'>
-                                                <span className='table-num'>{'桌数：' + v.capacity + '桌'}</span>
-                                                <span className='comsuption'>{'低消：' + v.leastConsumption + '元／桌'}</span>
+                                                <span className='table-num'>{'桌数：' + v.maxTableNum + '桌'}</span>
+                                                <span className='comsuption'>{'低消：' + v.lowestConsumption + '元／桌'}</span>
                                             </div>
                                         </li>
                                     )

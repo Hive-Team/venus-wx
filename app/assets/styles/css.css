@@ -341,6 +341,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .hotel-detail-view .list-dishes dd{height:20px;width:50%;overflow:hidden;float:left;margin-bottom:5px;line-height:20px;font-size:12px;color:#666;}
 
 .hotel-detail-view .list-item-3-current-wxjs .dishes{display:block;}
+.hotel-detail-view .list-item-3-current-wxjs .dishes p{font-size:14px;margin:10px 0 0 10px;color:#999;}
 .list-item-3-current-wxjs .arrow-1-js i{-moz-transform:matrix(-0.707107,0.707107,-0.707107,-0.707107,0,0);-webkit-transform:matrix(-0.707107,0.707107,-0.707107,-0.707107,0,0);-o-transform:matrix(-0.707107,0.707107,-0.707107,-0.707107,0,0);-ms-transform:matrix(-0.707107,0.707107,-0.707107,-0.707107,0,0);transform:matrix(-0.707107,0.707107,-0.707107,-0.707107,0,0);}
 
 .hotel-detail-view .banquet-info-box{background-color:#fff;}
@@ -443,7 +444,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .list-item-1-wxjs .info-box .containor{height:36px;overflow:hidden;}
 .list-item-1-wxjs .price{float:left;line-height:36px;}
 .list-item-1-wxjs .btn-1-wxjs{float:right;}
-.list-item-1-wxjs .price .gray-1-wxjs{font-weight:normal;margin-left:5px;}
+.list-item-1-wxjs .price .gray-1-wxjs{font-weight:normal;margin-left:5px;text-decoration:line-through;}
 .list-item-1-wxjs .price .red-1-wxjs{font-weight:normal;font-size:16px;}
 .list-item-1-wxjs .price .big{font-size:28px;font-weight:bold;}
 .list-item-1-wxjs .description{padding-top:10px;margin-top:10px;border-top:1px solid #eee;}

@@ -36,8 +36,10 @@ var WXWeddingClass = React.createClass({
         var self = this;
         var router = self.state.router;
         var type = router[1];
+        var module = router[0].split('_')[0];
+        var url = 'weddingroom/' + module + '_class_list';
 
-        self.fetchData(router[0],
+        self.fetchData(url,
             {
                 pageSize:self.state.pageSize,
                 pageIndex:self.state.pageIndex,
@@ -45,8 +47,8 @@ var WXWeddingClass = React.createClass({
             }).done(function(payload){
                 (payload.data && payload.code === 200) && self.setState({
                     baseUrl:router[0],
-                    payload:payload.data.data,
-                    totalCount:parseInt(payload.data.totalCount)
+                    payload:payload.data,
+                    totalCount:parseInt(payload.data.count)
                 });
 
                 //(payload.data && payload.code === 200) && console.log(payload.data);
@@ -59,7 +61,7 @@ var WXWeddingClass = React.createClass({
         var self = this;
 
         box.bind("scroll",function(){
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,{
                     pageSize:self.state.pageSize,
                     pageIndex:parseInt(self.state.pageIndex) + 1,
@@ -77,9 +79,9 @@ var WXWeddingClass = React.createClass({
             return;
 
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -89,7 +91,7 @@ var WXWeddingClass = React.createClass({
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
 
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
@@ -111,11 +113,11 @@ var WXWeddingClass = React.createClass({
                                 $.map(pageData,function(v,i){
                                     return(
                                         <li key={i}>
-                                            <a className='href-box' href={'#/'+self.getPath().substr(1) + '/' + v.weddingClassroomId}>
-                                                <span className='img-box'><img src={v.coverImg} /></span>
+                                            <a className='href-box' href={'#/weddingroom/detail/' + v.id}>
+                                                <span className='img-box'><img src={v.coverUrlWx} /></span>
                                                 <h1>{v.title}</h1>
                                                 <p>{v.description}</p>
-                                                <span className='time'>{v.publishTime.split(' ')[0]}</span>
+                                                <span className='time'>{v.updateTime.split(' ')[0]}</span>
                                             </a>
                                         </li>
                                     )

@@ -45,33 +45,19 @@ var WXHome = React.createClass({
         var self = this;
 
         var parseResource = function(){
-          var pathArr = SKMap['#'+self.getPathname()].split('/');
-          var resourceLinks = window.Core.resource;
-
-          //console.log(pathArr);
-          $.each(pathArr,function(k,v){
-              resourceLinks = resourceLinks[v];
-          });
-
-          self.fetchData(resourceLinks.split('#')[1],
-              {
-                  pageSize:self.state.pageSize,
-                  pageIndex:self.state.pageIndex
-              })
+          self.fetchData('adv/index_top')
               .done(function(payload){
                   (payload.data && payload.code === 200) &&
                   self.setState({
-                      payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                      pageIndex:parseInt(self.state.pageIndex)+1,
-                      baseUrl:resourceLinks.split('#')[1],
-                      totalCount:parseInt(payload.totalCount)
+                      payload:payload.data,
                   });
 
                   $('#slider_home').Slider();
                   //console.log(JSON.stringify(payload.data,null,4))
               })
         }
-        $.when(window.Core.promises['/'])
+
+        $.when({})
             .then(parseResource)
 
     },
@@ -107,8 +93,8 @@ var WXHome = React.createClass({
                                           <li className="item transition-opacity-1" key={i}>
                                               <ImageListItem
                                                   sid={v.contentId}
-                                                  frameWidth={1200}
-                                                  url={v.contentUrl}
+                                                  frameWidth={width*2}
+                                                  url={v.coverUrlWx}
                                                   detailUrl={v.detailUrl}
                                                   errorUrl={'http://placehold.it/375x250'}
                                                   />
@@ -124,10 +110,10 @@ var WXHome = React.createClass({
                     <ul className="menu-home" id="menu_home">
                         <li className="item"><a href="#/samples"><span className="font-bg-1-wxjs font-bg-1-1-wxjs" /></a></li>
                         <li className="item"><a href="#/hotel"><span className="font-bg-1-wxjs font-bg-1-2-wxjs" /></a></li>
-                        <li className="item"><a href='#/scheme'><span className="font-bg-1-wxjs font-bg-1-3-wxjs" /></a></li>
+                        <li className="item"><a href='#/cases'><span className="font-bg-1-wxjs font-bg-1-3-wxjs" /></a></li>
                         <li className="item"><a href='#/weddingdress'><span className="font-bg-1-wxjs font-bg-1-4-wxjs" /></a></li>
                         <li className="item"><a href='http://www.weihive.cn/weixin/index.php?&g=Wap&m=Product&a=index&token=ibhzwg1436836751'><span className="font-bg-1-wxjs font-bg-1-5-wxjs" /></a></li>
-                        <li className="item"><a href='#/videos/0'><span className="font-bg-1-wxjs font-bg-1-6-wxjs" /></a></li>
+                        <li className="item"><a href='#/video/movie_latest/0'><span className="font-bg-1-wxjs font-bg-1-6-wxjs" /></a></li>
                         <li className="item"><a href='#/weddingsupplies'><span className="font-bg-1-wxjs font-bg-1-7-wxjs" /></a></li>
                         <li className="item"><a href='#/weddingcarental'><span className="font-bg-1-wxjs font-bg-1-8-wxjs" /></a></li>
                     </ul>

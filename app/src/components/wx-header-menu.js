@@ -34,11 +34,11 @@ var HeaderMenu = React.createClass({
                     //},
                     {
                         'name': '婚纱纪实',
-                        'href': '#/videos/1'
+                        'href': '#/recordvideo/record_video_list/1'
                     },
                     {
                         'name': '婚照技巧',
-                        'href': '#/wenddingroom/1'
+                        'href': '#/suite_weddingclass/1'
                     }
                 ],
                 'menu_2' : [
@@ -48,21 +48,21 @@ var HeaderMenu = React.createClass({
                     },
                     {
                         name : '婚宴知识',
-                        href : '#/wenddingroom/2'
+                        href : '#/hotel_weddingclass/2'
                     }
                 ],
                 'menu_3' : [
                     {
                         name : '实景案例',
-                        href : '#/scheme'
+                        href : '#/cases'
                     },
                     {
                         name : '婚礼跟拍',
-                        href : '#/weddingpat'
+                        href : '#/follow'
                     },
                     {
                         name : '婚礼视频',
-                        href : '#/videos/3'
+                        href : '#/followvideo/weddingvideo_list/3'
                     },
                     //{
                     //    name : '选策划师',
@@ -74,7 +74,7 @@ var HeaderMenu = React.createClass({
                     },
                     {
                         name : '婚礼学堂',
-                        href : '#/wenddingroom/3'
+                        href : '#/f4_weddingclass/3'
                     }
                 ],
                 'menu_4' : [
@@ -84,25 +84,25 @@ var HeaderMenu = React.createClass({
                     },
                     {
                         name : '礼服知识',
-                        href : '#/wenddingroom/4'
+                        href : '#/dress_weddingclass/4'
                     }
                 ],
                 'menu_5' : [
                     {
                         name : '微电影',
-                        href : '#/videos/0'
+                        href : '#/video/movie_latest/0'
                     },
                     {
                         name : '爱情MV',
-                        href : '#/videos/4'
+                        href : '#/video/movie_love_mv/4'
                     },
                     {
                         name : '爱情微电影',
-                        href : '#/videos/5'
+                        href : '#/video/movie_love_movies/5'
                     },
                     {
                         name : '表演技巧',
-                        href : '#/wenddingroom/5'
+                        href : '#/movie_weddingclass/5'
                     }
                 ],
                 'menu_6' : [],
@@ -113,7 +113,7 @@ var HeaderMenu = React.createClass({
                     },
                     {
                         name : '用品贴士',
-                        href : '#/wenddingroom/7'
+                        href : '#/supplies_weddingclass/7'
                     }
                 ],
                 'menu_8' : [
@@ -123,7 +123,7 @@ var HeaderMenu = React.createClass({
                     },
                     {
                         name : '租车经验',
-                        href : '#/wenddingroom/8'
+                        href : '#/car_weddingclass/8'
                     }
                 ]
             }
@@ -184,6 +184,7 @@ var HeaderMenu = React.createClass({
         var self = this;
         var current_menu = self.state.menu[self.props.menuType];
 
+        //console.log(current_menu[self.props.name].name);
         return (
             <div className="header-view navbar navbar-app navbar-absolute-top">
                 <div className="pos-box">

@@ -64,23 +64,16 @@ var WXWeddingSupplies = React.createClass({
         });
 
         var parseResource = function(){
-            var resourceLinks = window.Core.resource[SKMap['#'+self.getPath()]];
-
-            $.each(resourceLinks,function(k,v){
-                resourceLinks = v;
-            });
-
-            var url = resourceLinks.split('#')[1];
-
+            var url = 'weddingsupplies/supplies_list';
             self.fetchData(url,self.state.params)
                 .done(function(payload){
                     (payload.data && payload.data.length>0 && payload.code === 200) &&
                     self.setState({
                         payload:payload.data,
-                        totalCount:parseInt(payload.totalCount)
+                        totalCount:parseInt(payload.count)
                     });
                     self.setState({baseUrl:url});
-                    //console.log(payload);
+                    //console.log(payload.data);
                     //绑上滚动加载。
                     self.scrollPos($("#scroll_box"),$("#scroll_content"),self.state.params);
 
@@ -88,7 +81,7 @@ var WXWeddingSupplies = React.createClass({
         };
 
         var brand = function(){
-            self.fetchData('supplies/brand')
+            self.fetchData('weddingsupplies/brands')
                 .done(function(payload){
                     self.setState({
                         brand:payload.data
@@ -96,7 +89,7 @@ var WXWeddingSupplies = React.createClass({
                 });
         }
         var types = function(){
-            self.fetchData('supplies/types')
+            self.fetchData('weddingsupplies/types')
                 .done(function(payload){
                     self.setState({
                         types:payload.data
@@ -104,7 +97,7 @@ var WXWeddingSupplies = React.createClass({
                 });
         }
 
-        $.when(window.Core.promises['/'])
+        $.when({})
             .then(brand)
             .then(types)
             .then(parseResource);
@@ -121,7 +114,7 @@ var WXWeddingSupplies = React.createClass({
                 (payload.data && payload.code===200)&&
                 self.setState({
                     payload:payload.data,
-                    totalCount:payload.totalCount
+                    totalCount:payload.count
                 })
 
                 $("#scroll_box").unbind('scroll');
@@ -134,7 +127,7 @@ var WXWeddingSupplies = React.createClass({
 
         params.pageIndex ++;
         box.bind("scroll",function(){
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,params);
                 params.pageIndex ++;
             }
@@ -148,9 +141,9 @@ var WXWeddingSupplies = React.createClass({
             parseInt(params.pageSize)*parseInt(params.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -159,7 +152,7 @@ var WXWeddingSupplies = React.createClass({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
@@ -217,9 +210,9 @@ var WXWeddingSupplies = React.createClass({
                                                     <div className='hover-box'>
                                                         <ImageListItem
                                                             frameWidth={winW*2}
-                                                            url={v.coverUrl}
-                                                            sid={v.weddingSuppliesId}
-                                                            detailBaseUrl={baseUrl}
+                                                            url={v.wechatUrl}
+                                                            sid={v.id}
+                                                            detailBaseUrl={'weddingsupplies/detail'}
                                                             />
                                                         <h1>{v.title}</h1>
                                                         <div className='price-box'>

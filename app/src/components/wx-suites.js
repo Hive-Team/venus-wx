@@ -12,9 +12,8 @@ var WXPringlesList = React.createClass({
     // 分页，资源标示，数据，根路由，总条数， 风格类型
     getInitialState: function() {
         return {
-            pageSize:6,
+            pageSize:50,
             pageIndex:1,
-            tplKey:'list#pringles',
             payload:[],
             baseUrl:'',
             totalCount:0
@@ -24,45 +23,11 @@ var WXPringlesList = React.createClass({
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
-    //点击加载详情
-    loadDetail:function(baseUrl,id,evt){
-
-        evt.preventDefault();
-        var winWidth = $(window).width();
-        Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
-            if(payload.code !== 200 || !payload.data) return;
-            var pswpElement = document.querySelectorAll('.pswp')[0];
-
-            var items = $.map(payload.data,function(v,i){
-                var dimension = v.contentUrl && v.contentUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
-                var src = (window.Core.mode ==='dev')?v.contentUrl:v.contentUrl+'@1e_'+ winWidth+'w_1c_0i_1o_90q_1x';
-                var w = dimension.length>2 ?parseInt(dimension[1]):-1;
-                var h = dimension.length>2 ?parseInt(dimension[2]):-1;
-                return {
-                    src:src,
-                    w:w,
-                    h:h
-                }
-            })
-
-            // define options (if needed)
-            var options = {
-                // optionName: 'option value'
-                // for example:
-                index: 0, // start at first slide
-                history:false,
-                focus: false
-            };
-
-            // Initializes and opens PhotoSwipe
-            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            gallery.init()
-        });
-
-    },
 
     componentDidMount: function() {
         var self = this;
+
+        /* 暂时隐藏
         function scrollPos(box,cont){
             box.bind("scroll",function(){
                 if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
@@ -94,17 +59,13 @@ var WXPringlesList = React.createClass({
                     $('#loaderIndicator').removeClass('isShow');
                 })
         }
+        */
+
         // 从菜单获取资源链接。
         var parseResource = function(){
-            var pathArr = SKMap['#'+self.getPathname()].split('/');
-            var resourceLinks = window.Core.resource;
+            var url = 'suite/suite_list';
 
-            $.each(pathArr,function(k,v){
-                resourceLinks = resourceLinks[v];
-            });
-            //console.log(resourceLinks.split('#')[1]);
-
-            self.fetchData(resourceLinks.split('#')[1],
+            self.fetchData(url,
                 {
                     pageSize:self.state.pageSize,
                     pageIndex:self.state.pageIndex
@@ -114,17 +75,17 @@ var WXPringlesList = React.createClass({
                     self.setState({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1,
-                        baseUrl:resourceLinks.split('#')[1],
+                        baseUrl:url,
                         totalCount:parseInt(payload.totalCount)
                     });
 
                     //console.log(payload.totalCount);
                     // 绑上滚动加载。
-                    scrollPos($("#scroll_box"),$("#scroll_content"));
+                    //scrollPos($("#scroll_box"),$("#scroll_content"));
                 })
         };
 
-        $.when(window.Core.promises['/'])
+        $.when({})
             .then(parseResource);
     },
 
@@ -152,22 +113,22 @@ var WXPringlesList = React.createClass({
                                                return(
                                                    <li key={i} className='list-item-1-wxjs'>
                                                        <div className='title-box'>
-                                                           <h1 className='title'>{v.productName}</h1>
-                                                           <span className='subtitle'>{'（' + v.dressModeling + '）'}</span>
+                                                           <h1 className='title'>{v.name}</h1>
+                                                           <span className='subtitle'>{'（' + v.createTime + '）'}</span>
                                                        </div>
                                                        <div className='img-box relative-box'>
                                                            <ImageListItem
-                                                               detailBaseUrl={baseUrl}
+                                                               detailBaseUrl={'suite/detail'}
                                                                frameWidth={winWidth*2}
-                                                               url={v.imageUrl}
-                                                               sid={v.productId}
+                                                               url={v.wechatUrl}
+                                                               sid={v.id}
                                                                errorUrl={'http://placehold.it/375x250'}
                                                                />
                                                        </div>
                                                        <div className='info-box'>
                                                            <div className='containor clearfix'>
                                                                <div className='price'>
-                                                                   <span className='red-1-wxjs'>￥</span><span className='red-1-wxjs big'>{(v.price).toFixed(2)}</span><b className='gray-1-wxjs'>定金</b><b className='gray-1-wxjs'>{'￥' + v.deposit}</b>
+                                                                   <span className='red-1-wxjs'>￥</span><span className='red-1-wxjs big'>{v.salePrice.toFixed(2)}</span><b className='gray-1-wxjs'>原价</b><b className='gray-1-wxjs'>{'￥' + v.originalPrice.toFixed(2)}</b>
                                                                </div>
                                                                <a className='btn-1-wxjs' style={{display:'none'}}>立即抢购</a>
                                                            </div>

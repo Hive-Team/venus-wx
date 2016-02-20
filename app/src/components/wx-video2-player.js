@@ -26,7 +26,7 @@ var WXVideoPlayer = React.createClass({
 
     componentDidMount: function() {
         var self = this;
-        var router = self.getPath().substr(1).split('/');
+        var router = self.getPath().substr(1);
         var $video_player = $('#video_player');
         var proportion = 0.5;
         var winW = $(window).width();
@@ -37,7 +37,7 @@ var WXVideoPlayer = React.createClass({
         //console.log($video_player.height());
         $video_player.css({marginTop:-vH/2});
 
-        self.fetchData(router[0] + '/' + router[2])
+        self.fetchData(router)
             .done(function(payload){
                 (payload.data && payload.code === 200) && self.setState({
                     payload:payload.data
@@ -52,17 +52,17 @@ var WXVideoPlayer = React.createClass({
         $('.screening-box-wx').css({display:'block'});
         $('#video_player')[0].load();
         $('#video_player')[0].currentTime = 0;
-        console.log($('#video_player')[0].crossOrigin);
+        //console.log($('#video_player')[0].crossOrigin);
     },
 
     render: function() {
         var self = this;
-        var payload = self.state.payload || {};
+        var videoData = self.state.payload || {};
 
-        if(payload.url != null)return (
+        if(videoData.videoUrl != null)return (
             <div className="video-player-view">
                 <video controls='controls' name="media" id='video_player'>
-                    <source src={payload.url} type='video/mp4'/>
+                    <source src={videoData.videoUrl} type='video/mp4'/>
                 </video>
             </div>
         )

@@ -17,8 +17,8 @@ var WXScheme = React.createClass({
             pageIndex:1,
             baseUrl:'',
             scrollUrl:'',
-            tplKey:'recommend#scheme',
-            quarterly:[]
+            quarterly:[],
+            caseStyle:[]
         };
     },
     fetchData:function(url,params){
@@ -29,6 +29,35 @@ var WXScheme = React.createClass({
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
         var isStyleMenu = false;
+        var $menu_classify = $('.menu-classify');
+        var B_ul = false;
+
+        $('span',$menu_classify).eq(0).addClass('item-current');
+        $menu_classify.on('click','span',function(){
+            var ind = $(this).index();
+
+            if($(this).hasClass('item-current') && B_ul){
+                $('ul',$menu_classify).removeAttr('style');
+                B_ul = false;
+                return;
+            }
+
+            B_ul = true;
+
+            $(this).addClass('item-current');
+            $(this).siblings().removeClass('item-current');
+            $('ul',$menu_classify).eq(ind - 1).css({display:'block'})
+                .siblings().removeAttr('style');
+
+            ind <= 0 && $('ul',$menu_classify).removeAttr('style');
+        });
+
+        $menu_classify.on('click','li',function(){
+            $(this).parent().removeAttr('style');
+            $('li',$menu_classify).removeAttr('class');
+            $(this).addClass('li-current');
+            B_ul = false;
+        });
 
         $btn_style.on('click',function(){
             if(!isStyleMenu){
@@ -46,29 +75,26 @@ var WXScheme = React.createClass({
         });
 
         var parseResource = function(){
-            var arr = self.getPath().substr(1).split('/');
-            var resourceLinks = window.Core.resource[SKMap['#/'+arr[0]]];
-            var url;
+            var url = self.getPath().substr(1);
             var params = {
                 pageSize:self.state.pageSize,
                 pageIndex:self.state.pageIndex
-            }
-
-            arr.length > 1 && (params.styleId = arr[2]);
+            };
 
             //console.log(resourceLinks);
-            (self.getPath() === '/scheme') && (url = resourceLinks['实景案例列表'].split('#')[1]) ||
-            (url = resourceLinks['最佳案例'].split('#')[1])
+            (url === 'cases') && (url = url + '/scheme_list') ||
+            (url = url + '/weddingpat_list');
 
             self.fetchData(url,params)
                 .done(function(payload){
+                    //console.log(payload.data);
                     (payload.data && payload.data.length>0 && payload.code === 200) &&
                     self.setState({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1,
-                        baseUrl:resourceLinks,
+                        baseUrl:url,
                         scrollUrl:url,
-                        totalCount:parseInt(payload.totalCount)
+                        totalCount:parseInt(payload.count)
                     });
 
                     //绑上滚动加载。
@@ -83,7 +109,7 @@ var WXScheme = React.createClass({
         };
 
         var season = function(){
-            self.fetchData('scheme/season')
+            self.fetchData('followPhotoSeason/all')
                 .done(function(payload){
                     self.setState({
                         quarterly:payload.data
@@ -91,21 +117,29 @@ var WXScheme = React.createClass({
                 });
         }
 
-        //console.log($.when(window.Core.promises['/']))
-        $.when(window.Core.promises['/'])
+        var caseStyle = function(){
+            self.fetchData('caseStyle/all')
+                .done(function(payload){
+                    //console.log(payload.data);
+                    self.setState({
+                        caseStyle:payload.data
+                    })
+                });
+        }
+
+        $.when({})
             .then(season)
+            .then(caseStyle)
             .then(parseResource);
     },
 
     selSeason : function(id){
         var self = this;
-        var url;
+        var url = self.state.baseUrl;
 
         self.setState({
             pageIndex:1
         });
-
-        id === null && (url = self.state.baseUrl['最佳案例'].split('#')[1]) || (url = self.state.baseUrl['分季欣赏'].split('#')[1]);
 
         self.fetchData(url,{
             pageIndex:1,
@@ -118,7 +152,7 @@ var WXScheme = React.createClass({
                 styleId:id,
                 scrollUrl:url,
                 payload:payload.data,
-                totalCount:payload.totalCount
+                totalCount:payload.count
             })
             //console.log(payload.data);
 
@@ -137,7 +171,7 @@ var WXScheme = React.createClass({
         var self = this;
 
         box.bind("scroll",function(){
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.scrollUrl,params);
                 params.pageIndex ++;
             }
@@ -151,9 +185,9 @@ var WXScheme = React.createClass({
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -162,11 +196,34 @@ var WXScheme = React.createClass({
                     payload:((params === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
 
+    },
+
+    clickFunc : function(obj){
+        var self = this;
+        var params = {
+            pageIndex:1,
+            pageSize:6
+        }
+
+        $.extend(obj,params);
+
+        self.fetchData(self.state.baseUrl,obj)
+            .done(function(payload){
+                (payload.data && payload.code===200)&&
+                self.setState({
+                    payload:payload.data,
+                    pageIndex:obj.pageIndex,
+                    totalCount:payload.totalCount
+                })
+
+                $("#scroll_box").unbind('scroll');
+                self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
+            })
     },
 
     render: function() {
@@ -174,18 +231,45 @@ var WXScheme = React.createClass({
         var pageData = this.state.payload;
         var quarterly = self.state.quarterly || [];
         var baseUrl = this.state.scrollUrl;
+        var caseStyle = this.state.caseStyle;
 
         return (
-            <div className="app ng-scope">
-                <WXHeaderMenu menuType={'menu_3'} name={self.getPath() === '/scheme' ? 0 : 1} />
+            <div className="app supplies-list-view">
+                <WXHeaderMenu menuType={'menu_3'} name={self.getPath() === '/cases' ? 0 : 1} />
 
-                <div style={{display:''}} className={self.getPath() === '/scheme' && 'screening-box-wx weddingpat-fj' || 'screening-box-wx'}>
+                <div className='menu-classify clearfix' id='supplies_menu' style={{display:self.getPath() === '/cases' && 'block' || 'none'}}>
+                    <div className='pos-box'>
+                        <span onClick={self.clickFunc.bind(self,{})}>全部</span>
+                        <span>风格</span>
+                        <span>价位</span>
+                        <ul>
+                            {
+                                $.map(caseStyle,function(v,i){
+                                    return(
+                                        <li key={i} onClick={self.clickFunc.bind(self,{styleId:v.id})}><b>{v.name}</b></li>
+                                    )
+                                })
+                            }
+                        </ul>
+                        <ul>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:5000,maxPrice:9999})}><b>5000-10000</b></li>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:10000,maxPrice:14999})}><b>10000-15000</b></li>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:15000,maxPrice:19999})}><b>15000-20000</b></li>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:20000,maxPrice:29999})}><b>20000-30000</b></li>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:30000,maxPrice:49999})}><b>30000-50000</b></li>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:50000,maxPrice:99999})}><b>50000-100000</b></li>
+                            <li onClick={self.clickFunc.bind(self,{minPrice:100000})}><b>100000以上</b></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style={{display:''}} className={self.getPath() === '/cases' && 'screening-box-wx weddingpat-fj' || 'screening-box-wx'}>
                     <ul className="screening-list-wx" id="style_box">
                         <li onClick={self.selSeason.bind(self,null)}>{'最佳案例'}</li>
                         {
                             $.map(quarterly || [],function(v,i){
                                 return (
-                                    <li key={i} onClick={self.selSeason.bind(self,v.seasonId)}>{v.seasonName}</li>
+                                    <li key={i} onClick={self.selSeason.bind(self,v.id)}>{v.name}</li>
                                 )
                             })
                         }
@@ -199,21 +283,21 @@ var WXScheme = React.createClass({
                         <div className="scroll-able ng-scope">
                             <div className="scroll-able-content" id="scroll_box">
                                 <div className="list-group list-box" id="scroll_content">
-                                    <ul className="list-3-wxjs">
+                                    <ul className="list-3-wxjs" style={{paddingTop:self.getPath() === '/cases' && '110px' || '60px'}}>
                                         {
                                             pageData.length>0&&$.map(pageData,function(v,k){
                                                 return (
                                                     <li key={k}>
                                                         <ImageListItem
-                                                            url={v.weddingCaseImage}
-                                                            sid={v.weddingCaseId}
-                                                            detailBaseUrl={baseUrl}
+                                                            url={v.coverUrlWx}
+                                                            sid={v.id}
+                                                            detailBaseUrl={baseUrl.split('/')[0] + '/detail'}
                                                             />
                                                         <div className="white-block" />
                                                         <div className="info">
-                                                            <h1>{v.schemeName}</h1>
+                                                            <h1>{v.name}</h1>
                                                             <div className="func">
-                                                                <span className="style"><b>{(parseInt(v.totalPrice) === 0)?'':'价格：¥'+parseInt(v.totalPrice).toFixed(2)}</b></span>
+                                                                <span className="style"><b>{(parseInt(v.totalCost) === 0)?'':'价格：¥'+parseInt(v.totalCost).toFixed(2)}</b></span>
                                                             </div>
                                                         </div>
                                                     </li>

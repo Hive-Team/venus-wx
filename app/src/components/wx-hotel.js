@@ -135,7 +135,7 @@ var WXHotel = React.createClass({
         function scrollPos(box,cont){
             box.bind("scroll",function(){
                 //console.log(box.scrollTop() + box.height(),cont.height());
-                if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+                if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                     scrollFunc(self.state.baseUrl,{
                         pageSize:self.state.pageSize,
                         pageIndex:self.state.pageIndex
@@ -149,9 +149,9 @@ var WXHotel = React.createClass({
                 parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
                 return;
             $('#loaderIndicator').addClass('isShow');
-            window.Core.isFeching = true;
+            window.isFeching = true;
             var timeout = window.setTimeout(function(){
-                window.Core.isFeching = false;
+                window.isFeching = false;
             },5000);
             self.fetchData(url,params)
                 .done(function(payload){
@@ -160,37 +160,32 @@ var WXHotel = React.createClass({
                         payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                         pageIndex:parseInt(self.state.pageIndex)+1
                     });
-                    window.Core.isFeching = false;
+                    window.isFeching = false;
                     window.clearTimeout(timeout);
                     $('#loaderIndicator').removeClass('isShow');
                 })
         }
 
         // 从菜单获取资源链接。
-        var parseResource = function(obj){
-            var pathArr = SKMap['#'+self.getPathname()].split('/');
-            var resourceLinks = window.Core.resource;
+        var parseResource = function(){
+            var url = 'hotel/hotel_list';
             var params = {
                 pageSize: self.state.pageSize,
                 pageIndex: self.state.pageIndex
             }
 
-            $.each(pathArr,function(k,v){
-                resourceLinks = resourceLinks[v];
-            });
-
-            self.fetchData(resourceLinks.split('#')[1],params)
+            self.fetchData(url,params)
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
-                        payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
+                        payload:payload.data,
                         pageIndex:parseInt(self.state.pageIndex)+1,
-                        baseUrl:resourceLinks.split('#')[1],
-                        totalCount:parseInt(payload.totalCount)
+                        baseUrl:url,
+                        totalCount:parseInt(payload.count)
                     });
 
                     //console.log(JSON.stringify(payload.data,null,4));
-                    //console.log(payload);
+                    //console.log(payload.data);
                     // 绑上滚动加载。
                     scrollPos($("#scroll_box"),$("#scroll_content"));
                 })
@@ -198,7 +193,7 @@ var WXHotel = React.createClass({
 
         // 酒店类型
         var hotelTypes = function(){
-            self.fetchData('hotel/types')
+            self.fetchData('hotel/hotelType')
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
@@ -210,7 +205,7 @@ var WXHotel = React.createClass({
         };
 
 
-        $.when(window.Core.promises['/'])
+        $.when({})
             .then(hotelTypes)
             .then(parseResource);
     },
@@ -233,7 +228,7 @@ var WXHotel = React.createClass({
                     payload:payload.data,
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     baseUrl:url,
-                    totalCount:parseInt(payload.totalCount)
+                    totalCount:parseInt(payload.count)
                 });
 
                 $("#scroll_box").unbind('scroll');
@@ -253,7 +248,7 @@ var WXHotel = React.createClass({
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() + box.height() + " , " + (cont.height() + 80));
-            if(box.scrollTop() + box.height() >= cont.height() + 80 && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() + 80 && !window.isFeching){
                 // console.log(params);
                 params.pageIndex = self.state.pageIndex;
                 self.scrollFunc(self.state.baseUrl,params);
@@ -267,9 +262,9 @@ var WXHotel = React.createClass({
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -278,7 +273,7 @@ var WXHotel = React.createClass({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
                 //console.log(payload.data);
@@ -334,7 +329,7 @@ var WXHotel = React.createClass({
                             {
                                 $.map(hotelTypes,function(v,i){
                                     return(
-                                        <li key={i} onClick={function(){self.screeningClick(self.state.baseUrl,{hotelType:v.hotelTypeId})}}>{v.typeName}</li>
+                                        <li key={i} onClick={function(){self.screeningClick(self.state.baseUrl,{hotelType:v.id})}}>{v.name}</li>
                                     )
                                 })
                             }
@@ -356,16 +351,16 @@ var WXHotel = React.createClass({
                                             $.map(pageData || [],function(v,i){
                                                 return(
                                                     <li key={i} className='list-item-2-wxjs'>
-                                                        <a href={'#/'+self.state.baseUrl+'/'+ v.hotelId} className='relative-box'>
-                                                            <div className='img-box'><img src={v.imageUrl} /></div>
+                                                        <a href={'#/hotel/detail/'+ v.id} className='relative-box'>
+                                                            <div className='img-box'><img src={v.wechatUrl} /></div>
                                                             <div className='info-box'>
-                                                                <div className='title-box'><div className='pos-box'><h1 className='title'>{v.hotelName}</h1><div className='ico-box'><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div></div></div>
+                                                                <div className='title-box'><div className='pos-box'><h1 className='title'>{v.name}</h1><div className='ico-box'><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div></div></div>
                                                                 <div className='score-box'>
                                                                     <div className='star-box' style={{display:'none'}}><i className='ico-star-1-js ico-star-1-gray-js'></i><i className='ico-star-1-js ico-star-1-pink-js' style={{width:'35px'}}></i></div>
                                                                     <b className='red-1-wxjs' style={{display:'none'}}>3.5</b><span className='gray-1-wxjs'>{v.typeName}</span>
                                                                 </div>
                                                                 <div className='desk-box'>
-                                                                    <strong>桌数：</strong><b className='red-1-wxjs'>{v.banquetHallCount}</b><span className='gray-1-wxjs'>个大厅，</span><span className='gray-1-wxjs'>容纳</span><b className='red-1-wxjs'>{v.capacityPerTable}</b><span className='gray-1-wxjs'>桌</span>
+                                                                    <strong>桌数：</strong><b className='red-1-wxjs'>{v.banquetHalNum}</b><span className='gray-1-wxjs'>个大厅，</span><span className='gray-1-wxjs'>容纳</span><b className='red-1-wxjs'>{v.maxTableNum}</b><span className='gray-1-wxjs'>桌</span>
                                                                 </div>
                                                                 <div className='addr-box'><strong>位置：</strong><span className='gray-1-wxjs'>{v.address}</span></div>
                                                                 <div className='price-box'>

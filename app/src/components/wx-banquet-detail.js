@@ -5,7 +5,7 @@ var Api = require('../config/api.js');
 var SKMap = require('../config/wx-skmap.js');
 var ImageListItem = require('./image-item.js');
 
-var WXSampleDetail = React.createClass({
+var WXBanquetDetail = React.createClass({
     mixins:[Router.State], //我们需要知道当前的path params 等等信息
     //初始化状态。
     // 分页，资源标示，数据，根路由，总条数， 风格类型
@@ -26,10 +26,11 @@ var WXSampleDetail = React.createClass({
 
         //evt.preventDefault();
         var winWidth = $(window).width();
-        Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
+        Api.httpGET(baseUrl,{}).done(function(payload){
             if(payload.code !== 200 || !payload.data) return;
             var pswpElement = document.querySelectorAll('.pswp')[0];
-            var imgUrls = JSON.parse(payload.data.wxDetailImages) || [];
+            var imgUrls = JSON.parse(payload.data.pcDetailImages) || [];
+            //console.log(imgUrls);
 
             var items = $.map(imgUrls,function(v,i){
                 //console.log(v);
@@ -67,10 +68,9 @@ var WXSampleDetail = React.createClass({
 
     componentDidMount: function() {
         var self = this;
-        var url = self.getPath();
-        var arr = url.split('/');
+        var url = self.getPath().substr(1);
 
-        self.loadDetail(arr[1] + '/' + arr[2],arr[3]);
+        self.loadDetail(url);
     },
 
     componentWillUnmount : function(){
@@ -79,10 +79,10 @@ var WXSampleDetail = React.createClass({
 
     render: function() {
         return (
-            <div className="samples-detail-view"></div>
+            <div className="banquet-detail-view"></div>
         );
     }
 
 });
 
-module.exports = WXSampleDetail;
+module.exports = WXBanquetDetail;

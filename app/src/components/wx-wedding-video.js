@@ -16,7 +16,6 @@ var WXWeddingMV = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#pringles',
             payload:[],
             sliderData:[],
             baseUrl:'',
@@ -31,6 +30,7 @@ var WXWeddingMV = React.createClass({
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
+
     componentDidMount: function() {
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
@@ -57,41 +57,36 @@ var WXWeddingMV = React.createClass({
     dataFunc:function(){
         var self = this;
         var router = self.state.router;
-        var type = (router[1] != 0) && router[1] || (4+','+5);
+        var url = router[0] + '/' + router[1];
         var params = {
             pageSize:self.state.pageSize,
-            pageIndex:self.state.pageIndex,
-            sort:'date',
-            videoType:type
+            pageIndex:self.state.pageIndex
         }
+        var sortUrl = (router[0] == 'recordvideo' || router[0] == 'followvideo') && router[0] + '/season' || null;
 
-        self.fetchData(router[0],params)
+        self.fetchData(url,params)
             .done(function(payload){
                 (payload.data && payload.code === 200) && self.setState({
                     payload:payload.data,
                     pageIndex:self.state.pageIndex + 1,
                     totalCount:payload.totalCount,
-                    baseUrl:router[0]
+                    baseUrl:url
                 });
 
-                //(payload.data && payload.code === 200) && console.log(payload.totalCount);
+                //(payload.data && payload.code === 200) && console.log(payload.data);
 
                 //绑上滚动加载。
                 self.scrollPos($("#scroll_box"),$("#scroll_content"));
             }
         );
 
-        self.fetchData('videos/season')
+        sortUrl != null && self.fetchData(sortUrl)
             .done(function(payload){
-                //console.log(payload.data);
                 (payload.data && payload.code === 200) && self.setState({
                     quarterly:payload.data
                 });
 
-                //(payload.data && payload.code === 200) && console.log(payload.totalCount);
-
-                //绑上滚动加载。
-                self.scrollPos($("#scroll_box"),$("#scroll_content"));
+                //(payload.data && payload.code === 200) && console.log(payload.data)
             }
         );
     },
@@ -102,8 +97,7 @@ var WXWeddingMV = React.createClass({
         var params = {
             pageSize:6,
             pageIndex:1,
-            sort:'date',
-            videoType:self.state.router[1]
+            sort:'date'
         }
         var url = 'videos';
 
@@ -173,20 +167,20 @@ var WXWeddingMV = React.createClass({
         var self = this;
         var winW = $(window).width();
         var pageData = self.state.payload || [];
-        var router = self.state.router || [];
+        var router = self.state.router;
         var quarterly = self.state.quarterly;
 
         return (
             <div className="planner-list-view mobile-main-box">
-                <WXHeaderMenu menuType={self.state.headerType[router[1]]} name={self.state.headerCof[router[1]]} />
+                <WXHeaderMenu menuType={self.state.headerType[router[2]]} name={self.state.headerCof[router[2]]} />
 
-                <div className="screening-box-wx" style={{display:(router[1] != 3 /*3*/ && 'none')}}>
+                <div className="screening-box-wx" style={{display:((router[2] != 1 && router[2] != 3) && 'none')}}>
                     <ul className="screening-list-wx" id="style_box">
                         <li onClick={self.selSeason.bind(self,{sort:'hits'})}>{'最佳视频'}</li>
                         {
                             $.map(quarterly,function(v,i){
                                 return (
-                                    <li key={i} onClick={self.selSeason.bind(self,{seasonId:v.seasonId})}>{v.seasonName}</li>
+                                    <li key={i} onClick={self.selSeason.bind(self,{seasonId:v.id})}>{v.name}</li>
                                 )
                             })
                         }
@@ -204,13 +198,13 @@ var WXWeddingMV = React.createClass({
                                         <li key={i}>
                                             <ImageListItem
                                                 frameWidth={winW*2}
-                                                url={v.coverImage.imageUrl}
-                                                sid={v.videoId}
-                                                detailBaseUrl={self.getPath().substr(1)}
+                                                url={v.wechatUrl}
+                                                sid={v.id}
+                                                detailBaseUrl={router[0] + '/detail'}
                                                 />
                                             <div className="title">
                                                 <span className="cn" >{v.name}</span>
-                                                <span className="en">{v.createDate.split(' ')[0]}</span>
+                                                <span className="en">{v.createTime}</span>
                                             </div>
                                         </li>
                                     )
