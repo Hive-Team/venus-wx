@@ -223,7 +223,7 @@ var WXHotelDetail = React.createClass({
                                             <div className='img-box'>
                                                 <ImageListItem
                                                     frameWidth={winWidth}
-                                                    url={v.wechatUrl}
+                                                    url={v.coverUrlWx}
                                                     sid={v.id}
                                                     detailBaseUrl={'banquetHall/detail'}
                                                     errorUrl={'http://placehold.it/375x250'}

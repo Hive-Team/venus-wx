@@ -50,7 +50,7 @@ var WXWeddingDress = React.createClass({
                         totalCount:parseInt(payload.totalCount)
                     });
 
-                    console.log(payload.data)
+                    //console.log(payload.data)
                     // 绑上滚动加载。
                     //self.scrollPos($("#scroll_box"),$("#scroll_content"));
 

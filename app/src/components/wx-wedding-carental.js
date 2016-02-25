@@ -18,7 +18,6 @@ var WXWeddingCarRental = React.createClass({
                 pageSize:6,
                 pageIndex:1
             },
-            tplKey:'list#car',
             payload:[],
             sliderData:[],
             baseUrl:'',

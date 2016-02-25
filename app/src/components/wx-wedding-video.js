@@ -62,7 +62,7 @@ var WXWeddingMV = React.createClass({
             pageSize:self.state.pageSize,
             pageIndex:self.state.pageIndex
         }
-        var sortUrl = (router[0] == 'recordvideo' || router[0] == 'followvideo') && router[0] + '/season' || null;
+        var sortUrl = (router[0] == 'recordVideo' || router[0] == 'followVideo') && router[0] + '/season' || null;
 
         self.fetchData(url,params)
             .done(function(payload){
@@ -126,7 +126,7 @@ var WXWeddingMV = React.createClass({
         var type = (router[1] != 0) && router[1] || (4+','+5);
 
         box.bind("scroll",function(){
-            console.log(box.scrollTop() +','+ box.height() +','+ cont.height());
+            //console.log(box.scrollTop() +','+ box.height() +','+ cont.height());
             if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
                 self.scrollFunc(self.state.baseUrl,{
                     pageSize:self.state.pageSize,
@@ -198,7 +198,7 @@ var WXWeddingMV = React.createClass({
                                         <li key={i}>
                                             <ImageListItem
                                                 frameWidth={winW*2}
-                                                url={v.wechatUrl}
+                                                url={v.coverUrlWx}
                                                 sid={v.id}
                                                 detailBaseUrl={router[0] + '/detail'}
                                                 />

@@ -34,7 +34,7 @@ var HeaderMenu = React.createClass({
                     //},
                     {
                         'name': '婚纱纪实',
-                        'href': '#/recordvideo/record_video_list/1'
+                        'href': '#/recordVideo/record_video_list/1'
                     },
                     {
                         'name': '婚照技巧',
@@ -58,11 +58,11 @@ var HeaderMenu = React.createClass({
                     },
                     {
                         name : '婚礼跟拍',
-                        href : '#/follow'
+                        href : '#/followPhoto'
                     },
                     {
                         name : '婚礼视频',
-                        href : '#/followvideo/weddingvideo_list/3'
+                        href : '#/followVideo/weddingvideo_list/3'
                     },
                     //{
                     //    name : '选策划师',
@@ -131,6 +131,7 @@ var HeaderMenu = React.createClass({
     },
 
     componentDidMount: function() {
+        var self = this;
         var header_menu_b = false;
         var contact_us_btn = false;
         var $btn_menu = $('#btn_menu');
@@ -138,6 +139,7 @@ var HeaderMenu = React.createClass({
         var $menu_box = $('#menu_box');
         var $menu_box_1 = $('#menu_box_1');
         var $arrow = $('.arrow-3-wxjs',$btn_menu);
+        var $glob_back = $('#glob_back');
         var lt_h = 51*this.state.menu[this.props.menuType].length || '';
         var lt_h_1 = 402;
 
@@ -178,17 +180,32 @@ var HeaderMenu = React.createClass({
             contact_us_btn = !contact_us_btn;
             $menu_box_1.animate({height:0});
         });
+
+        $glob_back.on('click',function(){
+            self._clickBack();
+        });
+    },
+
+    _clickBack : function(){
+        window.historyStates.isBack = true;
+        window.historyStates.states.pop();
+        window.history.back();
     },
 
     render: function() {
         var self = this;
         var current_menu = self.state.menu[self.props.menuType];
+        var display;
+        var len = window.historyStates.states.length;
+
+        len < 1 && (display = 'none') || (display = 'block');
 
         //console.log(current_menu[self.props.name].name);
         return (
             <div className="header-view navbar navbar-app navbar-absolute-top">
                 <div className="pos-box">
                     <div className="btn-rig" style={{display:'none'}}><i className="phone"><em></em></i><span>400-015-9999</span></div>
+                    <div className='glob-back' id='glob_back' style={{display:display}}><span>返回</span><i className='arrow-lef'></i></div>
                     <div className="btn-rig" id='contact_us'><b>联系我们</b></div>
                     <div className="navbar-brand navbar-brand-center" id="btn_menu">
                         <span>{current_menu[self.props.name].name}</span><i className="arrow-3-wxjs arrow-3-1-lef-wxjs"></i>

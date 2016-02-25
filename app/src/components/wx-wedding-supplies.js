@@ -18,7 +18,6 @@ var WXWeddingSupplies = React.createClass({
                 pageSize:6,
                 pageIndex:1
             },
-            tplKey:'list#supplies',
             payload:[],
             sliderData:[],
             baseUrl:'',
@@ -210,7 +209,7 @@ var WXWeddingSupplies = React.createClass({
                                                     <div className='hover-box'>
                                                         <ImageListItem
                                                             frameWidth={winW*2}
-                                                            url={v.wechatUrl}
+                                                            url={v.coverUrlWx}
                                                             sid={v.id}
                                                             detailBaseUrl={'weddingsupplies/detail'}
                                                             />

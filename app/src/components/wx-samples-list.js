@@ -12,21 +12,7 @@ var WXSampleList = React.createClass({
     //初始化状态。
     // 分页，资源标示，数据，根路由，总条数， 风格类型
     getInitialState: function() {
-        return {}
-    },
-
-    getDefaultProps : function(){
         return {
-            historyBool:false,
-            historyState:{}
-        }
-    },
-
-    componentWillMount : function(){
-        var self = this;
-
-        //初始化状态
-        self.setState({
             pageSize:6,
             pageIndex:1,
             sampleType:0,
@@ -34,15 +20,13 @@ var WXSampleList = React.createClass({
             baseUrl:'',
             totalCount:0,
             stylesList:[],
-            addressList:[]
-        });
-
-        //是否有历史数据
-        var history = eval(window.sessionStorage.userHistory);
-        var nowRoute = self.getPathname();
+            addressList:[],
+            currentCard:0,
+            scrollTop:0
+        }
     },
 
-    componentDidMount : function() {
+    _domControl : function(){
         var self = this;
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
@@ -52,7 +36,7 @@ var WXSampleList = React.createClass({
         var isAddressMenu = false;
         var $menu_classify = $('.menu-classify');
 
-        $('span',$menu_classify).eq(0).addClass('item-current');
+        $('span',$menu_classify).eq(self.state.currentCard).addClass('item-current');
         $menu_classify.on('click','span',function(){
             var ind = $(this).index();
 
@@ -66,24 +50,19 @@ var WXSampleList = React.createClass({
             }
 
             ind === 1 && $('.samples-view .screening-box-wx').css({display:'none'}) || $('.samples-view .screening-box-wx').css({display:'block'})
-        });
-
-        $menu_classify.on('click','li',function(){
-            $(this).parent().removeAttr('style');
-            $('li',$menu_classify).removeAttr('class');
-            $(this).addClass('li-current');
+            self.setState({currentCard:ind});
         });
 
         $btn_style.on('click',function(){
-          if(!isStyleMenu){
-              isStyleMenu = !isStyleMenu;
-              $style_box.css({display:'block'});
-              isAddressMenu = false;
-              $address_box.css({display:'none'})
-          }else{
-            isStyleMenu = !isStyleMenu;
-            $style_box.css({display:'none'})
-          }
+            if(!isStyleMenu){
+                isStyleMenu = !isStyleMenu;
+                $style_box.css({display:'block'});
+                isAddressMenu = false;
+                $address_box.css({display:'none'})
+            }else{
+                isStyleMenu = !isStyleMenu;
+                $style_box.css({display:'none'})
+            }
         });
 
         $style_box.on('click','li',function(){
@@ -111,6 +90,36 @@ var WXSampleList = React.createClass({
             $(this).addClass('current').siblings().removeClass('current');
             $('li',$style_box).removeClass('current');
         });
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos(box,$("#scroll_content"),obj);
+        });
+    },
+
+    componentDidMount : function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self._domControl();
+
+        //console.log(window.historyStates.states.length);
+        //var len = window.historyStates.states.length - 1 < 0 ? 0 : window.historyStates.states.length - 1;
 
         // 从菜单获取资源链接。
         var parseResource = function(){
@@ -127,6 +136,10 @@ var WXSampleList = React.createClass({
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         totalCount:parseInt(payload.count),
                         baseUrl:'sample/samples_list',
+                    },function(){
+                        //console.log(window.historyStates.states.length,window.historyStates.states);
+                        window.historyStates.states.push(self.state);
+                        //console.log(window.historyStates.states.length,window.historyStates.states);
                     });
 
                     //console.log(JSON.stringify(payload.data,null,4))
@@ -169,11 +182,6 @@ var WXSampleList = React.createClass({
 
     },
 
-    componentWillReceiveProps : function(nextProps){
-        //console.log(nextProps);
-        self.setState(nextProps.historyState);
-    },
-
     //取数据
     fetchData : function(url,params){
         return Api.httpGET(url,params);
@@ -181,6 +189,7 @@ var WXSampleList = React.createClass({
 
     screeningFunc : function(obj){
         var self = this;
+        var len = window.historyStates.states.length - 1;
         var params = {
             pageSize:6,
             pageIndex:1
@@ -197,6 +206,8 @@ var WXSampleList = React.createClass({
                     payload:payload.data,
                     totalCount:payload.count,
                     sampleType:obj.sampleType || self.state.sampleType
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 })
 
                 obj.pageIndex = obj.pageIndex + 1;
@@ -208,6 +219,7 @@ var WXSampleList = React.createClass({
 
     scrollPos:function(box,cont,params){
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() + box.height() + ' ' + cont.height());
@@ -216,11 +228,16 @@ var WXSampleList = React.createClass({
                 params.pageIndex = params.pageIndex + 1;
             }
 
+            self.setState({
+                scrollTop : box.scrollTop()
+            });
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc:function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
@@ -236,12 +253,13 @@ var WXSampleList = React.createClass({
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })
-
     },
 
     render: function() {
@@ -288,7 +306,7 @@ var WXSampleList = React.createClass({
                 </div>
                 <div className='supplies-list'>
                     <div className='menu-classify menu-classify-car clearfix'>
-                        <span className='item-current' onClick={self.screeningFunc.bind(self,{sampleType:0})}>婚纱摄影</span>
+                        <span onClick={self.screeningFunc.bind(self,{sampleType:0})}>婚纱摄影</span>
                         <span onClick={self.screeningFunc.bind(self,{sampleType:1})}>艺术写真</span>
                     </div>
                     <div className='scroll-box scroll-padding-100'>
@@ -302,7 +320,7 @@ var WXSampleList = React.createClass({
                                                     <li key={i}>
                                                         <ImageListItem
                                                             frameWidth={winWidth*2}
-                                                            url={v.wechatUrl}
+                                                            url={v.coverUrlWx}
                                                             sid={v.id}
                                                             detailBaseUrl={'sample/detail'}
                                                             />

@@ -5,6 +5,14 @@ var RouteHandler = Router.RouteHandler;
 //require('../config/core.js'); //单例
 require('../vendors/slider.js');
 var Main = React.createClass({
+	componentWillMount : function(){
+		window.historyStates = {
+			isBack : false,
+			init : false,
+			states : []
+		}
+	},
+
 	render:function(){
 		return (
 			<div className='ui-container'>
@@ -29,7 +37,6 @@ var Main = React.createClass({
 		);
 	},
 	componentDidMount:function(){
-		var self = this
 		var $global_menu_box = $('#global_menu_box');
 		var $global_menu_btn = $('#global_menu_btn');
 		var isGlobalMenu = false;
@@ -48,14 +55,6 @@ var Main = React.createClass({
 			isGlobalMenu = !isGlobalMenu;
 			$global_menu_box.css({display:'none'});
 		});
-
-		var logMenu = function(payload){
-	 		//console.log('AppMenu:' + JSON.stringify(window.Core.resource,null,4));
-		};
-
-		 window.Core&&window.Core.promises['/'] &&
-		 	$.when(window.Core.promises['/'])
-				.then(logMenu)
 	}
 })
 

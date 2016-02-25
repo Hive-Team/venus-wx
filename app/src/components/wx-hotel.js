@@ -193,7 +193,7 @@ var WXHotel = React.createClass({
 
         // 酒店类型
         var hotelTypes = function(){
-            self.fetchData('hotel/hotelType')
+            self.fetchData('hotel/hotelType',{pageIndex:1,pageSize:50})
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
@@ -352,7 +352,7 @@ var WXHotel = React.createClass({
                                                 return(
                                                     <li key={i} className='list-item-2-wxjs'>
                                                         <a href={'#/hotel/detail/'+ v.id} className='relative-box'>
-                                                            <div className='img-box'><img src={v.wechatUrl} /></div>
+                                                            <div className='img-box'><img src={v.coverUrlWx} /></div>
                                                             <div className='info-box'>
                                                                 <div className='title-box'><div className='pos-box'><h1 className='title'>{v.name}</h1><div className='ico-box'><i className='block-blue-1-wxjs' style={{display:v.isGift?'block':'none'}}>礼</i><i className='block-red-1-wxjs' style={{display:v.isDiscount?'block':'none'}}>惠</i></div></div></div>
                                                                 <div className='score-box'>

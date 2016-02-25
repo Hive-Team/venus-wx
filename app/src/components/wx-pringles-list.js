@@ -19,7 +19,8 @@ var WXPringlesList = React.createClass({
             quarterly:[],
             recommend:'',
             listUrl:'',
-            totalCount:0
+            totalCount:0,
+            scrollTop:0
         };
     },
     //取数据
@@ -27,8 +28,7 @@ var WXPringlesList = React.createClass({
         return Api.httpGET(url,params);
     },
 
-    componentDidMount: function() {
-        var self = this;
+    _domControl : function(){
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
         var isStyleMenu = false;
@@ -47,6 +47,33 @@ var WXPringlesList = React.createClass({
             isStyleMenu = !isStyleMenu;
             $style_box.css({display:'none'});
         });
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos(box,$("#scroll_content"),obj);
+        });
+    },
+
+    componentDidMount: function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self._domControl();
 
         // 从菜单获取资源链接。
         var parseResource = function(){
@@ -62,6 +89,8 @@ var WXPringlesList = React.createClass({
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         baseUrl:'pringles/pringles_list',
                         totalCount:parseInt(payload.count)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
 
                     //console.log(payload.totalCount);
@@ -90,6 +119,7 @@ var WXPringlesList = React.createClass({
 
     selSeason : function(obj){
         var self = this;
+        var len = window.historyStates.states.length - 1;
         var params = {
             pageSize:6,
             pageIndex:1
@@ -108,6 +138,8 @@ var WXPringlesList = React.createClass({
                     payload:payload.data,
                     baseUrl:url,
                     totalCount:payload.count
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 })
                 //console.log(payload.totalCount);
                 obj.pageIndex ++;
@@ -118,6 +150,7 @@ var WXPringlesList = React.createClass({
 
     scrollFunc:function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
@@ -136,6 +169,8 @@ var WXPringlesList = React.createClass({
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
@@ -145,6 +180,7 @@ var WXPringlesList = React.createClass({
 
     scrollPos:function(box,cont,params){
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         box.bind("scroll",function(){
             if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
@@ -153,6 +189,11 @@ var WXPringlesList = React.createClass({
                 //console.log(params.pageIndex);
                 //$('#loaderIndicator').addClass('isShow');
             }
+
+            self.setState({
+                scrollTop : box.scrollTop()
+            });
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
@@ -193,7 +234,7 @@ var WXPringlesList = React.createClass({
                                                 <li key={i}>
                                                     <ImageListItem
                                                         frameWidth={winW*2}
-                                                        url={v.wechatUrl}
+                                                        url={v.coverUrlWx}
                                                         sid={v.id}
                                                         detailBaseUrl={'pringles/detail'}
                                                         />

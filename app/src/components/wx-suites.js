@@ -16,7 +16,8 @@ var WXPringlesList = React.createClass({
             pageIndex:1,
             payload:[],
             baseUrl:'',
-            totalCount:0
+            totalCount:0,
+            scrollTop:0
         };
     },
     //取数据
@@ -24,8 +25,28 @@ var WXPringlesList = React.createClass({
         return Api.httpGET(url,params);
     },
 
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
     componentDidMount: function() {
         var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
 
         /* 暂时隐藏
         function scrollPos(box,cont){
@@ -77,8 +98,11 @@ var WXPringlesList = React.createClass({
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         baseUrl:url,
                         totalCount:parseInt(payload.totalCount)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
 
+                    self.scrollPos($("#scroll_box"),$("#scroll_content"));
                     //console.log(payload.totalCount);
                     // 绑上滚动加载。
                     //scrollPos($("#scroll_box"),$("#scroll_content"));
@@ -89,12 +113,26 @@ var WXPringlesList = React.createClass({
             .then(parseResource);
     },
 
+    scrollPos:function(box,cont){
+        var self = this;
+        var len = window.historyStates.states.length - 1;
+
+        console.log(window.historyStates.states[len])
+        box.bind("scroll",function(){
+            console.log(box.scrollTop());
+            self.setState({
+                scrollTop : box.scrollTop()
+            });
+            window.historyStates.states[len].scrollTop = box.scrollTop();
+        });
+    },
 
     render: function() {
         var self = this;
         var winWidth = $(window).width();
         var pageData = self.state.payload;
         var baseUrl = self.state.baseUrl;
+
         return (
             <div className="app has-navbar-top">
                 <WXHeaderMenu menuType={'menu_1'} name={2} />
@@ -120,7 +158,7 @@ var WXPringlesList = React.createClass({
                                                            <ImageListItem
                                                                detailBaseUrl={'suite/detail'}
                                                                frameWidth={winWidth*2}
-                                                               url={v.wechatUrl}
+                                                               url={v.coverUrlWx}
                                                                sid={v.id}
                                                                errorUrl={'http://placehold.it/375x250'}
                                                                />

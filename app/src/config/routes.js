@@ -7,7 +7,6 @@ var Route = Router.Route;
 var Samples = require('../components/wx-samples-list.js');
 var SamplesDetail = require('../components/wx-samples-detail.js');
 var Pringles = require('../components/wx-pringles-list.js');
-var PringlesDetail = require('../components/wx-pringles-detail.js');
 var Suites = require('../components/wx-suites.js');
 var SuiteDetail = require('../components/wx-suite.js');
 //var PhotoTeam = require('../components/wx-photographer-list.js');
@@ -54,8 +53,8 @@ var routes = (
 			//<Route name='phototeam-detail' path='team/:levelId/:ind' handler={PhotoTeamDetail} />
 			//<Route name='phototeam-product' path='team/:teamId/works/:contentId' handler={PhotoTeamProduct} />
 		}
-		<Route name='wedding-mv' path='recordvideo/record_video_list/1' handler={WeddingMV} />
-		<Route name='wedding-mv-detail' path='recordvideo/detail/:id' handler={WeddingVideoDetail} />
+		<Route name='wedding-mv' path='recordVideo/record_video_list/1' handler={WeddingMV} />
+		<Route name='wedding-mv-detail' path='recordVideo/detail/:id' handler={WeddingVideoDetail} />
 		<Route name='hotel' path='hotel' handler={Hotel} />
 		<Route name='hotel-detail' path='hotel/detail/:id' handler={HotelDetail} />
 		<Route name='banquet-detail' path='banquetHall/detail/:id' handler={BanquetDetail} />
@@ -74,8 +73,8 @@ var routes = (
     	<Route name='cameraman-detail' path='f4/camera/:personId' handler={VideoPlayerDetail} />
     	<Route name='wedding-dress' path='weddingdress' handler={WeddingDress} />
     	<Route name='wedding-dress-detail' path='dress/:module/:id' handler={WeddingDressDetail} />
-		<Route name='wedding-video' path='followvideo/weddingvideo_list/3' handler={WeddingVideo} />
-		<Route name='wedding-video-detail' path='followvideo/detail/:id' handler={WeddingVideoDetail} />
+		<Route name='wedding-video' path='followVideo/weddingvideo_list/3' handler={WeddingVideo} />
+		<Route name='wedding-video-detail' path='followVideo/detail/:id' handler={WeddingVideoDetail} />
 		<Route name='wedding-movie' path='video/movie_latest/0' handler={WeddingMovie} />
 		<Route name='wedding-movie-detail' path='video/detail/:id' handler={WeddingVideoDetail} />
 		<Route name='wedding-lovemv' path='video/movie_love_mv/4' handler={WeddingLoveMV} />
@@ -90,8 +89,8 @@ var routes = (
 		<Route name='wedding-class5' path='movie_weddingclass/5' handler={WeddingClass} />
 		<Route name='wedding-class7' path='supplies_weddingclass/7' handler={WeddingClass} />
 		<Route name='wedding-class8' path='car_weddingclass/8' handler={WeddingClass} />
-		<Route name='wedding-pat' path='follow' handler={WeddingPat} />
-		<Route name='wedding-pat-detail' path='follow/detail/:id' handler={SchemeDetail} />
+		<Route name='wedding-pat' path='followPhoto' handler={WeddingPat} />
+		<Route name='wedding-pat-detail' path='followPhoto/detail/:id' handler={SchemeDetail} />
 		<Route name='wedding-supplies' path='weddingsupplies' handler={WeddingSupplies} />
 		<Route name='wedding-supplies-detail' path='weddingsupplies/detail/:id' handler={WeddingCarRentalDetail} />
 		<Route name='wedding-carental' path='weddingcarental' handler={WeddingCarRental} />
