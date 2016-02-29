@@ -18,13 +18,18 @@ var WXScheme = React.createClass({
             baseUrl:'',
             scrollUrl:'',
             quarterly:[],
-            caseStyle:[]
+            caseStyle:[],
+            scrollTop:0,
+            currentCard:0,
+            isMenuRender:true
         };
     },
+
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
-    componentDidMount: function() {
+
+    _domControl : function(){
         var self = this;
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
@@ -32,7 +37,11 @@ var WXScheme = React.createClass({
         var $menu_classify = $('.menu-classify');
         var B_ul = false;
 
-        $('span',$menu_classify).eq(0).addClass('item-current');
+        if(self.state.itemCurrentCard != null){
+            $('li',$menu_classify).eq(self.state.itemCurrentCard).addClass('li-current');
+        }
+
+        $('span',$menu_classify).eq(self.state.currentCard).addClass('item-current');
         $menu_classify.on('click','span',function(){
             var ind = $(this).index();
 
@@ -73,6 +82,40 @@ var WXScheme = React.createClass({
             isStyleMenu = !isStyleMenu;
             $style_box.css({display:'none'});
         });
+    },
+
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
+    componentDidMount: function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self._domControl();
 
         var parseResource = function(){
             var url = self.getPath().substr(1);
@@ -95,6 +138,8 @@ var WXScheme = React.createClass({
                         baseUrl:url,
                         scrollUrl:url,
                         totalCount:parseInt(payload.count)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
 
                     //绑上滚动加载。
@@ -135,10 +180,21 @@ var WXScheme = React.createClass({
 
     selSeason : function(id){
         var self = this;
+        var currentCard,itemCurrentCard;
+        var $menu_classify = $('.menu-classify');
+        var len = window.historyStates.states.length - 1;
         var url = self.state.baseUrl;
 
         self.setState({
             pageIndex:1
+        });
+
+        $('span',$menu_classify).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
+
+        $('li',$menu_classify).each(function(i,e){
+            $(this).hasClass('li-current') === true && (itemCurrentCard = i);
         });
 
         self.fetchData(url,{
@@ -152,7 +208,12 @@ var WXScheme = React.createClass({
                 styleId:id,
                 scrollUrl:url,
                 payload:payload.data,
-                totalCount:payload.count
+                totalCount:payload.count,
+                currentCard:currentCard,
+                itemCurrentCard:itemCurrentCard,
+                isMenuRender:false
+            },function(){
+                window.historyStates.states[len] = self.state;
             })
             //console.log(payload.data);
 
@@ -169,21 +230,29 @@ var WXScheme = React.createClass({
 
     scrollPos:function(box,cont,params){
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         box.bind("scroll",function(){
             if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.scrollUrl,params);
                 params.pageIndex ++;
             }
+
+            self.state.scrollTop = box.scrollTop();
+            self.state.isMenuRender = false;
+
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc:function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
+
         $('#loaderIndicator').addClass('isShow');
         window.isFeching = true;
         var timeout = window.setTimeout(function(){
@@ -195,6 +264,8 @@ var WXScheme = React.createClass({
                 self.setState({
                     payload:((params === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
@@ -205,6 +276,9 @@ var WXScheme = React.createClass({
 
     clickFunc : function(obj){
         var self = this;
+        var len = window.historyStates.states.length - 1;
+        var currentCard,itemCurrentCard;
+        var $menu_classify = $('.menu-classify');
         var params = {
             pageIndex:1,
             pageSize:6
@@ -212,13 +286,26 @@ var WXScheme = React.createClass({
 
         $.extend(obj,params);
 
+        $('span',$menu_classify).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
+
+        $('li',$menu_classify).each(function(i,e){
+            $(this).hasClass('li-current') === true && (itemCurrentCard = i);
+        });
+
         self.fetchData(self.state.baseUrl,obj)
             .done(function(payload){
                 (payload.data && payload.code===200)&&
                 self.setState({
                     payload:payload.data,
                     pageIndex:obj.pageIndex,
-                    totalCount:payload.totalCount
+                    totalCount:payload.totalCount,
+                    currentCard:currentCard,
+                    itemCurrentCard:itemCurrentCard,
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 })
 
                 $("#scroll_box").unbind('scroll');
@@ -235,7 +322,7 @@ var WXScheme = React.createClass({
 
         return (
             <div className="app supplies-list-view">
-                <WXHeaderMenu menuType={'menu_3'} name={self.getPath() === '/cases' ? 0 : 1} />
+                <WXHeaderMenu isRender={self.state.isMenuRender} menuType={'menu_3'} name={self.getPath() === '/cases' ? 0 : 1} />
 
                 <div className='menu-classify clearfix' id='supplies_menu' style={{display:self.getPath() === '/cases' && 'block' || 'none'}}>
                     <div className='pos-box'>

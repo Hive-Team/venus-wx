@@ -23,7 +23,9 @@ var WXWeddingMV = React.createClass({
             quarterly:[],
             headerCof:[0,4,1,2,1,2],    //所在菜单中的下标
             headerType:['menu_5','menu_1','menu_3','menu_3','menu_5','menu_5'],
-            router:self.getPath().substr(1).split('/')
+            router:self.getPath().substr(1).split('/'),
+            scrollTop:0,
+            isMenuRender:true
         };
     },
     //取数据
@@ -31,7 +33,7 @@ var WXWeddingMV = React.createClass({
         return Api.httpGET(url,params);
     },
 
-    componentDidMount: function() {
+    _domControl : function(){
         var $style_box = $('#style_box');
         var $btn_style = $('#btn_style');
         var isStyleMenu = false;
@@ -50,8 +52,48 @@ var WXWeddingMV = React.createClass({
             isStyleMenu = !isStyleMenu;
             $style_box.css({display:'none'});
         });
+    },
 
-        this.dataFunc();
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+        var $glob_back = $('#glob_back');
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+            window.historyStates.states.length <= 1 && $glob_back.css({display:'none'});
+        });
+    },
+
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    componentDidMount: function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self._domControl();
+        self.dataFunc();
+    },
+
+    shouldComponentUpdate : function(p,s){
+        s.isMenuRender = false;
+        return true;
     },
 
     dataFunc:function(){
@@ -71,6 +113,8 @@ var WXWeddingMV = React.createClass({
                     pageIndex:self.state.pageIndex + 1,
                     totalCount:payload.totalCount,
                     baseUrl:url
+                },function(){
+                    window.historyStates.states.push(self.state);
                 });
 
                 //(payload.data && payload.code === 200) && console.log(payload.data);
@@ -93,7 +137,6 @@ var WXWeddingMV = React.createClass({
 
     selSeason:function(obj){
         var self = this;
-        var num = 0;
         var params = {
             pageSize:6,
             pageIndex:1,
@@ -111,7 +154,8 @@ var WXWeddingMV = React.createClass({
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     payload:payload.data,
                     baseUrl:url,
-                    totalCount:payload.totalCount
+                    totalCount:payload.totalCount,
+                    isMenuRender:false
                 });
                 //console.log(payload.data);
                 params.pageIndex ++;
@@ -124,6 +168,7 @@ var WXWeddingMV = React.createClass({
         var self = this;
         var router = self.state.router;
         var type = (router[1] != 0) && router[1] || (4+','+5);
+        var len = window.historyStates.states.length - 1;
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() +','+ box.height() +','+ cont.height());
@@ -134,11 +179,16 @@ var WXWeddingMV = React.createClass({
                     videoType:type
                 });
             }
+
+            self.state.scrollTop = box.scrollTop();
+            self.state.isMenuRender = false;
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc:function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
@@ -155,7 +205,10 @@ var WXWeddingMV = React.createClass({
                 (payload.data && payload.code === 200) &&
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                    pageIndex:parseInt(self.state.pageIndex)+1
+                    pageIndex:parseInt(self.state.pageIndex)+1,
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.Core.isFeching = false;
                 window.clearTimeout(timeout);
@@ -172,7 +225,7 @@ var WXWeddingMV = React.createClass({
 
         return (
             <div className="planner-list-view mobile-main-box">
-                <WXHeaderMenu menuType={self.state.headerType[router[2]]} name={self.state.headerCof[router[2]]} />
+                <WXHeaderMenu isRender={self.state.isMenuRender} menuType={self.state.headerType[router[2]]} name={self.state.headerCof[router[2]]} />
 
                 <div className="screening-box-wx" style={{display:((router[2] != 1 && router[2] != 3) && 'none')}}>
                     <ul className="screening-list-wx" id="style_box">

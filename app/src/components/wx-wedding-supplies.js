@@ -23,19 +23,29 @@ var WXWeddingSupplies = React.createClass({
             baseUrl:'',
             brand:[],
             types:[],
-            totalCount:0
+            totalCount:0,
+            scrollTop:0,
+            currentCard:0,
+            itemCurrentCard:null,
+            isMenuRender:true
         };
     },
+
     //取数据
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
-    componentDidMount: function() {
+
+    _domControl : function(){
         var self = this;
         var $menu_classify = $('.menu-classify');
         var B_ul = false;
 
-        $('span',$menu_classify).eq(0).addClass('item-current');
+        if(self.state.itemCurrentCard != null){
+            $('li',$menu_classify).eq(self.state.itemCurrentCard).addClass('li-current');
+        }
+
+        $('span',$menu_classify).eq(self.state.currentCard).addClass('item-current');
         $menu_classify.on('click','span',function(){
             var ind = $(this).index();
 
@@ -61,34 +71,72 @@ var WXWeddingSupplies = React.createClass({
             $(this).addClass('li-current');
             B_ul = false;
         });
+    },
+
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
+    componentDidMount: function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self._domControl();
 
         var parseResource = function(){
             var url = 'weddingsupplies/supplies_list';
+
             self.fetchData(url,self.state.params)
                 .done(function(payload){
                     (payload.data && payload.data.length>0 && payload.code === 200) &&
                     self.setState({
                         payload:payload.data,
-                        totalCount:parseInt(payload.count)
+                        totalCount:parseInt(payload.count),
+                        baseUrl:url
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
-                    self.setState({baseUrl:url});
                     //console.log(payload.data);
                     //绑上滚动加载。
+                    //console.log(self.state.params);
                     self.scrollPos($("#scroll_box"),$("#scroll_content"),self.state.params);
-
                 })
         };
 
         var brand = function(){
-            self.fetchData('weddingsupplies/brands')
+            self.fetchData('suppliesBrand/all')
                 .done(function(payload){
                     self.setState({
                         brand:payload.data
                     });
                 });
         }
+
         var types = function(){
-            self.fetchData('weddingsupplies/types')
+            self.fetchData('suppliesType/all')
                 .done(function(payload){
                     self.setState({
                         types:payload.data
@@ -104,16 +152,34 @@ var WXWeddingSupplies = React.createClass({
 
     clickFunc : function(obj){
         var self = this;
+        var $menu_classify = $('.menu-classify');
+        var len = window.historyStates.states.length - 1;
+        var currentCard,itemCurrentCard;
 
         self.state.params.pageIndex = 1;
         $.extend(obj,self.state.params);
+
+        $('span',$menu_classify).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
+
+        $('li',$menu_classify).each(function(i,e){
+            $(this).hasClass('li-current') === true && (itemCurrentCard = i);
+        });
+
+        console.log(currentCard,itemCurrentCard);
 
         self.fetchData(self.state.baseUrl,obj)
             .done(function(payload){
                 (payload.data && payload.code===200)&&
                 self.setState({
                     payload:payload.data,
-                    totalCount:payload.count
+                    totalCount:payload.count,
+                    currentCard:currentCard,
+                    itemCurrentCard:itemCurrentCard,
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 })
 
                 $("#scroll_box").unbind('scroll');
@@ -123,33 +189,47 @@ var WXWeddingSupplies = React.createClass({
 
     scrollPos:function(box,cont,params){
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
-        params.pageIndex ++;
         box.bind("scroll",function(){
             if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,params);
                 params.pageIndex ++;
             }
+
+            self.state.scrollTop = box.scrollTop();
+            self.state.isMenuRender = false;
+
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc:function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(params.pageSize)*parseInt(params.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
+
         $('#loaderIndicator').addClass('isShow');
         window.isFeching = true;
         var timeout = window.setTimeout(function(){
             window.isFeching = false;
         },5000);
+
         self.fetchData(url,params)
             .done(function(payload){
                 (payload.data && payload.code === 200) &&
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                    pageIndex:parseInt(self.state.pageIndex)+1
+                    params:{
+                        pageIndex:parseInt(self.state.pageIndex)+1,
+                        pageSize:6
+                    },
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
@@ -169,7 +249,7 @@ var WXWeddingSupplies = React.createClass({
 
         return (
             <div className="supplies-list-view mobile-main-box">
-                <WXHeaderMenu menuType={'menu_7'} name={0} />
+                <WXHeaderMenu menuType={'menu_7'} name={0} isRender={self.state.isMenuRender} />
 
                 <div className='menu-classify clearfix' id='supplies_menu'>
                     <div className='pos-box'>

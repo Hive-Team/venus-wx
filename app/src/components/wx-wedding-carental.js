@@ -33,6 +33,63 @@ var WXWeddingCarRental = React.createClass({
         return Api.httpGET(url,params);
     },
 
+    _domControl : function(){
+        var self = this;
+        var $menu_classify = $('.menu-classify');
+        var B_ul = false;
+
+        if(self.state.itemCurrentCard != null){
+            $('li',$menu_classify).eq(self.state.itemCurrentCard).addClass('li-current');
+        }
+
+        $('span',$menu_classify).eq(self.state.currentCard).addClass('item-current');
+        $menu_classify.on('click','span',function(){
+            var ind = $(this).index();
+
+            if($(this).hasClass('item-current') && B_ul){
+                $('ul',$menu_classify).removeAttr('style');
+                B_ul = false;
+                return;
+            }
+
+            B_ul = true;
+
+            $(this).addClass('item-current');
+            $(this).siblings().removeClass('item-current');
+            $('ul',$menu_classify).eq(ind - 1).css({display:'block'})
+                .siblings().removeAttr('style');
+
+            ind <= 0 && $('ul',$menu_classify).removeAttr('style');
+        });
+
+        $menu_classify.on('click','li',function(){
+            $(this).parent().removeAttr('style');
+            $('li',$menu_classify).removeAttr('class');
+            $(this).addClass('li-current');
+            B_ul = false;
+        });
+    },
+
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
     componentDidMount: function() {
         var self = this;
         var $menu_classify = $('.menu-classify');
@@ -84,7 +141,7 @@ var WXWeddingCarRental = React.createClass({
         }
 
         var brands = function(){
-            self.fetchData('weddingCarBrand/all')
+            self.fetchData('carBrand/all')
                 .done(function(payload){
                     self.setState({
                         brands:payload.data
@@ -92,7 +149,7 @@ var WXWeddingCarRental = React.createClass({
                 });
         }
         var models = function(){
-            self.fetchData('weddingCarModels/all')
+            self.fetchData('carModels/all')
                 .done(function(payload){
                     self.setState({
                         models:payload.data
@@ -100,7 +157,7 @@ var WXWeddingCarRental = React.createClass({
                 });
         }
         var levels = function(){
-            self.fetchData('weddingCarLevel/all')
+            self.fetchData('carLevel/all')
                 .done(function(payload){
                     self.setState({
                         levels:payload.data

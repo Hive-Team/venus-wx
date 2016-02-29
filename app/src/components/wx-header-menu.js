@@ -187,16 +187,30 @@ var HeaderMenu = React.createClass({
     },
 
     _clickBack : function(){
+        var last;
         window.historyStates.isBack = true;
         window.historyStates.states.pop();
+        last = window.historyStates.states.length - 1;
+        console.log(window.historyStates.states);
+        window.historyStates.states[last].isMenuRender = true;
         window.history.back();
     },
 
-    render: function() {
+    shouldComponentUpdate : function(nextProps,nextState){
+        if(nextProps.isRender === false){
+            return false;
+        }else{
+            return true;
+        }
+    },
+
+    render : function() {
         var self = this;
         var current_menu = self.state.menu[self.props.menuType];
         var display;
         var len = window.historyStates.states.length;
+        console.log(window.historyStates.states);
+        console.log(len);
 
         len < 1 && (display = 'none') || (display = 'block');
 

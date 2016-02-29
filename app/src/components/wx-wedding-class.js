@@ -19,7 +19,9 @@ var WXWeddingClass = React.createClass({
             totalCount:0,
             headerCof:[5,1,4,1,3,'钻石百科',1,1],       //所在菜单中的下标
             headerType:['menu_1','menu_2','menu_3','menu_4','menu_5','menu_6','menu_7','menu_8'],
-            router:self.getPath().substr(1).split('/')
+            router:self.getPath().substr(1).split('/'),
+            scrollTop:0,
+            isMenuRender:true
         };
     },
 
@@ -28,8 +30,38 @@ var WXWeddingClass = React.createClass({
         return Api.httpGET(url,params);
     },
 
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
     componentDidMount: function() {
-        this.dataFunc();
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            //console.log(window.historyStates.states);
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self.dataFunc();
     },
 
     dataFunc:function(){
@@ -49,6 +81,8 @@ var WXWeddingClass = React.createClass({
                     baseUrl:router[0],
                     payload:payload.data,
                     totalCount:parseInt(payload.data.count)
+                },function(){
+                    window.historyStates.states.push(self.state);
                 });
 
                 //(payload.data && payload.code === 200) && console.log(payload.data);
@@ -59,6 +93,7 @@ var WXWeddingClass = React.createClass({
 
     scrollPos:function(box,cont){
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         box.bind("scroll",function(){
             if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
@@ -68,6 +103,12 @@ var WXWeddingClass = React.createClass({
                     moduleTypeId:self.state.router[1]
                 });
             }
+
+            self.setState({
+                scrollTop:box.scrollTop(),
+                isMenuRender:false
+            });
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
@@ -88,7 +129,8 @@ var WXWeddingClass = React.createClass({
                 (payload.data && payload.code === 200) &&
                 self.setState({
                     payload:self.state.payload.concat(payload.data.data),
-                    pageIndex:parseInt(self.state.pageIndex)+1
+                    pageIndex:parseInt(self.state.pageIndex)+1,
+                    isMenuRender:false
                 });
 
                 window.isFeching = false;
@@ -104,7 +146,7 @@ var WXWeddingClass = React.createClass({
 
         return (
             <div className="weddingclass-list-view mobile-main-box">
-                <WXHeaderMenu menuType={self.state.headerType[router[1]-1]} name={self.state.headerCof[router[1]-1]} />
+                <WXHeaderMenu isRender={self.state.isMenuRender} menuType={self.state.headerType[router[1]-1]} name={self.state.headerCof[router[1]-1]} />
 
                 <div className='weddingclass-list' id='scroll_box'>
                     <div id='scroll_content' className='scroll-countent'>

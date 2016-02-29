@@ -14,7 +14,6 @@ var WXHotel = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#hotel',
             payload:[],
             baseUrl:'',
             totalCount:0,
@@ -57,55 +56,27 @@ var WXHotel = React.createClass({
                     "id": 114,
                     "name": "重庆近郊"
                 }
-            ]
+            ],
+            scrollTop:0,
+            currentCard:0,
+            itemCurrentCard:null,
+            isMenuRender:true
         };
     },
     //取数据
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
-    //点击加载详情
-    loadDetail:function(baseUrl,id,evt){
 
-        evt.preventDefault();
-        var winWidth = $(window).width();
-        Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
-            if(payload.code !== 200 || !payload.data) return;
-            var pswpElement = document.querySelectorAll('.pswp')[0];
-
-            var items = $.map(payload.data,function(v,i){
-                var dimension = v.contentUrl && v.contentUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
-                var src = (window.Core.mode ==='dev')?v.contentUrl:v.contentUrl+'@1e_'+ winWidth+'w_1c_0i_1o_90q_1x';
-                var w = dimension.length>2 ?parseInt(dimension[1]):-1;
-                var h = dimension.length>2 ?parseInt(dimension[2]):-1;
-                return {
-                    src:src,
-                    w:w,
-                    h:h
-                }
-            })
-
-            // define options (if needed)
-            var options = {
-                // optionName: 'option value'
-                // for example:
-                index: 0, // start at first slide
-                history:false,
-                focus: false
-            };
-
-            // Initializes and opens PhotoSwipe
-            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            gallery.init()
-        });
-
-    },
-
-    componentDidMount: function() {
+    _domControl : function(){
         var self = this;
         var $nav_box = $('#nav_box');
-        var $screening_list = $('#screening_list');
 
+        if(self.state.itemCurrentCard != null){
+            $('li',$nav_box).eq(self.state.itemCurrentCard).addClass('current');
+        }
+
+        $('.item',$nav_box).eq(self.state.currentCard).addClass('item-current');
         $('.item',$nav_box).each(function(i,e){
             var ind = $(this).index();
 
@@ -131,40 +102,40 @@ var WXHotel = React.createClass({
         $('.single',$nav_box).click(function(){
             $('li',$nav_box).removeClass('current');
         });
+    },
 
-        function scrollPos(box,cont){
-            box.bind("scroll",function(){
-                //console.log(box.scrollTop() + box.height(),cont.height());
-                if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
-                    scrollFunc(self.state.baseUrl,{
-                        pageSize:self.state.pageSize,
-                        pageIndex:self.state.pageIndex
-                    });
-                }
-            });
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
+    componentDidMount: function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
         }
 
-        function scrollFunc(url,params) {
-            if(parseInt(self.state.totalCount)>0 &&
-                parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
-                return;
-            $('#loaderIndicator').addClass('isShow');
-            window.isFeching = true;
-            var timeout = window.setTimeout(function(){
-                window.isFeching = false;
-            },5000);
-            self.fetchData(url,params)
-                .done(function(payload){
-                    (payload.data && payload.code === 200) &&
-                    self.setState({
-                        payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                        pageIndex:parseInt(self.state.pageIndex)+1
-                    });
-                    window.isFeching = false;
-                    window.clearTimeout(timeout);
-                    $('#loaderIndicator').removeClass('isShow');
-                })
-        }
+        self._domControl();
 
         // 从菜单获取资源链接。
         var parseResource = function(){
@@ -182,12 +153,14 @@ var WXHotel = React.createClass({
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         baseUrl:url,
                         totalCount:parseInt(payload.count)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
 
                     //console.log(JSON.stringify(payload.data,null,4));
                     //console.log(payload.data);
                     // 绑上滚动加载。
-                    scrollPos($("#scroll_box"),$("#scroll_content"));
+                    self.scrollPos($("#scroll_box"),$("#scroll_content"));
                 })
         };
 
@@ -212,6 +185,9 @@ var WXHotel = React.createClass({
 
     screeningClick : function(url,obj){
         var self = this;
+        var $nav_box = $('#nav_box');
+        var len = window.historyStates.states.length - 1;
+        var currentCard,itemCurrentCard;
         self.state.pageIndex = 1;
         var params = {
             pageSize: self.state.pageSize,
@@ -221,6 +197,14 @@ var WXHotel = React.createClass({
         for(var i in obj)
             params[i] = obj[i];
 
+        $('.item',$nav_box).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
+
+        $('li',$nav_box).each(function(i,e){
+            $(this).hasClass('current') === true && (itemCurrentCard = i);
+        });
+
         self.fetchData(url,params)
             .done(function(payload){
                 (payload.data && payload.code === 200) &&
@@ -228,19 +212,26 @@ var WXHotel = React.createClass({
                     payload:payload.data,
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     baseUrl:url,
-                    totalCount:parseInt(payload.count)
+                    totalCount:parseInt(payload.count),
+                    currentCard:currentCard,
+                    itemCurrentCard:itemCurrentCard,
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
 
+                params.pageIndex ++;
                 $("#scroll_box").unbind('scroll');
                 //console.log(payload);
                 //console.log(JSON.stringify(payload.data,null,4));
                 //console.log(params);
                 self.scrollPos($("#scroll_box"),$("#scroll_content"),params);
-            })
+            });
     },
 
     scrollPos : function(box,cont,params){
-      var self = this;
+        var self = this;
+        var len = window.historyStates.states.length - 1;
         if(!params) params = {
             pageSize:self.state.pageSize,
             pageIndex:self.state.pageIndex,
@@ -248,19 +239,27 @@ var WXHotel = React.createClass({
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() + box.height() + " , " + (cont.height() + 80));
-            if(box.scrollTop() + box.height() >= cont.height() + 80 && !window.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 // console.log(params);
                 params.pageIndex = self.state.pageIndex;
                 self.scrollFunc(self.state.baseUrl,params);
             }
+
+            self.state.scrollTop = box.scrollTop();
+            self.state.isMenuRender = false;
+
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc : function(url,params) {
-      var self = this;
+        var self = this
+        var len = window.historyStates.states.length - 1;
+
         if(parseInt(self.state.totalCount)>0 &&
-            parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
+            parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) > parseInt(self.state.totalCount))
             return;
+
         $('#loaderIndicator').addClass('isShow');
         window.isFeching = true;
         var timeout = window.setTimeout(function(){
@@ -272,6 +271,8 @@ var WXHotel = React.createClass({
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     pageIndex:parseInt(self.state.pageIndex)+1
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
@@ -288,7 +289,7 @@ var WXHotel = React.createClass({
 
         return (
             <div className='hotel-list-view mobile-main-box'>
-                <WXHeaderMenu menuType={'menu_2'} name={0} />
+                <WXHeaderMenu isRender={self.state.isMenuRender} menuType={'menu_2'} name={0} />
                 <div className="hotel-list">
                     <div className='nav-box' id='nav_box'>
                         <span className='item'>位置</span>
@@ -298,7 +299,7 @@ var WXHotel = React.createClass({
                         <span className='item single' onClick={function(){self.screeningClick(self.state.baseUrl,{isGift:1})}}>礼包</span>
                         <span className='item single' onClick={function(){self.screeningClick(self.state.baseUrl,{isDisaccount:1})}}>优惠</span>
 
-                        <ul className='clearfix'>
+                        <ul className='clearfix' style={{display:'none'}}>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl)}}>全部</li>
                             {
                                 $.map(self.state.areas,function(v,i){
@@ -308,7 +309,7 @@ var WXHotel = React.createClass({
                                 })
                             }
                         </ul>
-                        <ul className='clearfix'>
+                        <ul className='clearfix' style={{display:'none'}}>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:0})}}>全部</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{maxTable:9})}}>10桌以下</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:10,maxTable:20})}}>10-20桌</li>
@@ -317,14 +318,14 @@ var WXHotel = React.createClass({
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:40,maxTable:50})}}>40-50桌</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minTable:51})}}>50桌以上</li>
                         </ul>
-                        <ul className='clearfix'>
+                        <ul className='clearfix' style={{display:'none'}}>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:0})}}>全部</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{maxPrice:1999})}}>2000元以下</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:2000,maxPrice:3000})}}>2000-3000元</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:3000,maxPrice:4000})}}>3000-4000元</li>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl,{minPrice:4001})}}>4000元以上</li>
                         </ul>
-                        <ul className='clearfix'>
+                        <ul className='clearfix' style={{display:'none'}}>
                             <li onClick={function(){self.screeningClick(self.state.baseUrl)}}>全部</li>
                             {
                                 $.map(hotelTypes,function(v,i){

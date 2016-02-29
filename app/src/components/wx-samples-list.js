@@ -22,7 +22,8 @@ var WXSampleList = React.createClass({
             stylesList:[],
             addressList:[],
             currentCard:0,
-            scrollTop:0
+            scrollTop:0,
+            isMenuRender:true
         }
     },
 
@@ -50,7 +51,7 @@ var WXSampleList = React.createClass({
             }
 
             ind === 1 && $('.samples-view .screening-box-wx').css({display:'none'}) || $('.samples-view .screening-box-wx').css({display:'block'})
-            self.setState({currentCard:ind});
+            self.setState({currentCard:ind,isMenuRender:false});
         });
 
         $btn_style.on('click',function(){
@@ -205,7 +206,8 @@ var WXSampleList = React.createClass({
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     payload:payload.data,
                     totalCount:payload.count,
-                    sampleType:obj.sampleType || self.state.sampleType
+                    sampleType:obj.sampleType || self.state.sampleType,
+                    isMenuRender:false
                 },function(){
                     window.historyStates.states[len] = self.state;
                 })
@@ -229,7 +231,8 @@ var WXSampleList = React.createClass({
             }
 
             self.setState({
-                scrollTop : box.scrollTop()
+                scrollTop:box.scrollTop(),
+                isMenuRender:false
             });
             window.historyStates.states[len].scrollTop = box.scrollTop();
         });
@@ -272,7 +275,7 @@ var WXSampleList = React.createClass({
 
         return (
             <div className="app has-navbar-top samples-view">
-                <WXHeaderMenu menuType={'menu_1'} name={0} />
+                <WXHeaderMenu menuType={'menu_1'} name={0} isRender={self.state.isMenuRender} />
 
                 <div className="screening-box-wx">
                     <ul className="screening-list-wx" id="style_box">

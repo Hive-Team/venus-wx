@@ -14,7 +14,6 @@ var WXF4 = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#f4',
             payload:[],
             baseUrl:'',
             totalCount:0,
@@ -24,51 +23,19 @@ var WXF4 = React.createClass({
                 'f4/dresser' : "dresser/imageUrl/detailImages",
                 'f4/photographer' : "photographer/imageUrl/detailImages",
                 'f4/camera' : "cameraman/imageUrl/videoUrl"
-            }
+            },
+            scrollTop:0,
+            currentCard:0,
+            itemCurrentCard:null,
+            isMenuRender:true
         };
     },
     //取数据
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
-    //点击加载详情
-    loadDetail:function(baseUrl,id,evt){
 
-        evt.preventDefault();
-        var winWidth = $(window).width();
-        Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
-            if(payload.code !== 200 || !payload.data) return;
-            var pswpElement = document.querySelectorAll('.pswp')[0];
-
-            var items = $.map(payload.data,function(v,i){
-                var dimension = v.contentUrl && v.contentUrl.split(/_(\d{1,4})x(\d{1,4})\.\w+g$/i);
-                var src = (window.Core.mode ==='dev')?v.contentUrl:v.contentUrl+'@1e_'+ winWidth+'w_1c_0i_1o_90q_1x';
-                var w = dimension.length>2 ?parseInt(dimension[1]):-1;
-                var h = dimension.length>2 ?parseInt(dimension[2]):-1;
-                return {
-                    src:src,
-                    w:w,
-                    h:h
-                }
-            })
-
-            // define options (if needed)
-            var options = {
-                // optionName: 'option value'
-                // for example:
-                index: 0, // start at first slide
-                history:false,
-                focus: false
-            };
-
-            // Initializes and opens PhotoSwipe
-            var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-            gallery.init()
-        });
-
-    },
-
-    componentDidMount: function() {
+    _domControl : function(){
         var self = this;
         var $screening_box = $('#screening_box');
         var $f4_hidden = $('#f4_hidden');
@@ -77,6 +44,7 @@ var WXF4 = React.createClass({
         var $f4_box = $('.f4-hidden-box');
         var isStyleMenu = false;
 
+        $('.item',$screening_box).eq(self.state.currentCard).addClass('item-current');
         $btn_style.on('click',function(){
             if(!isStyleMenu){
                 isStyleMenu = !isStyleMenu;
@@ -102,45 +70,40 @@ var WXF4 = React.createClass({
         $f4_box.on('click','.more-cont',function(){
             $(this).hide().siblings('.description').css({height:'auto'});
         });
+    },
 
-        function scrollPos(box,cont){
-            box.bind("scroll",function(){
-                //console.log(box.scrollTop() + box.height() + "  , " + cont.height());
-                if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
-                    scrollFunc(self.state.baseUrl,{
-                        pageSize:self.state.pageSize,
-                        pageIndex:self.state.pageIndex
-                    });
-                }
+    componentWillMount : function(){
+        var self = this;
 
-            });
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+        });
+    },
+
+    componentDidMount: function() {
+        var self = this;
+        var hState;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
         }
 
-        function scrollFunc(url,params) {
-            //console.log(self.state.totalCount +" , "+ parseInt(self.state.pageSize)*parseInt(self.state.pageIndex));
-            if(parseInt(self.state.totalCount)>0 &&
-                parseInt(self.state.pageSize)*(parseInt(self.state.pageIndex) - 1) >parseInt(self.state.totalCount))
-                return;
-
-            $('#loaderIndicator').addClass('isShow');
-            window.isFeching = true;
-            var timeout = window.setTimeout(function(){
-                window.isFeching = false;
-            },5000);
-            self.fetchData(url,params)
-                .done(function(payload){
-                    (payload.data && payload.code === 200) &&
-                    self.setState({
-                        payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                        pageIndex:parseInt(self.state.pageIndex)+1
-                    });
-                    window.isFeching = false;
-                    window.clearTimeout(timeout);
-                    //console.log(payload);
-                    $('#loaderIndicator').removeClass('isShow');
-                })
-
-        }
+        self._domControl();
 
         // 从菜单获取资源链接。
         var parseResource = function(){
@@ -157,11 +120,13 @@ var WXF4 = React.createClass({
                         pageIndex:parseInt(self.state.pageIndex)+1,
                         baseUrl:'f4/host',
                         totalCount:parseInt(payload.count)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
 
                     //console.log(payload.totalCount);
                     // 绑上滚动加载。
-                    scrollPos($("#f4_hidden"),$("#scroll_content"));
+                    self.scrollPos($("#f4_hidden"),$("#scroll_content"));
 
                 })
         };
@@ -188,11 +153,18 @@ var WXF4 = React.createClass({
 
     screeningClick : function(url){
         var self = this;
+        var len = window.historyStates.states.length - 1;
+        var $screening_box = $('#screening_box');
+        var currentCard;
         self.state.pageIndex = 1;
         var params = {
             pageSize: self.state.pageSize,
             pageIndex: self.state.pageIndex
         }
+
+        $('.item',$screening_box).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
 
         self.fetchData(url,params)
             .done(function(payload){
@@ -201,7 +173,11 @@ var WXF4 = React.createClass({
                     payload:payload.data,
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     baseUrl:url,
-                    totalCount:parseInt(payload.count)
+                    totalCount:parseInt(payload.count),
+                    currentCard:currentCard,
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 })
 
                 $("#f4_hidden").unbind('scroll');
@@ -227,14 +203,22 @@ var WXF4 = React.createClass({
                 params.pageIndex = self.state.pageIndex;
                 self.scrollFunc(self.state.baseUrl,params);
             }
+
+            self.state.scrollTop = box.scrollTop();
+            self.state.isMenuRender = false;
+
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc : function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
+
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(self.state.pageSize)*parseInt(self.state.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
+
         $('#loaderIndicator').addClass('isShow');
         window.isFeching = true;
         var timeout = window.setTimeout(function(){
@@ -245,7 +229,12 @@ var WXF4 = React.createClass({
                 (payload.data && payload.code === 200) &&
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                    pageIndex:parseInt(self.state.pageIndex)+1
+                    pageIndex:parseInt(self.state.pageIndex)+1,
+                    currentCard:currentCard,
+                    isMenuRender:false
+                },function(){
+                    console.log(self.state)
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
@@ -256,6 +245,7 @@ var WXF4 = React.createClass({
 
     priceSort : function(obj){
         var self = this;
+        var len = window.historyStates.states.length - 1;
         var params = {
             pageIndex:1,
             pageSize:self.state.pageSize
@@ -269,7 +259,12 @@ var WXF4 = React.createClass({
                 self.setState({
                     pageIndex:params.pageIndex,
                     payload:payload.data,
-                    totalCount:payload.count
+                    totalCount:payload.count,
+                    currentCard:currentCard,
+                    isMenuRender:false
+                },function(){
+                    console.log(self.state)
+                    window.historyStates.states[len] = self.state;
                 })
             })
     },
@@ -301,11 +296,11 @@ var WXF4 = React.createClass({
 
         return (
             <div className="app has-navbar-top">
-                <WXHeaderMenu menuType={'menu_3'} name={3} />
+                <WXHeaderMenu menuType={'menu_3'} name={3} isRender={self.state.isMenuRender} />
 
                 <div className='f4-list-view' id='scroll_box'>
                     <div className='screening-box' id='screening_box'>
-                        <div className='item item-current'><span onClick={self.screeningClick.bind(self,'f4/host')}>主持人</span></div>
+                        <div className='item'><span onClick={self.screeningClick.bind(self,'f4/host')}>主持人</span></div>
                         <div className='item'><span onClick={self.screeningClick.bind(self,'f4/dresser')}>化妆师</span></div>
                         <div className='item'><span onClick={self.screeningClick.bind(self,'f4/photographer')}>摄影师</span></div>
                         <div className='item'><span onClick={self.screeningClick.bind(self,'f4/camera')}>摄像师</span></div>
@@ -359,7 +354,7 @@ var WXF4 = React.createClass({
                                                                             function(vv,ii){
                                                                                 return(
                                                                                     <li key={ii} onClick={self.saveData.bind(self,vv.videoUrl || vv.wxDetailImages)}>
-                                                                                        <ImageListItem frameWidth={200} detailBaseUrl={baseUrl} sid={vv.id} url={vv.wechatUrl} />
+                                                                                        <ImageListItem frameWidth={200} detailBaseUrl={baseUrl} sid={vv.id} url={vv.coverUrlWx} />
                                                                                     </li>
                                                                                 )
                                                                             }

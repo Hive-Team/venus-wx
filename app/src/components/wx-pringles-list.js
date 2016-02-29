@@ -20,7 +20,8 @@ var WXPringlesList = React.createClass({
             recommend:'',
             listUrl:'',
             totalCount:0,
-            scrollTop:0
+            scrollTop:0,
+            isMenuRender:true
         };
     },
     //取数据
@@ -102,7 +103,9 @@ var WXPringlesList = React.createClass({
                         }
                     );
                 });
+        };
 
+        var seasonList = function(){
             self.fetchData('pringlesSeason/list')
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
@@ -110,10 +113,10 @@ var WXPringlesList = React.createClass({
                         quarterly:payload.data
                     });
                 });
-        };
+        }
 
         $.when({})
-            //.then(fetchStyle)
+            .then(seasonList)
             .then(parseResource);
     },
 
@@ -137,7 +140,8 @@ var WXPringlesList = React.createClass({
                     pageIndex:parseInt(self.state.pageIndex)+1,
                     payload:payload.data,
                     baseUrl:url,
-                    totalCount:payload.count
+                    totalCount:payload.count,
+                    isMenuRender:false
                 },function(){
                     window.historyStates.states[len] = self.state;
                 })
@@ -191,7 +195,8 @@ var WXPringlesList = React.createClass({
             }
 
             self.setState({
-                scrollTop : box.scrollTop()
+                scrollTop:box.scrollTop(),
+                isMenuRender:false
             });
             window.historyStates.states[len].scrollTop = box.scrollTop();
         });
@@ -206,7 +211,7 @@ var WXPringlesList = React.createClass({
 
         return (
             <div className="app has-navbar-top">
-                <WXHeaderMenu menuType={'menu_1'} name={1} />
+                <WXHeaderMenu menuType={'menu_1'} name={1} isRender={self.state.isMenuRender} />
 
                 <div className="screening-box-wx">
                     <ul className="screening-list-wx" id="style_box">

@@ -8,7 +8,7 @@ var Main = React.createClass({
 	componentWillMount : function(){
 		window.historyStates = {
 			isBack : false,
-			init : false,
+			counter : 0,
 			states : []
 		}
 	},

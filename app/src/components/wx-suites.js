@@ -17,7 +17,8 @@ var WXPringlesList = React.createClass({
             payload:[],
             baseUrl:'',
             totalCount:0,
-            scrollTop:0
+            scrollTop:0,
+            isMenuRender:true
         };
     },
     //取数据
@@ -117,11 +118,16 @@ var WXPringlesList = React.createClass({
         var self = this;
         var len = window.historyStates.states.length - 1;
 
-        console.log(window.historyStates.states[len])
         box.bind("scroll",function(){
-            console.log(box.scrollTop());
+            //if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
+            //    self.scrollFunc(self.state.baseUrl,params);
+            //    params.pageIndex = params.pageIndex + 1;
+            //    //console.log(params.pageIndex);
+            //    //$('#loaderIndicator').addClass('isShow');
+            //}
             self.setState({
-                scrollTop : box.scrollTop()
+                scrollTop:box.scrollTop(),
+                isMenuRender:false
             });
             window.historyStates.states[len].scrollTop = box.scrollTop();
         });
@@ -135,7 +141,7 @@ var WXPringlesList = React.createClass({
 
         return (
             <div className="app has-navbar-top">
-                <WXHeaderMenu menuType={'menu_1'} name={2} />
+                <WXHeaderMenu menuType={'menu_1'} name={2} isRender={self.state.isMenuRender} />
 
                 <div className="app-body">
                     <div className="app-content">
@@ -166,7 +172,7 @@ var WXPringlesList = React.createClass({
                                                        <div className='info-box'>
                                                            <div className='containor clearfix'>
                                                                <div className='price'>
-                                                                   <span className='red-1-wxjs'>￥</span><span className='red-1-wxjs big'>{v.salePrice.toFixed(2)}</span><b className='gray-1-wxjs'>原价</b><b className='gray-1-wxjs'>{'￥' + v.originalPrice.toFixed(2)}</b>
+                                                                   <span className='red-1-wxjs'>￥</span><span className='red-1-wxjs big'>{v.salePrice + '.00'}</span><b className='gray-1-wxjs'>原价</b><b className='gray-1-wxjs'>{'￥' + v.originalPrice + '.00'}</b>
                                                                </div>
                                                                <a className='btn-1-wxjs' style={{display:'none'}}>立即抢购</a>
                                                            </div>

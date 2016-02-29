@@ -37,43 +37,28 @@ var WXWeddingDress = React.createClass({
             $(this).addClass('item-current');
         });
 
+        var url = 'dress/brands/' + self.state.id;
+
         // 从菜单获取资源链接。
         var parseResource = function(){
 
-            self.fetchData('dress/brands/1')
+            self.fetchData(url)
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
                         payload:payload.data,
                         pageIndex:parseInt(self.state.pageIndex)+1,
-                        baseUrl:'dress/brands',
+                        baseUrl:url,
                         totalCount:parseInt(payload.totalCount)
                     });
 
                     //console.log(payload.data)
                     // 绑上滚动加载。
                     //self.scrollPos($("#scroll_box"),$("#scroll_content"));
-
                 })
         };
 
-        var fetchStyle = function(){
-            Api.httpGET('condition/styleAddress',{})
-                .done(function(payload){
-                    (payload.data && payload.code === '200') &&
-                    self.setState({
-                        stylesList:payload.data.style || []
-                    },function(){
-                        self.state.stylesList.length>0 &&
-                        $('ul.screening-list').css({height:'100%'}).hide();
-                        $('#btn_style').on('click',function(){
-                            $('ul.screening-list').toggle();
-                        })
-                    })
-                });
-        };
         $.when({})
-            .then(fetchStyle)
             .then(parseResource);
 
     },
@@ -92,8 +77,7 @@ var WXWeddingDress = React.createClass({
                 });
 
                 $("#scroll_box").unbind('scroll');
-
-                console.log(payload.data);
+                //console.log(payload.data);
                 //self.scrollPos($("#scroll_box"),$("#scroll_content"),params);
             })
     },
