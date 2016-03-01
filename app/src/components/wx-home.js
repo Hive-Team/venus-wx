@@ -8,7 +8,6 @@ var WXHome = React.createClass({
     mixins:[Router.State], //我们需要知道当前的path params 等等信
     getInitialState: function() {
         return {
-            tplKey:'top#adv',
             pageSize:10,
             pageIndex:1,
             payload:[],
@@ -55,6 +54,12 @@ var WXHome = React.createClass({
                   $('#slider_home').Slider();
                   //console.log(JSON.stringify(payload.data,null,4))
               })
+        }
+
+        window.historyStates = {
+            isBack : false,
+            counter : 0,
+            states : []
         }
 
         $.when({})

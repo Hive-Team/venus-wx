@@ -31,18 +31,23 @@ var WXWeddingDress = React.createClass({
     componentDidMount: function() {
         var self = this;
         var $screening_box = $('#screening_box');
+        var params = {
+            pageIndex:self.state.pageIndex,
+            pageSize:self.state.pageSize,
+            weddingDressType:self.state.id
+        }
 
         $screening_box.on('click','.item',function(){
             $('.item',$screening_box).removeClass('item-current');
             $(this).addClass('item-current');
         });
 
-        var url = 'dress/brands/' + self.state.id;
+        var url = 'dressBrand/all';
 
         // 从菜单获取资源链接。
         var parseResource = function(){
 
-            self.fetchData(url)
+            self.fetchData(url,params)
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
@@ -65,8 +70,13 @@ var WXWeddingDress = React.createClass({
 
     screeningClick : function(url,id){
         var self = this;
+        var params = {
+            pageIndex:self.state.pageIndex,
+            pageSize:self.state.pageSize,
+            weddingDressType:id
+        }
 
-        self.fetchData(url + '/' + id)
+        self.fetchData(url,params)
             .done(function(payload){
                 (payload.data && payload.code === 200) &&
                 self.setState({

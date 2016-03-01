@@ -16,7 +16,9 @@ var WXBanquetDetail = React.createClass({
             tplKey:'list#sample',
             payload:[],
             baseUrl:'',
-            totalCount:0
+            totalCount:0,
+            scrollTop:0,
+            isMenuRender:true
         };
     },
     fetchData:function(url,params){
@@ -66,11 +68,26 @@ var WXBanquetDetail = React.createClass({
 
     },
 
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
+    },
+
     componentDidMount: function() {
         var self = this;
+        var $glob_back = $('#glob_detail_back');
         var url = self.getPath().substr(1);
 
         self.loadDetail(url);
+
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
     },
 
     componentWillUnmount : function(){

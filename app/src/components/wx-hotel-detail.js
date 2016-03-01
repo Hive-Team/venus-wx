@@ -16,7 +16,10 @@ var WXHotelDetail = React.createClass({
             sliderData:[],
             payload:[],
             baseUrl:'',
-            totalCount:0
+            totalCount:0,
+            currentCard:0,
+            scrollTop:0,
+            isMenuRender:true
         };
     },
     fetchData:function(url,params){
@@ -37,6 +40,7 @@ var WXHotelDetail = React.createClass({
                 self.setState({
                     payload:payload.data
                 },function(){
+                    window.historyStates.states.push({});
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
             });
@@ -53,6 +57,19 @@ var WXHotelDetail = React.createClass({
             });
     },
 
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        window.historyStates.states.pop();
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
+    },
+
     componentDidMount: function() {
         var self = this;
         var $suite_view = $('#hotel_detail_view');
@@ -61,6 +78,8 @@ var WXHotelDetail = React.createClass({
         var $discription_box = $('#discription_box');
         var $nav_box = $('#nav_box');
         var $list_dishes = $('#list_dishes');
+        var $glob_back = $('#glob_detail_back');
+
         var winW = $(window).width();
 
         $slider_suite.height(2*winW/3);
@@ -87,7 +106,13 @@ var WXHotelDetail = React.createClass({
 
             $('li',$list_dishes).removeClass('list-item-3-current-wxjs');
             self.addClass('list-item-3-current-wxjs');
-        })
+        });
+
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
+        $glob_back.on('click',function(){
+            console.log('back');
+            self._clickBack();
+        });
     },
 
     render: function() {

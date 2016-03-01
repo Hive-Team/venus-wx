@@ -24,7 +24,11 @@ var WXWeddingCarRental = React.createClass({
             totalCount:0,
             brands:[],
             models:[],
-            levels:[]
+            levels:[],
+            scrollTop:0,
+            currentCard:0,
+            itemCurrentCard:null,
+            isMenuRender:true
         };
     },
 
@@ -82,45 +86,27 @@ var WXWeddingCarRental = React.createClass({
         var box = $("#scroll_box");
 
         self.setState(hState,function(){
-            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            !obj && (obj = self.state.params);
             self._domControl();
             box.scrollTop(hState.scrollTop);
             window.historyStates.states.push(hState);
-            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+            self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
         });
     },
 
     componentDidMount: function() {
         var self = this;
-        var $menu_classify = $('.menu-classify');
-        var B_ul = false;
+        var hState;
+        var obj;
 
-        $('span',$menu_classify).eq(0).addClass('item-current');
-        $menu_classify.on('click','span',function(){
-            var ind = $(this).index();
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
 
-            if($(this).hasClass('item-current') && B_ul){
-                $('ul',$menu_classify).removeAttr('style');
-                B_ul = false;
-                return;
-            }
-
-            B_ul = true;
-
-            $(this).addClass('item-current');
-            $(this).siblings().removeClass('item-current');
-            $('ul',$menu_classify).eq(ind - 1).css({display:'block'})
-                .siblings().removeAttr('style');
-
-            ind <= 0 && $('ul',$menu_classify).removeAttr('style');
-        });
-
-        $menu_classify.on('click','li',function(){
-            $(this).parent().removeAttr('style');
-            $('li',$menu_classify).removeAttr('class');
-            $(this).addClass('li-current');
-            B_ul = false;
-        });
+        self._domControl();
 
         var parseResource = function(){
             var url = 'car/car_list';
@@ -132,10 +118,14 @@ var WXWeddingCarRental = React.createClass({
                         payload:payload.data,
                         baseUrl:url,
                         totalCount:parseInt(payload.count)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
                     //console.log(payload.data);
                     //绑上滚动加载。
-                    self.scrollPos($("#scroll_box"),$("#scroll_content"),self.state.params);
+                    obj = self.state.params;
+                    obj.pageIndex ++;
+                    self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
 
                 })
         }
@@ -174,20 +164,35 @@ var WXWeddingCarRental = React.createClass({
 
     clickFunc : function(obj){
         var self = this;
+        var $menu_classify = $('.menu-classify');
+        var len = window.historyStates.states.length - 1;
+        var currentCard,itemCurrentCard;
 
-        $("#scroll_box").unbind('scroll');
         self.state.params.pageIndex = 1;
         $.extend(obj,self.state.params);
+
+        $('span',$menu_classify).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
+
+        $('li',$menu_classify).each(function(i,e){
+            $(this).hasClass('li-current') === true && (itemCurrentCard = i);
+        });
 
         self.fetchData(self.state.baseUrl,obj)
             .done(function(payload){
                 (payload.data && payload.code===200)&&
                 self.setState({
                     payload:payload.data,
-                    totalCount:payload.count
-                })
-                //console.log(payload.data);
+                    totalCount:payload.count,
+                    currentCard:currentCard,
+                    itemCurrentCard:itemCurrentCard,
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
+                });
 
+                //console.log(payload.data);
                 $("#scroll_box").unbind('scroll');
                 self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
             })
@@ -195,22 +200,31 @@ var WXWeddingCarRental = React.createClass({
 
     scrollPos:function(box,cont,params){
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
+        //console.log(params);
         params.pageIndex ++;
         box.bind("scroll",function(){
             if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,params);
                 params.pageIndex ++;
             }
+
+            self.state.scrollTop = box.scrollTop();
+            self.state.isMenuRender = false;
+
+            window.historyStates.states[len].scrollTop = box.scrollTop();
         });
     },
 
     scrollFunc:function(url,params) {
         var self = this;
+        var len = window.historyStates.states.length - 1;
 
         if(parseInt(self.state.totalCount)>0 &&
             parseInt(params.pageSize)*parseInt(params.pageIndex - 1) >parseInt(self.state.totalCount))
             return;
+
         $('#loaderIndicator').addClass('isShow');
         window.isFeching = true;
         var timeout = window.setTimeout(function(){
@@ -221,7 +235,13 @@ var WXWeddingCarRental = React.createClass({
                 (payload.data && payload.code === 200) &&
                 self.setState({
                     payload:((params.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
-                    pageIndex:parseInt(self.state.pageIndex)+1
+                    params:{
+                        pageIndex:parseInt(self.state.pageIndex)+1,
+                        pageSize:6
+                    },
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
                 window.isFeching = false;
                 window.clearTimeout(timeout);
@@ -240,7 +260,7 @@ var WXWeddingCarRental = React.createClass({
 
         return (
             <div className="supplies-list-view mobile-main-box">
-                <WXHeaderMenu menuType={'menu_8'} name={0} />
+                <WXHeaderMenu menuType={'menu_8'} name={0} isRender={self.state.isMenuRender} />
 
                 <div className='menu-classify menu-classify-car clearfix'>
                     <span onClick={self.clickFunc.bind(self,{})}>全部</span>

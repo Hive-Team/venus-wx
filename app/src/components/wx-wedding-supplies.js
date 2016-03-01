@@ -85,17 +85,18 @@ var WXWeddingSupplies = React.createClass({
         var box = $("#scroll_box");
 
         self.setState(hState,function(){
-            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
+            !obj && (obj = self.state.params);
             self._domControl();
             box.scrollTop(hState.scrollTop);
             window.historyStates.states.push(hState);
-            self.scrollPos($("#scroll_box"),$("#scroll_content"));
+            self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
         });
     },
 
     componentDidMount: function() {
         var self = this;
         var hState;
+        var obj;
 
         if(window.historyStates.isBack){
             hState = window.historyStates.states.pop();
@@ -122,7 +123,9 @@ var WXWeddingSupplies = React.createClass({
                     //console.log(payload.data);
                     //绑上滚动加载。
                     //console.log(self.state.params);
-                    self.scrollPos($("#scroll_box"),$("#scroll_content"),self.state.params);
+                    obj = self.state.params;
+                    obj.pageIndex ++;
+                    self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
                 })
         };
 

@@ -16,12 +16,28 @@ var WXPringlesList = React.createClass({
             sliderData:[],
             payload:[],
             baseUrl:'',
-            totalCount:0
+            totalCount:0,
+            currentCard:0,
+            scrollTop:0,
+            detailList:{},
+            isMenuRender:true
         };
     },
 
     fetchData:function(url,params){
         return Api.httpGET(url,params);
+    },
+
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
     },
 
     componentDidMount: function() {
@@ -31,6 +47,7 @@ var WXPringlesList = React.createClass({
         var $nav_conts = $('#nav_box .cont');
         var $discription_box = $('#discription_box');
         var $nav_box = $('#nav_box');
+        var $glob_back = $('#glob_detail_back');
         var winW = $(window).width();
 
         var fetchData = function(url){
@@ -44,7 +61,8 @@ var WXPringlesList = React.createClass({
 
                 (payload.code === 200) &&
                 self.setState({
-                    payload:payload.data
+                    payload:payload.data,
+                    detailList:payload.data != undefined && JSON.parse(payload.data.wxDetailImages) || {},
                 });
                 //console.log(self.state.payload);
             })
@@ -54,11 +72,11 @@ var WXPringlesList = React.createClass({
 
                 (payload.code === 200) &&
                 self.setState({
-                    sliderData:payload.data
+                    sliderData:payload.data,
                 },function(){
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
-                console.log(self.state.payload);
+                //console.log(self.state.payload);
             })
 
         $nav_conts.each(function(i){
@@ -73,6 +91,12 @@ var WXPringlesList = React.createClass({
         $suite_view.bind('scroll',function(){
             $(this).scrollTop() > 105 + $slider_suite.height() && $nav_box.css({position:'fixed'}) || $nav_box.css({position:'static'});
         });
+
+        //console.log(window.historyStates.states.length);
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
+        $glob_back.on('click',function(){
+            self._clickBack();
+        });
     },
 
     render: function() {
@@ -80,10 +104,12 @@ var WXPringlesList = React.createClass({
         var winWidth = $(window).width();
         var pageData = self.state.payload;
         var sliderData = self.state.sliderData;
+        var detailList = self.state.detailList;
         var baseUrl = self.state.baseUrl;
         var navCont = ['详情','服务','服装','化妆品','景点','流程'];
         var subTit = ['可自选摄影师','可自选造型师','可自选摄影师／造型师','不可自选摄影师／造型师'];
-        var imgArr = ['detailImages','serviceImages','clothShootImages','cosmeticImages','baseSampleImages','processImages'];
+        var imgArr = ['wx_detailImages','wx_serviceImages','wx_clothShootImages','wx_cosmeticImages','wx_baseSampleImages','wx_processImages'];
+        console.log(detailList['wx_detailImages']);
 
         return (
             <div className="suite-view" id='suite_view'>
@@ -145,46 +171,25 @@ var WXPringlesList = React.createClass({
                     </div>
                 </div>
                 <div className='discription-box' id='discription_box'>
-                    <div className='cont current'>
-                        {
-                            $.map(imgArr, function(v,i){
-                                return(
-                                    $.map(pageData[imgArr[i]] || [],function(vv,ii){
-                                        return(
-                                            <ImageListItem
-                                                key={i+'.'+ii}
-                                                frameWidth={winWidth*2}
-                                                url={vv.imageUrl}
-                                                errorUrl={'http://placehold.it/375x250'}
-                                                mask={true}
-                                                />
-                                        )
-                                    })
-                                )
-                            })
-                        }
-                    </div>
                     {
-                        $.map(imgArr, function(v,i){
-                            if(i !== 0){
-                                return(
-                                    <div key={i} className='cont'>
-                                        {
-                                            $.map(pageData[imgArr[i]] || [],function(vv,ii){
-                                                return(
-                                                    <ImageListItem
-                                                        key={i+'.'+ii}
-                                                        frameWidth={winWidth*2}
-                                                        url={vv.imageUrl}
-                                                        errorUrl={'http://placehold.it/375x250'}
-                                                        mask={true}
-                                                        />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                )
-                            }
+                        $.map(imgArr, function(v,i) {
+                            return (
+                                <div key={i} className={i === 1 && 'cont current' || 'cont'}>
+                                    {
+                                        $.map(detailList[imgArr[i]] || [], function (vv, ii) {
+                                            return (
+                                                <ImageListItem
+                                                    key={i+'.'+ii}
+                                                    frameWidth={winWidth*2}
+                                                    url={vv}
+                                                    errorUrl={'http://placehold.it/375x250'}
+                                                    mask={true}
+                                                    />
+                                            )
+                                        })
+                                    }
+                                </div>
+                            )
                         })
                     }
                 </div>

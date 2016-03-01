@@ -32,13 +32,31 @@ var Main = React.createClass({
 						<span className="btn-wx">导航</span>
 					</div>
 				</div>
+				<div className="screening-box-wx glob-back-detail" id="glob_detail_back">
+					<div className="btn-box-wx">
+						<span className="btn-wx">返回</span>
+					</div>
+				</div>
 				<RouteHandler />
 			</div>
 		);
 	},
+
+	_clickBack : function(){
+		var last;
+		window.historyStates.isBack = true;
+		window.historyStates.states.pop();
+		last = window.historyStates.states.length - 1;
+		console.log(window.historyStates.states);
+		window.historyStates.states[last].isMenuRender = true;
+		window.history.back();
+	},
+
 	componentDidMount:function(){
+		var self = this;
 		var $global_menu_box = $('#global_menu_box');
 		var $global_menu_btn = $('#global_menu_btn');
+		var $glob_back = $('#glob_back');
 		var isGlobalMenu = false;
 
 		$global_menu_btn.on('click',function(){
@@ -54,6 +72,10 @@ var Main = React.createClass({
 		$global_menu_box.on('click','li',function(){
 			isGlobalMenu = !isGlobalMenu;
 			$global_menu_box.css({display:'none'});
+		});
+
+		$glob_back.on('click',function(){
+			self._clickBack
 		});
 	}
 })

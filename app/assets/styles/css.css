@@ -220,7 +220,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 
 /* ========================= 套系详情 ========================= */
 
-.suite-view{width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;}
+.suite-view{width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;background-color:#fff;position:relative;z-index:1000;}
 .suite-view .title-box{min-height:50px;}
 .suite-view .title{font-size:20px;font-weight:normal;margin:10px 10px 5px;overflow:hidden;}
 .suite-view .subtitle{font-size:12px;display:none;padding:0 10px;color:#d59924;}
@@ -741,6 +741,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
     -moz-transform:rotate(-45deg); 	/* Firefox */
     -webkit-transform:rotate(-45deg);}
 
+.glob-back-detail{position:fixed;right:20px;top:20px;height:50px;z-index:10000;display:none;}
 
 
 /* demo */

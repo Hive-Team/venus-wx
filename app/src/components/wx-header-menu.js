@@ -186,6 +186,11 @@ var HeaderMenu = React.createClass({
         });
     },
 
+    componentWillMount:function(){
+        var $glob_back = $('#glob_detail_back');
+        $glob_back.css({display:'none'});
+    },
+
     _clickBack : function(){
         var last;
         window.historyStates.isBack = true;

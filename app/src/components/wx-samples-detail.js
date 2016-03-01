@@ -13,15 +13,19 @@ var WXSampleDetail = React.createClass({
         return {
             pageSize:6,
             pageIndex:1,
-            tplKey:'list#sample',
             payload:[],
             baseUrl:'',
-            totalCount:0
+            totalCount:0,
+            currentCard:0,
+            scrollTop:0,
+            isMenuRender:true
         };
     },
+
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
+
     loadDetail:function(baseUrl,id,evt){
 
         //evt.preventDefault();
@@ -65,10 +69,28 @@ var WXSampleDetail = React.createClass({
 
     },
 
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
+    },
+
     componentDidMount: function() {
         var self = this;
         var url = self.getPath();
         var arr = url.split('/');
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
+        $glob_back.on('click',function(){
+            self._clickBack();
+        });
 
         self.loadDetail(arr[1] + '/' + arr[2],arr[3]);
     },
