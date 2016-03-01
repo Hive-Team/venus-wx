@@ -20,6 +20,9 @@ var WXWeddingDress = React.createClass({
             totalCount:0,
             stylesList:[],
             id:1,
+            scrollTop:0,
+            currentCard:0,
+            isMenuRender:true
         };
     },
 
@@ -28,35 +31,72 @@ var WXWeddingDress = React.createClass({
         return Api.httpGET(url,params);
     },
 
-    componentDidMount: function() {
-        var self = this;
+    _domControl:function(){
         var $screening_box = $('#screening_box');
-        var params = {
-            pageIndex:self.state.pageIndex,
-            pageSize:self.state.pageSize,
-            weddingDressType:self.state.id
-        }
 
         $screening_box.on('click','.item',function(){
             $('.item',$screening_box).removeClass('item-current');
             $(this).addClass('item-current');
         });
+    },
 
-        var url = 'dressBrand/all';
+    componentWillMount : function(){
+        var self = this;
+
+        window.historyStates.isBack === true &&
+        (self.state.isMenuRender = false);
+    },
+
+    _history : function(hState,obj){
+        var self = this;
+        var box = $("#scroll_box");
+
+        self.setState(hState,function(){
+            !obj && (obj = self.state.params);
+            self._domControl();
+            box.scrollTop(hState.scrollTop);
+            window.historyStates.states.push(hState);
+            self.scrollPos($("#scroll_box"),$("#scroll_content"),obj);
+        });
+    },
+
+    componentDidMount: function() {
+        var self = this;
+
+        var hState;
+        var obj;
+
+        if(window.historyStates.isBack){
+            hState = window.historyStates.states.pop();
+            self._history(hState);
+            window.historyStates.isBack = false;
+            return
+        }
+
+        self._domControl();
 
         // 从菜单获取资源链接。
         var parseResource = function(){
+            var url = 'dressBrand/all';
+            var params = {
+                pageIndex:self.state.pageIndex,
+                pageSize:self.state.pageSize,
+                weddingDressType:self.state.id
+            }
 
             self.fetchData(url,params)
                 .done(function(payload){
                     (payload.data && payload.code === 200) &&
                     self.setState({
                         payload:payload.data,
-                        pageIndex:parseInt(self.state.pageIndex)+1,
+                        pageIndex:parseInt(self.state.pageIndex),
                         baseUrl:url,
                         totalCount:parseInt(payload.totalCount)
+                    },function(){
+                        window.historyStates.states.push(self.state);
                     });
 
+                    self.scrollPos($("#scroll_box"),$("#scroll_content"));
                     //console.log(payload.data)
                     // 绑上滚动加载。
                     //self.scrollPos($("#scroll_box"),$("#scroll_content"));
@@ -68,13 +108,39 @@ var WXWeddingDress = React.createClass({
 
     },
 
+    scrollPos:function(box,cont){
+        var self = this;
+        var len = window.historyStates.states.length - 1;
+
+        box.bind("scroll",function(){
+            //if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
+            //    self.scrollFunc(self.state.baseUrl,params);
+            //    params.pageIndex = params.pageIndex + 1;
+            //    //console.log(params.pageIndex);
+            //    //$('#loaderIndicator').addClass('isShow');
+            //}
+            self.setState({
+                scrollTop:box.scrollTop(),
+                isMenuRender:false
+            });
+            window.historyStates.states[len].scrollTop = box.scrollTop();
+        });
+    },
+
     screeningClick : function(url,id){
         var self = this;
+        var len = window.historyStates.states.length - 1;
+        var $screening_box = $('#screening_box');
+        var currentCard;
         var params = {
             pageIndex:self.state.pageIndex,
             pageSize:self.state.pageSize,
             weddingDressType:id
         }
+
+        $('.item',$screening_box).each(function(i,e){
+            if($(this).hasClass('item-current')) currentCard = i;
+        });
 
         self.fetchData(url,params)
             .done(function(payload){
@@ -83,10 +149,13 @@ var WXWeddingDress = React.createClass({
                     payload:payload.data,
                     baseUrl:url,
                     id:id,
-                    totalCount:parseInt(payload.totalCount)
+                    totalCount:parseInt(payload.totalCount),
+                    isMenuRender:false
+                },function(){
+                    window.historyStates.states[len] = self.state;
                 });
 
-                $("#scroll_box").unbind('scroll');
+                //$("#scroll_box").unbind('scroll');
                 //console.log(payload.data);
                 //self.scrollPos($("#scroll_box"),$("#scroll_content"),params);
             })
@@ -100,7 +169,8 @@ var WXWeddingDress = React.createClass({
 
         return (
             <div className='weddindress-list-view mobile-main-box'>
-                <WXHeaderMenu menuType={'menu_4'} name={0} />
+                <WXHeaderMenu menuType={'menu_4'} name={0} isRender={self.state.isMenuRender} />
+
                 <div className="weddindress-list" id="scroll_box">
                     <div className='screening-box' id='screening_box'>
                         <div className='item item-current'><span onClick={self.screeningClick.bind(self,baseUrl,1)}>国际婚纱</span></div>

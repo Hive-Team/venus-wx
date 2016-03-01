@@ -236,7 +236,7 @@ var WXWeddingCarRental = React.createClass({
                 self.setState({
                     payload:((params.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     params:{
-                        pageIndex:parseInt(self.state.pageIndex)+1,
+                        pageIndex:parseInt(self.state.params.pageIndex)+1,
                         pageSize:6
                     },
                     isMenuRender:false

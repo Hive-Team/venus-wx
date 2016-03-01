@@ -17,16 +17,39 @@ var WXWeddingCarRentalDetail = React.createClass({
             baseUrl:'',
             totalCount:0,
             sliderList:[],
-            parameter:[]
+            parameter:[],
+            currentCard:0,
+            scrollTop:0,
+            isMenuRender:true
         };
     },
+
     fetchData:function(url,params){
         return Api.httpGET(url,params);
     },
+
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
+    },
+
     componentDidMount: function() {
         var self = this;
         var $slider_suite = $('#slider_hotel_detail');
         var winW = $(window).width()
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
+        $glob_back.on('click',function(){
+            self._clickBack();
+        });
 
         var fetchData = function(url){
             return Api.httpGET(url,{});

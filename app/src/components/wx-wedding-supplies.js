@@ -170,8 +170,6 @@ var WXWeddingSupplies = React.createClass({
             $(this).hasClass('li-current') === true && (itemCurrentCard = i);
         });
 
-        console.log(currentCard,itemCurrentCard);
-
         self.fetchData(self.state.baseUrl,obj)
             .done(function(payload){
                 (payload.data && payload.code===200)&&
@@ -227,7 +225,7 @@ var WXWeddingSupplies = React.createClass({
                 self.setState({
                     payload:((self.state.pageIndex === 1)?payload.data : self.state.payload.concat(payload.data)),
                     params:{
-                        pageIndex:parseInt(self.state.pageIndex)+1,
+                        pageIndex:parseInt(self.state.params.pageIndex)+1,
                         pageSize:6
                     },
                     isMenuRender:false

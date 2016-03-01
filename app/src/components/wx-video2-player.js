@@ -24,6 +24,18 @@ var WXVideoPlayer = React.createClass({
         return Api.httpGET(url,params);
     },
 
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
+    },
+
     componentDidMount: function() {
         var self = this;
         var router = self.getPath().substr(1);
@@ -31,8 +43,14 @@ var WXVideoPlayer = React.createClass({
         var proportion = 0.5;
         var winW = $(window).width();
         var vH = proportion * winW;
+        var $glob_back = $('#glob_detail_back');
 
-        $('.screening-box-wx').css({display:'none'});
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
+        $glob_back.on('click',function(){
+            self._clickBack();
+        });
+
+        $('.screening-box-wx').eq(0).css({display:'none'});
 
         //console.log($video_player.height());
         $video_player.css({marginTop:-vH/2});
@@ -46,6 +64,18 @@ var WXVideoPlayer = React.createClass({
                 //(payload.data && payload.code === 200) && console.log(payload.data);
             }
         );
+    },
+
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
     },
 
     componentWillUnmount : function(){
@@ -71,7 +101,6 @@ var WXVideoPlayer = React.createClass({
                 <video controls='controls' name="media" id='video_player' ></video>
             </div>
         )
-
     }
 
 });

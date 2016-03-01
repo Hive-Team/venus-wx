@@ -25,10 +25,16 @@ var WXDresserPhotographerDetail = React.createClass({
 
     componentDidMount: function() {
         var $video_player = $('#video_player');
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.states.length >= 1 && $glob_back.css({display:'block'});
+        $glob_back.on('click',function(){
+            self._clickBack();
+        });
 
         //console.log($video_player.height());
         $video_player.css({marginTop:-$video_player.height()/2});
-        $('.screening-box-wx').css({display:'none'});
+        $('.screening-box-wx').eq(1).css({display:'none'});
     },
 
     componentWillUnmount : function(){
@@ -36,6 +42,18 @@ var WXDresserPhotographerDetail = React.createClass({
         $('#video_player')[0].load();
         $('#video_player')[0].currentTime = 0;
         //console.log($('#video_player')[0].crossOrigin);
+    },
+
+    _clickBack : function(){
+        var last;
+        var $glob_back = $('#glob_detail_back');
+
+        window.historyStates.isBack = true;
+        last = window.historyStates.states.length - 1;
+        window.historyStates.states[last].isMenuRender = true;
+        $glob_back.off('click');
+
+        window.history.back();
     },
 
     render: function() {

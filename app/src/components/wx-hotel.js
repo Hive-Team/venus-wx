@@ -116,7 +116,6 @@ var WXHotel = React.createClass({
         var box = $("#scroll_box");
 
         self.setState(hState,function(){
-            !obj && (obj = {pageIndex:self.state.pageSize,pageSize:self.state.pageSize});
             self._domControl();
             box.scrollTop(hState.scrollTop);
             window.historyStates.states.push(hState);
