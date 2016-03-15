@@ -60,11 +60,11 @@ var WXWeddingCarRentalDetail = React.createClass({
 
         fetchData(self.getPath().substr(1))
             .done(function(payload){
-                console.log(payload.data);
+                //console.log(payload.data);
                 (payload.code === 200) &&
                 self.setState({
-                    payload:payload.data,
-                    parameter:payload.data.parameter.split('|')
+                    payload:payload.data[0],
+                    parameter:payload.data[0].parameter.split('|')
                 });
             });
 

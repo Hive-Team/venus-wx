@@ -33,7 +33,8 @@ var WXSampleDetail = React.createClass({
         Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
             if(payload.code !== 200 || !payload.data) return;
             var pswpElement = document.querySelectorAll('.pswp')[0];
-            var imgUrls = JSON.parse(payload.data.wxDetailImages) || [];
+            console.log(payload);
+            var imgUrls = JSON.parse(payload.data[0].wxDetailImages) || [];
 
             var items = $.map(imgUrls,function(v,i){
                 //console.log(v);

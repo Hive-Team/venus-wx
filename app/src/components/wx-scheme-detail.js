@@ -37,7 +37,7 @@ var WXSchemeDetail = React.createClass({
                 (payload.code === 200) &&
                 self.setState({
                     imgList:JSON.parse(payload.data.wxDetailImages),
-                    payload:payload.data
+                    payload:payload.data[0]
                 })
             })
     },
@@ -48,7 +48,6 @@ var WXSchemeDetail = React.createClass({
         var winW = $(window).width();
 
         return (
-
             <div className="app ng-scope">
                 <div className="app-body">
                     <div className="app-content">

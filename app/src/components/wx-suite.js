@@ -61,22 +61,21 @@ var WXPringlesList = React.createClass({
 
                 (payload.code === 200) &&
                 self.setState({
-                    payload:payload.data,
-                    detailList:payload.data != undefined && JSON.parse(payload.data.wxDetailImages) || {},
+                    payload:payload.data[0],
+                    detailList:payload.data[0] != undefined && JSON.parse(payload.data[0].wxDetailImages) || {},
                 });
                 //console.log(self.state.payload);
             })
 
         fetchData('adv/suite_top')
             .done(function(payload){
-
+                //console.log(payload.data[0]);
                 (payload.code === 200) &&
                 self.setState({
                     sliderData:payload.data,
                 },function(){
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});
                 });
-                //console.log(self.state.payload);
             })
 
         $nav_conts.each(function(i){
@@ -103,13 +102,13 @@ var WXPringlesList = React.createClass({
         var self = this;
         var winWidth = $(window).width();
         var pageData = self.state.payload;
-        var sliderData = self.state.sliderData;
+        var sliderData = self.state.sliderData || [];
         var detailList = self.state.detailList;
         var baseUrl = self.state.baseUrl;
         var navCont = ['详情','服务','服装','化妆品','景点','流程'];
-        var subTit = ['可自选摄影师','可自选造型师','可自选摄影师／造型师','不可自选摄影师／造型师'];
+        //var subTit = ['可自选摄影师','可自选造型师','可自选摄影师／造型师','不可自选摄影师／造型师'];
         var imgArr = ['wx_detailImages','wx_serviceImages','wx_clothShootImages','wx_cosmeticImages','wx_baseSampleImages','wx_processImages'];
-        console.log(detailList['wx_detailImages']);
+        //console.log(detailList['wx_detailImages']);
 
         return (
             <div className="suite-view" id='suite_view'>
@@ -149,10 +148,12 @@ var WXPringlesList = React.createClass({
                 <div className='title-box clearfix'>
                     <h1 className='title'>{pageData.name}</h1>
                     <h2 className='subtitle'>
-                        {pageData.isOptionalCameraman === 1 && pageData.isOptionalStylist === 1 && subTit[2]
-                        || pageData.isOptionalCameraman === 1 && subTit[0]
-                        || pageData.isOptionalStylist === 1 && subTit[1]
-                        || subTit[3]}
+                        {
+                            //pageData.isOptionalCameraman === 1 && pageData.isOptionalStylist === 1 && subTit[2]
+                            //|| pageData.isOptionalCameraman === 1 && subTit[0]
+                            //|| pageData.isOptionalStylist === 1 && subTit[1]
+                            //|| subTit[3]
+                        }
                     </h2>
                 </div>
                 <div className='price-box'>
@@ -174,7 +175,7 @@ var WXPringlesList = React.createClass({
                     {
                         $.map(imgArr, function(v,i) {
                             return (
-                                <div key={i} className={i === 1 && 'cont current' || 'cont'}>
+                                <div key={i} className={i === 0 && 'cont current' || 'cont'}>
                                     {
                                         $.map(detailList[imgArr[i]] || [], function (vv, ii) {
                                             return (

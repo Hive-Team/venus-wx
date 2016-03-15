@@ -38,7 +38,7 @@ var WXHotelDetail = React.createClass({
                 //console.log(payload.data);
                 (payload.code === 200) &&
                 self.setState({
-                    payload:payload.data
+                    payload:payload.data[0]
                 },function(){
                     window.historyStates.states.push({});
                     $('#slider_box').length>0 && $('#slider_box').Slider({displayBtn:true,time:5000,device:'mobile'});

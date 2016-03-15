@@ -28,7 +28,7 @@ var WXWeddingDressDetail = React.createClass({
         Api.httpGET(baseUrl+'/'+id,{}).done(function(payload){
             if(payload.code !== 200 || !payload.data) return;
 
-            console.log(payload.data);
+            //console.log(payload.data);
             var pswpElement = document.querySelectorAll('.pswp')[0];
 
             var items = $.map(payload.data||[],function(v,i){

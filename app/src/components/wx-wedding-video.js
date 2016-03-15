@@ -111,7 +111,7 @@ var WXWeddingMV = React.createClass({
                 (payload.data && payload.code === 200) && self.setState({
                     payload:payload.data,
                     pageIndex:self.state.pageIndex + 1,
-                    totalCount:payload.totalCount,
+                    totalCount:payload.count,
                     baseUrl:url
                 },function(){
                     window.historyStates.states.push(self.state);
@@ -172,11 +172,10 @@ var WXWeddingMV = React.createClass({
 
         box.bind("scroll",function(){
             //console.log(box.scrollTop() +','+ box.height() +','+ cont.height());
-            if(box.scrollTop() + box.height() >= cont.height() && !window.Core.isFeching){
+            if(box.scrollTop() + box.height() >= cont.height() && !window.isFeching){
                 self.scrollFunc(self.state.baseUrl,{
                     pageSize:self.state.pageSize,
-                    pageIndex:self.state.pageIndex,
-                    videoType:type
+                    pageIndex:self.state.pageIndex
                 });
             }
 
@@ -195,9 +194,9 @@ var WXWeddingMV = React.createClass({
             return;
 
         $('#loaderIndicator').addClass('isShow');
-        window.Core.isFeching = true;
+        window.isFeching = true;
         var timeout = window.setTimeout(function(){
-            window.Core.isFeching = false;
+            window.isFeching = false;
         },5000);
         self.fetchData(url,params)
             .done(function(payload){
@@ -210,7 +209,7 @@ var WXWeddingMV = React.createClass({
                 },function(){
                     window.historyStates.states[len] = self.state;
                 });
-                window.Core.isFeching = false;
+                window.isFeching = false;
                 window.clearTimeout(timeout);
                 $('#loaderIndicator').removeClass('isShow');
             })

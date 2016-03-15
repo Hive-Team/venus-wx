@@ -32,7 +32,7 @@ var WXWeddingClassDetail = React.createClass({
         self.fetchData(router)
             .done(function(payload){
                 (payload.data && payload.code === 200) && self.setState({
-                    payload:payload.data
+                    payload:payload.data[0]
                 });
 
                 //(payload.data && payload.code === 200) && console.log(payload.data);
