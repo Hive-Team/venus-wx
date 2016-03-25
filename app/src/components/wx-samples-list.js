@@ -109,6 +109,7 @@ var WXSampleList = React.createClass({
     componentDidMount : function() {
         var self = this;
         var hState;
+        console.log(new ImageListItem());
 
         if(window.historyStates.isBack){
             hState = window.historyStates.states.pop();

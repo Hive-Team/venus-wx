@@ -54,6 +54,51 @@ var WXSchemeDetail = React.createClass({
                         <div className="scroll-able ng-scope">
                             <div className="scroll-able-content">
                                 <section className="wedding-detail-box">
+                                    <div className="case-detail-box">
+                                        <div className="intro">
+                                            <h2>作品诠释</h2>
+                                            <p>{pageData.description + '测试数据啦啦啦啦啦啦啦'}</p>
+                                        </div>
+                                        {
+                                            //<div className="person">
+                                            //    <ul className="list-4-wxjs clearfix">
+                                            //        <li className="item-box">
+                                            //            <div className="box"><a
+                                            //                className="avatar-box"><span>{pageData.theme}</span></a>
+                                            //
+                                            //                <div className="title"><h2><b>风格</b></h2></div>
+                                            //            </div>
+                                            //        </li>
+                                            //        <li className="item-box" style={{display:'none'}}>
+                                            //            <div className="box"><a
+                                            //                href={'#/scheme/style/' + (pageData.length > 0 && pageData[0].schemeStyles[0].styleId)}
+                                            //                className="avatar-box"><b><i>更多相似</i><br/><i>风格欣赏</i></b></a>
+                                            //            </div>
+                                            //        </li>
+                                            //    </ul>
+                                            //</div>
+                                        }
+                                        <div className="intro">
+                                            <h2>主题属性</h2>
+                                            <div className='content clearfix'>
+                                                <div className='item'><span>主题：</span><span>大气</span></div>
+                                                <div className='item'><span>风格：</span><span>飘起来</span></div>
+                                                <div className='item'><span>色系：</span><span>紫色</span></div>
+                                            </div>
+                                        </div>
+                                        <div className="intro">
+                                            <h2>价格</h2>
+                                            <div className='content clearfix'>
+                                                <div className='price'><span>折后价：</span><strong>3799.00</strong></div>
+                                                <div className='price'><span>原价：</span><strong>5999.00</strong></div>
+                                                <div className='price item-full'><span>场景布置费用：</span><strong>5999.00</strong></div>
+                                                <div className='price item-full'><span>婚礼人费用（主持人、造型师、摄影师、摄像师）：</span><strong>5999.00</strong></div>
+                                            </div>
+                                        </div>
+                                        <div className="intro">
+                                            <h2>现场欣赏</h2>
+                                        </div>
+                                    </div>
                                     <ul className="ul-box">
                                         {
                                             imgList.map(function(v,i){
@@ -65,18 +110,6 @@ var WXSchemeDetail = React.createClass({
                                             })
                                         }
                                     </ul>
-                                    <div className="case-detail-box">
-                                        <div className="intro">
-                                            <h2>{pageData.name}</h2>
-                                            <p>{pageData.description}</p>
-                                        </div>
-                                        <div className="person">
-                                            <ul className="list-4-wxjs clearfix">
-                                                <li className="item-box"><div className="box"><a className="avatar-box"><span>{pageData.theme}</span></a><div className="title"><h2><b>风格</b></h2></div></div></li>
-                                                <li className="item-box" style={{display:'none'}}><div className="box"><a href={'#/scheme/style/' + (pageData.length > 0 && pageData[0].schemeStyles[0].styleId)} className="avatar-box"><b><i>更多相似</i><br/><i>风格欣赏</i></b></a></div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </section>
                             </div>
                         </div>

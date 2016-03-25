@@ -150,10 +150,21 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 .wedding-detail-box{height:100%;overflow:auto;}
 .wedding-detail-box .big-img-box{margin-bottom:20px;}
 .wedding-detail-box .intro{}
-.wedding-detail-box .intro h2{font-weight:normal;font-size:20px;color:#333;line-height:30px;height:40px;padding:10px 20px 0;font-family:"微软雅黑";}
-.wedding-detail-box .intro p{font-size:14px;color:#333;padding:0 20px;line-height:26px;}
+.wedding-detail-box .intro h2{font-weight:normal;font-size:20px;color:rgba(233,59,120,1);line-height:30px;height:50px;padding:20px 20px 0;font-family:"微软雅黑";position:relative;}
+.wedding-detail-box .intro h2:before{content:' ';height:10px;width:5px;position:absolute;left:0;top:30px;background-color:#333;}
+.wedding-detail-box .intro p{font-size:14px;color:#333;padding:10px 20px 0;line-height:26px;}
 .wedding-detail-box .person{}
 .wedding-detail-box .list-4-wxjs{margin:10px 20px 50px;padding-top:20px;border-top:1px solid #666;}
+.wedding-detail-box .intro .content{padding:10px 20px 0;}
+.wedding-detail-box .intro .item{float:left;width:33.333%;height:20px;overflow:hidden;}
+.wedding-detail-box .intro .item span{font-size:14px;color:#333;}
+.wedding-detail-box .intro .item span:first-child{color:#999;}
+.wedding-detail-box .intro .price{font-size:14px;width:50%;float:left;}
+.wedding-detail-box .intro .price span{font-size:14px;color:#999;}
+.wedding-detail-box .intro .price:first-child strong{font-size:20px;color:rgba(233,59,120,1);}
+.wedding-detail-box .intro .price:nth-child(2) > strong{font-size:16px;color:#333;text-decoration:line-through;}
+.wedding-detail-box .intro .item-full{width:100%;padding-top:5px;}
+.wedding-detail-box .intro .item-full strong{font-size:16px;}
 
 .case-detail-box{width:100%;/*position:fixed;left:0;bottom:0;width:100%;background-color:rgba(255,255,255,0.9);height:310px;overflow:auto;*/}
 
@@ -597,7 +608,7 @@ header .btn-lef .arrow-2-wxjs{margin-top:-8px;}
 
 
 /* 样片详情 */
-.ul-box{width:100%;}
+.ul-box{width:100%;margin-top:10px;}
 .ul-box li{width:100%;margin-bottom:1px;}
 .ul-box a{display:block;}
 .ul-box img{width:100%;}
